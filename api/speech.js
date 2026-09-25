@@ -1,6 +1,6 @@
 const json=(res,status,data)=>{res.statusCode=status;res.setHeader('Content-Type','application/json; charset=utf-8');res.end(JSON.stringify(data))};
 
-module.exports=async function handler(req,res){
+export default async function handler(req,res){
   if(req.method!=='POST') return json(res,405,{error:'POST required'});
   const url=process.env.SPEECH_API_URL, key=process.env.SPEECH_API_KEY;
   if(!url||!key) return json(res,503,{error:'Speech evaluator is not configured',code:'SPEECH_NOT_CONFIGURED'});
