@@ -1,7 +1,7 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const STORAGE_KEY='senior_language_os_v2';
-const defaultState={day:1,sessionDone:[],savedSentences:[],errors:[],completedDays:[],activePack:null,missionDone:false,recallStats:[],personalLexicon:[]};
-let state=loadState(),pack=null,selected={},drillIndex=0,recallIndex=0,listeningIndex=0,scenarioIndex=0,timerInterval=null,timerRemaining=120,recallStartedAt=null,mediaRecorder=null,recordedChunks=[],recordingUrl=null;
+const defaultState={day:1,sessionDone:[],savedSentences:[],errors:[],completedDays:[],activePack:null,missionDone:false,recallStats:[],personalLexicon:[],recallSchedule:{}};
+let state=loadState(),pack=null,selected={},drillIndex=0,recallIndex=0,listeningIndex=0,scenarioIndex=0,timerInterval=null,timerRemaining=120,recallStartedAt=null,activeRecallKey=null,mediaRecorder=null,recordedChunks=[],recordingUrl=null;
 function loadState(){try{return {...defaultState,...(JSON.parse(localStorage.getItem(STORAGE_KEY))||{})}}catch{return {...defaultState}}}
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
 function esc(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
@@ -18,7 +18,7 @@ function bindActions(){
  $('#resetSession').onclick=()=>{state.sessionDone=[];state.missionDone=false;persist();renderAll();toast('Oturum sıfırlandı')};
  $('#saveSentence').onclick=saveSentence;$('#randomSentence').onclick=randomizeSentence;$('#speakSentence').onclick=()=>speak(buildSentence());
  $('#revealDrill').onclick=()=>$('#drillAnswer').classList.toggle('hidden');$('#nextDrill').onclick=()=>{const a=currentDayData().drills||[];if(a.length){drillIndex=(drillIndex+1)%a.length;renderDrill()}};
- $('#startRecall').onclick=startRecall;$('#revealRecall').onclick=revealRecall;$('#nextRecall').onclick=()=>{recallIndex=(recallIndex+1)%recallItems().length;renderRecall()};$$('#recallRatings button').forEach(b=>b.onclick=()=>rateRecall(b.dataset.rating));
+ $('#startRecall').onclick=startRecall;$('#revealRecall').onclick=revealRecall;$('#nextRecall').onclick=nextRecallCard;$('#recallRatings button').forEach(b=>b.onclick=()=>rateRecall(b.dataset.rating));
  $('#personalForm').onsubmit=addPersonal;
  $('#playListen').onclick=playListening;$('#showTranscript').onclick=()=>$('#listenTranscript').classList.toggle('hidden');$('#nextListen').onclick=()=>{const a=currentDayData().listening||[];if(a.length){listeningIndex=(listeningIndex+1)%a.length;renderListening()}};$('#checkDictation').onclick=checkDictation;
  $('#toggleTimer').onclick=toggleTimer;$('#resetTimer').onclick=()=>resetTimer(timerRemaining||120);$$('.round-switch button').forEach(b=>b.onclick=()=>setRound(Number(b.dataset.minutes),b));$('#nextScenario').onclick=nextScenario;$('#recordBtn').onclick=toggleRecording;
@@ -38,12 +38,59 @@ function randomizeSentence(){(currentDayData().engine?.slots||[]).forEach(s=>{co
 function saveSentence(){const s=buildSentence();if(!state.savedSentences.includes(s))state.savedSentences.unshift(s);state.savedSentences=state.savedSentences.slice(0,20);persist();renderSaved();toast('Cümle kaydedildi')}
 function renderSaved(){$('#savedSentences').innerHTML=state.savedSentences.length?state.savedSentences.map(s=>`<div class="saved-item"><strong>${esc(s)}</strong></div>`).join(''):'<div class="empty">Henüz kişisel cümle yok.</div>'}
 function speak(text){if(!('speechSynthesis'in window)){toast('Bu tarayıcıda ses motoru yok');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);if(pack.meta?.locale)u.lang=pack.meta.locale;speechSynthesis.speak(u)}
-function recallItems(){const base=currentDayData().recall||[];return [...base,...state.personalLexicon.map(x=>({cue:x.cue,target:x.target,personal:true}))].length?[...base,...state.personalLexicon.map(x=>({cue:x.cue,target:x.target,personal:true}))]:[{cue:'Recall içeriği yok',target:'Dil paketine recall[] ekle.'}]}
-function renderRecall(){const a=recallItems();recallIndex=Math.min(recallIndex,a.length-1);const x=a[recallIndex];$('#recallIndex').textContent=`${recallIndex+1} / ${a.length}`;$('#recallCue').textContent=x.cue;$('#recallAnswer').textContent=x.target;$('#recallAnswer').classList.add('hidden');$('#revealRecall').classList.add('hidden');$('#recallRatings').classList.add('hidden');$('#recallClock').textContent='hazır';recallStartedAt=null;renderPersonal()}
-function startRecall(){recallStartedAt=performance.now();$('#revealRecall').classList.remove('hidden');$('#recallClock').textContent='çağır…'}
-function revealRecall(){if(!recallStartedAt)return;const sec=(performance.now()-recallStartedAt)/1000;$('#recallClock').textContent=`${sec.toFixed(1)} sn ${sec<=3?'✓':'→ hedef <3'}`;$('#recallAnswer').classList.remove('hidden');$('#recallRatings').classList.remove('hidden');state.recallStats.push({day:state.day,cue:recallItems()[recallIndex].cue,seconds:sec,at:new Date().toISOString()});state.recallStats=state.recallStats.slice(-250);persist();renderMetrics();recallStartedAt=null}
-function rateRecall(r){const last=state.recallStats[state.recallStats.length-1];if(last)last.rating=r;persist();recallIndex=(recallIndex+1)%recallItems().length;renderRecall()}
-function addPersonal(e){e.preventDefault();const cue=$('#personalCue').value.trim(),target=$('#personalTarget').value.trim();state.personalLexicon.unshift({id:Date.now(),cue,target});state.personalLexicon=state.personalLexicon.slice(0,100);persist();e.target.reset();renderRecall();toast('Kişisel ifadeye eklendi')}
+function recallKey(day,index,item){return `${pack.meta?.id||'pack'}:${day}:${index}:${norm(item.cue)}`}
+function allRecallItems(){
+ const items=[];
+ (pack.days||[]).filter(d=>d.day<=state.day).forEach(d=>(d.recall||[]).forEach((item,index)=>items.push({...item,key:recallKey(d.day,index,item),introducedDay:d.day,sourceDay:d.day,personal:false})));
+ state.personalLexicon.forEach(item=>items.push({cue:item.cue,target:item.target,key:`personal:${item.id}`,introducedDay:item.introducedDay||1,sourceDay:item.introducedDay||1,personal:true}));
+ return items;
+}
+function scheduleFor(item){
+ const saved=state.recallSchedule[item.key];
+ return saved||{dueDay:item.introducedDay,interval:0,reps:0,lapses:0,ease:2.2,lastSeconds:null,lastRating:null};
+}
+function recallItems(){
+ return allRecallItems().filter(item=>scheduleFor(item).dueDay<=state.day).sort((a,b)=>{
+   const sa=scheduleFor(a),sb=scheduleFor(b);
+   const slowA=sa.lastSeconds>3?1:0,slowB=sb.lastSeconds>3?1:0;
+   return (sa.dueDay-sb.dueDay)||(slowB-slowA)||(sb.lapses-sa.lapses)||(a.introducedDay-b.introducedDay)||a.key.localeCompare(b.key);
+ });
+}
+function nextRecallCard(){const a=recallItems();if(!a.length)return renderRecall();recallIndex=(recallIndex+1)%a.length;renderRecall()}
+function renderRecall(){
+ const a=recallItems();renderReviewQueue(a);renderPersonal();recallStartedAt=null;activeRecallKey=null;
+ $('#recallAnswer').classList.add('hidden');$('#revealRecall').classList.add('hidden');$('#recallRatings').classList.add('hidden');$('#recallClock').textContent='hazır';
+ if(!a.length){
+   recallIndex=0;$('#recallIndex').textContent='0 / 0';$('#recallCue').textContent='Bugünkü tekrar kuyruğu tamamlandı.';$('#recallAnswer').textContent='Bir sonraki program gününde zamanı gelen kalıplar otomatik dönecek.';$('#recallAnswer').classList.remove('hidden');$('#startRecall').disabled=true;$('#nextRecall').disabled=true;return;
+ }
+ $('#startRecall').disabled=false;$('#nextRecall').disabled=false;recallIndex=Math.min(recallIndex,a.length-1);const x=a[recallIndex],sc=scheduleFor(x);
+ $('#recallIndex').textContent=`${recallIndex+1} / ${a.length}`;$('#recallCue').textContent=x.cue;$('#recallAnswer').textContent=x.target;
+ $('#recallClock').textContent=sc.lastSeconds==null?'yeni':`son: ${sc.lastSeconds.toFixed(1)} sn · ${sc.lastSeconds<=3?'otomatikleşiyor':'yavaş'}`;
+}
+function startRecall(){const x=recallItems()[recallIndex];if(!x)return;activeRecallKey=x.key;recallStartedAt=performance.now();$('#revealRecall').classList.remove('hidden');$('#recallClock').textContent='çağır…'}
+function revealRecall(){
+ if(!recallStartedAt||!activeRecallKey)return;const x=allRecallItems().find(i=>i.key===activeRecallKey);if(!x)return;
+ const sec=(performance.now()-recallStartedAt)/1000;$('#recallClock').textContent=`${sec.toFixed(1)} sn ${sec<=3?'✓':'→ hedef <3'}`;$('#recallAnswer').classList.remove('hidden');$('#recallRatings').classList.remove('hidden');
+ state.recallStats.push({day:state.day,itemKey:x.key,cue:x.cue,seconds:sec,at:new Date().toISOString()});state.recallStats=state.recallStats.slice(-500);persist();renderMetrics();recallStartedAt=null;
+}
+function rateRecall(r){
+ const last=state.recallStats[state.recallStats.length-1];if(!last||!activeRecallKey)return;
+ last.rating=r;const item=allRecallItems().find(i=>i.key===activeRecallKey);if(!item)return;
+ const prev=scheduleFor(item),sec=last.seconds;let interval,ease=prev.ease||2.2,lapses=prev.lapses||0;
+ if(r==='again'||sec>6){interval=1;ease=Math.max(1.3,ease-.2);lapses++}
+ else if(r==='hard'||sec>3){interval=Math.max(1,Math.round((prev.interval||1)*1.4));ease=Math.max(1.3,ease-.1)}
+ else if(r==='easy'){interval=prev.interval?Math.max(3,Math.round(prev.interval*(ease+.6))):4;ease=Math.min(3.2,ease+.1)}
+ else {interval=prev.interval?Math.max(2,Math.round(prev.interval*ease)):2}
+ interval=Math.min(30,interval);
+ state.recallSchedule[item.key]={dueDay:state.day+interval,interval,reps:(prev.reps||0)+1,lapses,ease,lastSeconds:sec,lastRating:r,lastReviewedDay:state.day};
+ persist();recallIndex=0;activeRecallKey=null;renderRecall();renderMetrics();
+}
+function addPersonal(e){e.preventDefault();const cue=$('#personalCue').value.trim(),target=$('#personalTarget').value.trim();state.personalLexicon.unshift({id:Date.now(),cue,target,introducedDay:state.day});state.personalLexicon=state.personalLexicon.slice(0,100);persist();e.target.reset();recallIndex=0;renderRecall();toast('Kişisel ifadeye eklendi')}
+function renderReviewQueue(queue=recallItems()){
+ const all=allRecallItems(),due=queue.length,slow=all.filter(x=>{const sc=scheduleFor(x);return sc.dueDay<=state.day&&sc.lastSeconds>3}).length,next=all.map(x=>scheduleFor(x).dueDay).filter(d=>d>state.day).sort((a,b)=>a-b)[0];
+ $('#queueSummary').textContent=due+' bugün · '+slow+' yavaş · '+(next?'sonraki Gün '+next:'yeni sıra yok');
+ $('#reviewQueue').innerHTML=queue.slice(0,8).map(x=>{const sc=scheduleFor(x);const source=x.personal?'kişisel':'Gün '+x.sourceDay;const reps=sc.reps?sc.reps+' tekrar':'yeni';const speed=sc.lastSeconds==null?'NEW':sc.lastSeconds.toFixed(1)+'s';return `<div class="queue-item"><div><strong>${esc(x.cue)}</strong><span>${source} · ${reps}</span></div><b class="${sc.lastSeconds>3?'slow':'fast'}">${speed}</b></div>`}).join('')||'<div class="empty">Bugün için bekleyen tekrar yok.</div>';
+}
 function renderPersonal(){$('#personalList').innerHTML=state.personalLexicon.slice(0,8).map(x=>`<div class="saved-item"><strong>${esc(x.target)}</strong><span>${esc(x.cue)}</span></div>`).join('')||'<div class="empty">Söyleyemediğin ifadeleri buraya ekle.</div>'}
 function currentListen(){const a=currentDayData().listening||[];return a[listeningIndex]||{title:'Listening içeriği yok',text:'',hint:'Dil paketine listening[] ekle.'}}
 function renderListening(){const x=currentListen();$('#listenTitle').textContent=x.title;$('#listenHint').textContent=x.hint||'';$('#listenTranscript').textContent=x.text;$('#listenTranscript').classList.add('hidden');$('#dictationInput').value='';$('#dictationScore').textContent=''}
@@ -62,7 +109,7 @@ function addError(e){e.preventDefault();const intent=$('#errorIntent').value.tri
 function renderErrors(){const active=state.errors.filter(x=>!x.resolved).sort((a,b)=>(b.count||1)-(a.count||1));$('#priorityErrors').innerHTML=active.slice(0,3).map((x,i)=>`<article><span>ODAK ${i+1}</span><strong>${esc(x.correct)}</strong><small>${x.count||1} kez tekrar etti</small></article>`).join('')||'<div class="empty">Henüz öncelikli hata yok.</div>';$('#errorList').innerHTML=state.errors.length?state.errors.map(x=>`<div class="error-card ${x.resolved?'resolved':''}"><strong>${esc(x.intent)}</strong>${x.said?`<p>Dedim: ${esc(x.said)}</p>`:''}<p>Doğal ifade: ${esc(x.correct)}</p><p>Tekrar: ${x.count||1}</p><div class="error-actions"><button class="ghost" data-resolve="${x.id}">${x.resolved?'Geri aç':'Çözüldü'}</button><button class="ghost" data-delete="${x.id}">Sil</button></div></div>`).join(''):'<div class="empty">Hata defteri boş.</div>';$$('[data-resolve]').forEach(b=>b.onclick=()=>{const x=state.errors.find(e=>e.id===Number(b.dataset.resolve));if(x)x.resolved=!x.resolved;persist();renderErrors();renderMetrics()});$$('[data-delete]').forEach(b=>b.onclick=()=>{state.errors=state.errors.filter(e=>e.id!==Number(b.dataset.delete));persist();renderErrors();renderMetrics()})}
 function renderProgress(){$('#phases').innerHTML=(pack.phases||[]).map(p=>`<div class="phase ${phaseForDay(state.day)===p.id?'active':''}"><span>${esc(p.days)}</span><strong>${esc(p.name)}</strong></div>`).join('');$('#dayGrid').innerHTML=Array.from({length:30},(_,i)=>i+1).map(d=>`<button class="day ${d===state.day?'current':''} ${state.completedDays.includes(d)?'complete':''}" data-day="${d}">${pad(d)}</button>`).join('');$$('#dayGrid [data-day]').forEach(b=>b.onclick=()=>{state.day=Number(b.dataset.day);state.sessionDone=[];state.missionDone=false;persist();renderAll();showView('home')})}
 function renderPack(){$('#packName').textContent=pack.meta?.name||'Unnamed pack';$('#packMeta').textContent=`${pack.meta?.targetLanguage||'Unknown'} · v${pack.meta?.version||'0'} · ${pack.meta?.description||''}`}
-async function loadPackFile(e){const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());validatePack(data);pack=data;state.activePack=data;state.day=1;state.sessionDone=[];state.completedDays=[];persist();drillIndex=recallIndex=listeningIndex=scenarioIndex=0;renderAll();toast(`${data.meta.name} yüklendi`)}catch(err){toast(`Paket açılamadı: ${err.message}`)}finally{e.target.value=''}}
+async function loadPackFile(e){const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());validatePack(data);pack=data;state.activePack=data;state.day=1;state.sessionDone=[];state.completedDays=[];state.recallSchedule={};persist();drillIndex=recallIndex=listeningIndex=scenarioIndex=0;renderAll();toast(`${data.meta.name} yüklendi`)}catch(err){toast(`Paket açılamadı: ${err.message}`)}finally{e.target.value=''}}
 function validatePack(p){if(!p?.meta?.id||!p?.meta?.name||!Array.isArray(p.days)||!p.days.length)throw new Error('meta.id, meta.name ve days[] gerekli');const d=p.days[0];if(!d.engine||!Array.isArray(d.drills)||!d.mission)throw new Error('Günlerde engine, drills ve mission gerekli')}
 function downloadState(){const safe={...state,activePack:state.activePack?.meta?{meta:state.activePack.meta}:null};const blob=new Blob([JSON.stringify(safe,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='senior-language-os-state.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
 init();
