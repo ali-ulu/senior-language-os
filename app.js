@@ -1,6 +1,6 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const STORAGE_KEY='senior_language_os_v2';
-const defaultState={day:1,sessionDone:[],savedSentences:[],errors:[],completedDays:[],activePack:null,missionDone:false,recallStats:[],personalLexicon:[],recallSchedule:{}};
+const defaultState={day:1,sessionDone:[],savedSentences:[],errors:[],completedDays:[],activePack:null,missionDone:false,recallStats:[],personalLexicon:[],recallSchedule:{},conversationHistory:[],lastEvaluation:null};
 let state=loadState(),pack=null,selected={},drillIndex=0,recallIndex=0,listeningIndex=0,scenarioIndex=0,timerInterval=null,timerRemaining=120,recallStartedAt=null,activeRecallKey=null,mediaRecorder=null,recordedChunks=[],recordingUrl=null;
 function loadState(){try{return {...defaultState,...(JSON.parse(localStorage.getItem(STORAGE_KEY))||{})}}catch{return {...defaultState}}}
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
@@ -14,14 +14,15 @@ function currentDayData(){return pack.days.find(d=>d.day===state.day)||{...pack.
 function bindNav(){$$('#nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view))}
 function showView(id){$$('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));$$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${id}`));const t={home:'Bugünün oturumu',engine:'Sentence Engine',recall:'Recall Lab',listening:'Listening Lab',drill:'Mutation Drill',mission:'Speaking Mission',errors:'Error Loop',progress:'30 Günlük Harita',packs:'Dil Paketleri'};$('#viewTitle').textContent=t[id]}
 function bindActions(){
- $('#nextDay').onclick=()=>{if(state.day<30){state.completedDays=[...new Set([...state.completedDays,state.day])];state.day++;state.sessionDone=[];state.missionDone=false;persist();renderAll();toast(`Gün ${state.day} açıldı`)}};
+ $('#nextDay').onclick=()=>{if(state.day<30){state.completedDays=[...new Set([...state.completedDays,state.day])];state.day++;state.sessionDone=[];state.missionDone=false;state.conversationHistory=[];state.lastEvaluation=null;persist();renderAll();toast(`Gün ${state.day} açıldı`)}};
  $('#resetSession').onclick=()=>{state.sessionDone=[];state.missionDone=false;persist();renderAll();toast('Oturum sıfırlandı')};
  $('#saveSentence').onclick=saveSentence;$('#randomSentence').onclick=randomizeSentence;$('#speakSentence').onclick=()=>speak(buildSentence());
  $('#revealDrill').onclick=()=>$('#drillAnswer').classList.toggle('hidden');$('#nextDrill').onclick=()=>{const a=currentDayData().drills||[];if(a.length){drillIndex=(drillIndex+1)%a.length;renderDrill()}};
  $('#startRecall').onclick=startRecall;$('#revealRecall').onclick=revealRecall;$('#nextRecall').onclick=nextRecallCard;$('#recallRatings button').forEach(b=>b.onclick=()=>rateRecall(b.dataset.rating));
  $('#personalForm').onsubmit=addPersonal;
  $('#playListen').onclick=playListening;$('#showTranscript').onclick=()=>$('#listenTranscript').classList.toggle('hidden');$('#nextListen').onclick=()=>{const a=currentDayData().listening||[];if(a.length){listeningIndex=(listeningIndex+1)%a.length;renderListening()}};$('#checkDictation').onclick=checkDictation;
- $('#toggleTimer').onclick=toggleTimer;$('#resetTimer').onclick=()=>resetTimer(timerRemaining||120);$$('.round-switch button').forEach(b=>b.onclick=()=>setRound(Number(b.dataset.minutes),b));$('#nextScenario').onclick=nextScenario;$('#recordBtn').onclick=toggleRecording;
+ $('#toggleTimer').onclick=toggleTimer;$('#resetTimer').onclick=()=>resetTimer(timerRemaining||120);$('.round-switch button').forEach(b=>b.onclick=()=>setRound(Number(b.dataset.minutes),b));$('#nextScenario').onclick=nextScenario;$('#recordBtn').onclick=toggleRecording;
+ $('#startConversation').onclick=startConversation;$('#sendConversation').onclick=sendConversation;$('#voiceInput').onclick=startVoiceInput;$('#finishConversation').onclick=finishConversation;$('#conversationInput').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendConversation()}};
  $('#missionDone').onchange=e=>{state.missionDone=e.target.checked;if(e.target.checked&&!state.sessionDone.includes('Real Life Mission'))state.sessionDone.push('Real Life Mission');persist();renderProgressBits()};
  $('#errorForm').onsubmit=addError;$('#packInput').onchange=loadPackFile;$('#downloadState').onclick=downloadState;
 }
@@ -98,18 +99,72 @@ function playListening(){const x=currentListen();if(x.text)speak(x.text)}
 function norm(s){return s.toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s']/gu,'').replace(/\s+/g,' ').trim()}
 function checkDictation(){const target=norm(currentListen().text),typed=norm($('#dictationInput').value);if(!target){return}const tw=target.split(' '),uw=typed.split(' '),hit=tw.filter((w,i)=>uw[i]===w).length,p=Math.round(hit/tw.length*100);$('#dictationScore').textContent=`Kelime-konum eşleşmesi: %${p}. Şimdi metni aç, farkı gör, kapat ve tekrar dinle.`}
 function renderDrill(){const a=currentDayData().drills||[];if(!a.length)return;drillIndex=Math.min(drillIndex,a.length-1);const d=a[drillIndex];$('#drillIndex').textContent=`${drillIndex+1} / ${a.length}`;$('#drillRule').textContent=d.rule;$('#drillBase').textContent=d.base;$('#drillPrompt').textContent=d.prompt;$('#drillAnswer').textContent=d.answer;$('#drillAnswer').classList.add('hidden')}
-function renderMission(){const m=currentDayData().mission||{};$('#missionTitle').textContent=m.title||'Mission';$('#missionPrompt').textContent=(m.variants?.[scenarioIndex]||m.prompt||'');$('#missionConstraints').innerHTML=(m.constraints||[]).map(c=>`<span class="constraint">${esc(c)}</span>`).join('');$('#scenarioIndex').textContent=`Senaryo ${scenarioIndex+1}`;resetTimer(m.seconds||120);$('#missionDone').checked=!!state.missionDone}
-function nextScenario(){const v=currentDayData().mission?.variants||[];if(v.length){scenarioIndex=(scenarioIndex+1)%v.length;renderMission()}}
+function renderMission(){const m=currentDayData().mission||{};$('#missionTitle').textContent=m.title||'Mission';$('#missionPrompt').textContent=(m.variants?.[scenarioIndex]||m.prompt||'');$('#missionConstraints').innerHTML=(m.constraints||[]).map(c=>`<span class="constraint">${esc(c)}</span>`).join('');$('#scenarioIndex').textContent=`Senaryo ${scenarioIndex+1}`;resetTimer(m.seconds||120);$('#missionDone').checked=!!state.missionDone;renderConversation()}
+function nextScenario(){const v=currentDayData().mission?.variants||[];if(v.length){scenarioIndex=(scenarioIndex+1)%v.length;state.conversationHistory=[];state.lastEvaluation=null;persist();renderMission()}}
 function setRound(min,b){$$('.round-switch button').forEach(x=>x.classList.remove('active'));b.classList.add('active');resetTimer(min*60)}
 function resetTimer(sec){clearInterval(timerInterval);timerInterval=null;timerRemaining=sec;$('#toggleTimer').textContent='Başlat';drawTimer()}
 function drawTimer(){const m=Math.floor(timerRemaining/60),s=timerRemaining%60;$('#timer').textContent=`${pad(m)}:${pad(s)}`}
 function toggleTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;$('#toggleTimer').textContent='Devam et';return}$('#toggleTimer').textContent='Duraklat';timerInterval=setInterval(()=>{timerRemaining--;drawTimer();if(timerRemaining<=0){clearInterval(timerInterval);timerInterval=null;$('#toggleTimer').textContent='Tur tamamlandı';toast('Tur tamamlandı. Aynı görevi yeniden yap.') }},1000)}
 async function toggleRecording(){const b=$('#recordBtn');if(mediaRecorder?.state==='recording'){mediaRecorder.stop();b.textContent='● Ses kaydı';return}if(!navigator.mediaDevices?.getUserMedia){toast('Mikrofon kaydı desteklenmiyor');return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordedChunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)recordedChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(recordedChunks,{type:mediaRecorder.mimeType||'audio/webm'});if(recordingUrl)URL.revokeObjectURL(recordingUrl);recordingUrl=URL.createObjectURL(blob);const a=$('#recordingPlayback');a.src=recordingUrl;a.classList.remove('hidden');stream.getTracks().forEach(t=>t.stop());toast('Ses kaydı hazır')};mediaRecorder.start();b.textContent='■ Kaydı bitir'}catch{toast('Mikrofon izni alınamadı')}}
+function conversationScenario(){const m=currentDayData().mission||{};return m.variants?.[scenarioIndex]||m.prompt||m.title||'Everyday conversation'}
+function setAIStatus(text,kind=''){$('#aiStatus').textContent=text;$('#aiStatus').className='ai-status '+kind}
+function renderConversation(){
+ const log=$('#conversationLog');if(!log)return;
+ const history=state.conversationHistory||[];
+ log.innerHTML=history.length?history.map(x=>`<div class="chat-row ${x.role}"><span>${x.role==='assistant'?'PARTNER':'YOU'}</span><p>${esc(x.text)}</p></div>`).join(''):'<div class="conversation-empty">Senaryoyu başlat. Partner tek seferde tek soru soracak; konuşma bitene kadar düzeltme yapmayacak.</div>';
+ log.scrollTop=log.scrollHeight;
+ if(state.lastEvaluation)renderEvaluation(state.lastEvaluation);else $('#evaluationBox').classList.add('hidden');
+}
+async function aiRequest(action){
+ try{
+   const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,locale:pack.meta?.locale||'en-US',scenario:conversationScenario(),history:state.conversationHistory||[]})});
+   if(!res.ok)throw new Error('AI endpoint unavailable');const data=await res.json();setAIStatus('AI connected','online');return data;
+ }catch{setAIStatus('local simulator','local');return null}
+}
+function localConversationReply(opening=false){
+ const locale=(pack.meta?.locale||'').toLowerCase();if(!locale.startsWith('en'))return 'AI endpoint required for live role-play in this language pack.';
+ const day=state.day,turns=(state.conversationHistory||[]).filter(x=>x.role==='user').length;
+ if(opening){if(day===4)return 'Hi. What would you like to order?';if(day===5)return 'Hi. Where are you trying to go?';if(day===20)return 'Welcome. What name is the reservation under?';if(day===23)return 'Hello. Where are you travelling today?';if(day===24)return 'Hi. Tell me what problem you are having.';return 'Hi. Let’s start. What would you like to say first?'}
+ const prompts=['Could you tell me a little more?','Why is that important to you?','What happened next?','What would you like to do now?','Can you give me an example?'];
+ return prompts[Math.min(turns-1,prompts.length-1)];
+}
+async function startConversation(){
+ state.conversationHistory=[];state.lastEvaluation=null;setAIStatus('connecting…');renderConversation();
+ const data=await aiRequest('reply');const reply=data?.reply||localConversationReply(true);state.conversationHistory=[{role:'assistant',text:reply}];persist();renderConversation();speak(reply);
+}
+async function sendConversation(){
+ const input=$('#conversationInput'),text=input.value.trim();if(!text)return;
+ if(!(state.conversationHistory||[]).length)await startConversation();
+ state.conversationHistory.push({role:'user',text});input.value='';persist();renderConversation();setAIStatus('thinking…');
+ const data=await aiRequest('reply');const reply=data?.reply||localConversationReply(false);state.conversationHistory.push({role:'assistant',text:reply});persist();renderConversation();speak(reply);
+}
+function startVoiceInput(){
+ const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Recognition){toast('Bu tarayıcıda konuşmayı yazıya çevirme yok; metin alanını kullan.');return}
+ const rec=new Recognition();rec.lang=pack.meta?.locale||'en-US';rec.interimResults=false;rec.maxAlternatives=1;
+ rec.onstart=()=>setAIStatus('listening…','listening');rec.onerror=()=>setAIStatus('microphone error','');rec.onend=()=>{if($('#aiStatus').textContent==='listening…')setAIStatus('ready')};
+ rec.onresult=e=>{const text=e.results?.[0]?.[0]?.transcript||'';$('#conversationInput').value=text;setAIStatus('speech captured','online')};rec.start();
+}
+async function finishConversation(){
+ const learnerTurns=(state.conversationHistory||[]).filter(x=>x.role==='user');if(!learnerTurns.length){toast('Önce en az bir cevap ver.');return}
+ setAIStatus('evaluating…');const data=await aiRequest('evaluate');
+ if(!data?.evaluation){state.lastEvaluation={unavailable:true,summary:'AI değerlendirme endpoint’i bağlı değil. Konuşma akışı yerel simülatörle çalışmaya devam ediyor.'};persist();renderEvaluation(state.lastEvaluation);return}
+ state.lastEvaluation=data.evaluation;persist();renderEvaluation(state.lastEvaluation);
+}
+function renderEvaluation(ev){
+ const box=$('#evaluationBox');if(!box)return;box.classList.remove('hidden');
+ if(ev.unavailable){box.innerHTML=`<p>${esc(ev.summary)}</p>`;return}
+ const errors=(ev.topErrors||[]).slice(0,3);box.innerHTML=`<p class="eyebrow">SESSION REVIEW</p><h4>${esc(ev.summary||'Konuşma değerlendirmesi')}</h4>${errors.map((x,i)=>`<div class="eval-error"><span>${i+1}</span><div><del>${esc(x.said||'')}</del><strong>${esc(x.correct||'')}</strong><small>${esc(x.reason||'')}</small></div></div>`).join('')}${(ev.strengths||[]).length?`<p class="eval-strengths">Güçlü taraflar: ${(ev.strengths||[]).map(esc).join(' · ')}</p>`:''}${errors.length?'<button class="ghost" id="saveEvalErrors">Top 3 hatayı Error Loop’a aktar</button>':''}`;
+ const b=$('#saveEvalErrors');if(b)b.onclick=()=>saveEvaluationErrors(errors);
+}
+function saveEvaluationErrors(errors){
+ errors.forEach(x=>{if(!x.correct)return;const key=norm(x.correct),found=state.errors.find(e=>!e.resolved&&norm(e.correct)===key);if(found){found.count=(found.count||1)+1;found.said=x.said||found.said}else state.errors.unshift({id:Date.now()+Math.random(),intent:'AI conversation review',said:x.said||'',correct:x.correct,count:1,resolved:false,created:new Date().toISOString()})});
+ state.errors=state.errors.slice(0,80);persist();renderErrors();renderMetrics();toast('Top 3 hata Error Loop’a aktarıldı');
+}
 function addError(e){e.preventDefault();const intent=$('#errorIntent').value.trim(),said=$('#errorSaid').value.trim(),correct=$('#errorCorrect').value.trim(),key=norm(correct);const found=state.errors.find(x=>!x.resolved&&norm(x.correct)===key);if(found){found.count=(found.count||1)+1;found.intent=intent||found.intent;found.said=said||found.said;found.lastSeen=new Date().toISOString()}else state.errors.unshift({id:Date.now(),intent,said,correct,count:1,resolved:false,created:new Date().toISOString()});state.errors=state.errors.slice(0,80);persist();e.target.reset();renderErrors();renderMetrics();toast('Hata döngüsüne eklendi')}
 function renderErrors(){const active=state.errors.filter(x=>!x.resolved).sort((a,b)=>(b.count||1)-(a.count||1));$('#priorityErrors').innerHTML=active.slice(0,3).map((x,i)=>`<article><span>ODAK ${i+1}</span><strong>${esc(x.correct)}</strong><small>${x.count||1} kez tekrar etti</small></article>`).join('')||'<div class="empty">Henüz öncelikli hata yok.</div>';$('#errorList').innerHTML=state.errors.length?state.errors.map(x=>`<div class="error-card ${x.resolved?'resolved':''}"><strong>${esc(x.intent)}</strong>${x.said?`<p>Dedim: ${esc(x.said)}</p>`:''}<p>Doğal ifade: ${esc(x.correct)}</p><p>Tekrar: ${x.count||1}</p><div class="error-actions"><button class="ghost" data-resolve="${x.id}">${x.resolved?'Geri aç':'Çözüldü'}</button><button class="ghost" data-delete="${x.id}">Sil</button></div></div>`).join(''):'<div class="empty">Hata defteri boş.</div>';$$('[data-resolve]').forEach(b=>b.onclick=()=>{const x=state.errors.find(e=>e.id===Number(b.dataset.resolve));if(x)x.resolved=!x.resolved;persist();renderErrors();renderMetrics()});$$('[data-delete]').forEach(b=>b.onclick=()=>{state.errors=state.errors.filter(e=>e.id!==Number(b.dataset.delete));persist();renderErrors();renderMetrics()})}
-function renderProgress(){$('#phases').innerHTML=(pack.phases||[]).map(p=>`<div class="phase ${phaseForDay(state.day)===p.id?'active':''}"><span>${esc(p.days)}</span><strong>${esc(p.name)}</strong></div>`).join('');$('#dayGrid').innerHTML=Array.from({length:30},(_,i)=>i+1).map(d=>`<button class="day ${d===state.day?'current':''} ${state.completedDays.includes(d)?'complete':''}" data-day="${d}">${pad(d)}</button>`).join('');$$('#dayGrid [data-day]').forEach(b=>b.onclick=()=>{state.day=Number(b.dataset.day);state.sessionDone=[];state.missionDone=false;persist();renderAll();showView('home')})}
+function renderProgress(){$('#phases').innerHTML=(pack.phases||[]).map(p=>`<div class="phase ${phaseForDay(state.day)===p.id?'active':''}"><span>${esc(p.days)}</span><strong>${esc(p.name)}</strong></div>`).join('');$('#dayGrid').innerHTML=Array.from({length:30},(_,i)=>i+1).map(d=>`<button class="day ${d===state.day?'current':''} ${state.completedDays.includes(d)?'complete':''}" data-day="${d}">${pad(d)}</button>`).join('');$('#dayGrid [data-day]').forEach(b=>b.onclick=()=>{state.day=Number(b.dataset.day);state.sessionDone=[];state.missionDone=false;state.conversationHistory=[];state.lastEvaluation=null;persist();renderAll();showView('home')})}
 function renderPack(){$('#packName').textContent=pack.meta?.name||'Unnamed pack';$('#packMeta').textContent=`${pack.meta?.targetLanguage||'Unknown'} · v${pack.meta?.version||'0'} · ${pack.meta?.description||''}`}
-async function loadPackFile(e){const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());validatePack(data);pack=data;state.activePack=data;state.day=1;state.sessionDone=[];state.completedDays=[];state.recallSchedule={};persist();drillIndex=recallIndex=listeningIndex=scenarioIndex=0;renderAll();toast(`${data.meta.name} yüklendi`)}catch(err){toast(`Paket açılamadı: ${err.message}`)}finally{e.target.value=''}}
+async function loadPackFile(e){const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());validatePack(data);pack=data;state.activePack=data;state.day=1;state.sessionDone=[];state.completedDays=[];state.recallSchedule={};state.conversationHistory=[];state.lastEvaluation=null;persist();drillIndex=recallIndex=listeningIndex=scenarioIndex=0;renderAll();toast(`${data.meta.name} yüklendi`)}catch(err){toast(`Paket açılamadı: ${err.message}`)}finally{e.target.value=''}}
 function validatePack(p){if(!p?.meta?.id||!p?.meta?.name||!Array.isArray(p.days)||!p.days.length)throw new Error('meta.id, meta.name ve days[] gerekli');const d=p.days[0];if(!d.engine||!Array.isArray(d.drills)||!d.mission)throw new Error('Günlerde engine, drills ve mission gerekli')}
 function downloadState(){const safe={...state,activePack:state.activePack?.meta?{meta:state.activePack.meta}:null};const blob=new Blob([JSON.stringify(safe,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='senior-language-os-state.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
 init();
