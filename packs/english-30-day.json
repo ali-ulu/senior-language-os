@@ -1,0 +1,4078 @@
+{
+  "meta": {
+    "id": "english-30-day-v1",
+    "name": "Senior English — 30 Day Sentence Engine",
+    "targetLanguage": "English",
+    "sourceLanguage": "Turkish",
+    "locale": "en-US",
+    "version": "1.0.0",
+    "description": "30 günde İngilizceyi bitirmeyi değil, günlük hayatta konuşmayı başlatıp kendi kendine büyütebilen bir sistem kurmayı hedefleyen üretim paketi."
+  },
+  "method": {
+    "principle": "Dili küçült, yüksek getirili chunks kullan, ilk günden konuş, hataları müfredat yap.",
+    "recallTargetSeconds": 3,
+    "speakingRule": "İlk tur teşhis, ikinci tur eğitim.",
+    "reviewRule": "Yeni içerik her gün önceki motorlarla karışır.",
+    "finalOutcome": "Öğrenci kendini, geçmişini, geleceğini, görüşünü ve bir problemi kesintisiz biçimde ifade edebilir."
+  },
+  "phases": [
+    {
+      "id": 1,
+      "days": "1–5",
+      "name": "Survival Engine",
+      "outcome": "Tanış, ihtiyaç belirt, soru sor, sipariş ver ve yol sor."
+    },
+    {
+      "id": 2,
+      "days": "6–10",
+      "name": "Sentence Engine",
+      "outcome": "Rutin, aile, iş, alışveriş ve planları bağlı cümlelerle anlat."
+    },
+    {
+      "id": 3,
+      "days": "11–15",
+      "name": "Time Engine",
+      "outcome": "Geçmiş, deneyim, gelecek ve problem çözmeyi kısa hikâyeye dönüştür."
+    },
+    {
+      "id": 4,
+      "days": "16–20",
+      "name": "Conversation Engine",
+      "outcome": "Fikir belirt, karşılaştır, katıl/itiraz et, tarif et ve hizmet senaryosu çöz."
+    },
+    {
+      "id": 5,
+      "days": "21–25",
+      "name": "Opinion Engine",
+      "outcome": "Telefon, günlük durumlar, seyahat, destek ve ikna görevlerini yönet."
+    },
+    {
+      "id": 6,
+      "days": "26–30",
+      "name": "Automatic Speech",
+      "outcome": "Hazırlığı azalt, özetle, görüş savun, senaryoları karıştır ve final benchmark yap."
+    }
+  ],
+  "realLifeMap": [
+    "Introduce yourself",
+    "Express wants, needs and plans",
+    "Ask and clarify questions",
+    "Order at a cafe",
+    "Ask for and follow directions",
+    "Describe a daily routine",
+    "Talk about family and home",
+    "Explain work and learning",
+    "Shop and pay",
+    "Make and change plans",
+    "Talk about yesterday",
+    "Talk about experiences",
+    "Talk about tomorrow",
+    "Report a problem and complain politely",
+    "Tell a short story",
+    "Give an opinion",
+    "Compare options",
+    "Agree and disagree politely",
+    "Describe an unknown word",
+    "Handle a reservation/service problem"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "phase": 1,
+      "title": "Kendini Tanıt",
+      "goal": "Adını, yaşadığın yeri ve ne yaptığını doğal kısa cümlelerle anlat.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I’m",
+              "My name is"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "Ali",
+              "a developer",
+              "a student"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "and I live in",
+              "and I work in",
+              "and I’m from"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "Turkey",
+              "Afyonkarahisar",
+              "software"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ben ...’ım.",
+          "target": "I’m …"
+        },
+        {
+          "cue": "Ben ...’da yaşıyorum.",
+          "target": "I live in …"
+        },
+        {
+          "cue": "Ben ... alanında çalışıyorum.",
+          "target": "I work in …"
+        },
+        {
+          "cue": "Ben ...’danım.",
+          "target": "I’m from …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Mini introduction",
+          "text": "Hi, I’m Alex. I live in Berlin and I work in software.",
+          "hint": "İsim + yer + iş."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Bilgiyi değiştir",
+          "base": "I live in Berlin.",
+          "prompt": "Berlin yerine London kullan.",
+          "answer": "I live in London."
+        },
+        {
+          "rule": "Bağlaç ekle",
+          "base": "I’m from Spain. I live in London.",
+          "prompt": "but ile birleştir.",
+          "answer": "I’m from Spain, but I live in London."
+        }
+      ],
+      "mission": {
+        "title": "İlk tanışma",
+        "prompt": "Kendini 30–60 saniye tanıt. Adın, yaşadığın yer ve yaptığın iş/öğrenim hakkında konuş.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Yeni bir iş arkadaşınla tanışıyorsun.",
+          "Bir etkinlikte yanındaki kişiyle tanışıyorsun.",
+          "Online bir toplulukta kendini tanıtıyorsun."
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "phase": 1,
+      "title": "İstek, İhtiyaç, Plan",
+      "goal": "İstediğin, ihtiyaç duyduğun ve planladığın şeyleri hızlıca ifade et.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I",
+              "We"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "want to",
+              "need to",
+              "plan to",
+              "have to"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "work",
+              "study",
+              "eat",
+              "leave",
+              "practice English"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "today",
+              "now",
+              "tomorrow",
+              "this week"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Bir şeyi istemek",
+          "target": "I want to …"
+        },
+        {
+          "cue": "Bir şeye ihtiyaç duymak",
+          "target": "I need to …"
+        },
+        {
+          "cue": "Bir şeyi planlamak",
+          "target": "I plan to …"
+        },
+        {
+          "cue": "Bir zorunluluk",
+          "target": "I have to …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Today’s plan",
+          "text": "I need to work now, but I want to practice English tonight.",
+          "hint": "need to ve want to farkı."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Niyeti değiştir",
+          "base": "I want to study today.",
+          "prompt": "want to yerine have to kullan.",
+          "answer": "I have to study today."
+        },
+        {
+          "rule": "Zamanı değiştir",
+          "base": "We plan to leave tomorrow.",
+          "prompt": "tomorrow yerine this week kullan.",
+          "answer": "We plan to leave this week."
+        }
+      ],
+      "mission": {
+        "title": "Bugünkü niyetlerin",
+        "prompt": "Bugün yapmak istediğin, yapmak zorunda olduğun ve planladığın şeyleri anlat.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Bugünkü planın değişti.",
+          "Yarın çok yoğun bir günün var.",
+          "Bu hafta öğrenmek istediğin üç şeyi anlat."
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "phase": 1,
+      "title": "Soru Motoru",
+      "goal": "Bilgi istemek, anlamadığını söylemek ve takip soruları sormak.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "What do you",
+              "Where do you",
+              "When do you",
+              "Why do you"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "do",
+              "live",
+              "work",
+              "study"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "",
+              "here",
+              "every day",
+              "English"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ne yapıyorsun?",
+          "target": "What do you do?"
+        },
+        {
+          "cue": "Nerede yaşıyorsun?",
+          "target": "Where do you live?"
+        },
+        {
+          "cue": "Tekrar eder misin?",
+          "target": "Can you say that again?"
+        },
+        {
+          "cue": "Bu ne demek?",
+          "target": "What does that mean?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Follow-up questions",
+          "text": "Where do you live? What do you do?",
+          "hint": "İki temel takip sorusu."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Soru kelimesi",
+          "base": "Where do you work?",
+          "prompt": "Where yerine When kullan.",
+          "answer": "When do you work?"
+        },
+        {
+          "rule": "Klarifikasyon",
+          "base": "Can you say that again?",
+          "prompt": "Başına Sorry ekle.",
+          "answer": "Sorry, can you say that again?"
+        }
+      ],
+      "mission": {
+        "title": "Tanışma röportajı",
+        "prompt": "Hayali bir kişiyle tanışıyormuş gibi 5 soru hazırla ve yüksek sesle sor.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Yeni komşuna sorular sor.",
+          "Yeni iş arkadaşına sorular sor.",
+          "Bir dil partnerini tanımaya çalış."
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "phase": 1,
+      "title": "Kafede Sipariş",
+      "goal": "Sipariş ver, tercih belirt ve küçük bir problemi çöz.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I’d like",
+              "Can I have",
+              "Could I get"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "a coffee",
+              "a tea",
+              "a sandwich",
+              "some water"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "please",
+              "without sugar",
+              "to go",
+              "with milk"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... alabilir miyim?",
+          "target": "Can I have …?"
+        },
+        {
+          "cue": "... istiyorum.",
+          "target": "I’d like …"
+        },
+        {
+          "cue": "Paket olsun.",
+          "target": "To go, please."
+        },
+        {
+          "cue": "Şekersiz.",
+          "target": "Without sugar, please."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Cafe order",
+          "text": "Hi, I’d like a coffee with milk and a sandwich, please.",
+          "hint": "Sipariş + detay + please."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Ürünü değiştir",
+          "base": "I’d like a coffee, please.",
+          "prompt": "coffee yerine tea kullan.",
+          "answer": "I’d like a tea, please."
+        },
+        {
+          "rule": "Problemi düzelt",
+          "base": "I asked for coffee.",
+          "prompt": "not tea ekle.",
+          "answer": "I asked for coffee, not tea."
+        }
+      ],
+      "mission": {
+        "title": "Kafe görevi",
+        "prompt": "Bir kafede sipariş ver ve siparişte bir detay belirt.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "İstediğin içecek kalmamış.",
+          "Siparişin yanlış gelmiş.",
+          "Kartla ödemek istiyorsun."
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "phase": 1,
+      "title": "Yol Sorma + İlk Hafta",
+      "goal": "Bir yere nasıl gidileceğini sor ve kısa yönlendirmeleri anla.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "How do I get to",
+              "Where is",
+              "Is this the way to"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "the station",
+              "the city center",
+              "the hotel",
+              "the museum"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "from here",
+              "please",
+              "on foot"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... nerede?",
+          "target": "Where is …?"
+        },
+        {
+          "cue": "... nasıl giderim?",
+          "target": "How do I get to …?"
+        },
+        {
+          "cue": "Düz git.",
+          "target": "Go straight."
+        },
+        {
+          "cue": "Sağa dön.",
+          "target": "Turn right."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Directions",
+          "text": "Go straight, then turn left at the bank. The station is on your right.",
+          "hint": "straight → left → right."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Yön değiştir",
+          "base": "Turn left at the bank.",
+          "prompt": "left yerine right kullan.",
+          "answer": "Turn right at the bank."
+        },
+        {
+          "rule": "Hedef değiştir",
+          "base": "How do I get to the station?",
+          "prompt": "station yerine museum kullan.",
+          "answer": "How do I get to the museum?"
+        }
+      ],
+      "mission": {
+        "title": "Kayboldun",
+        "prompt": "Bir yabancıya hedefini sor, verilen yönü kendi cümlenle tekrar et.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Telefonunun şarjı bitti.",
+          "Yanlış otobüse bindin.",
+          "Yürüyerek gitmek istiyorsun."
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "phase": 2,
+      "title": "Günlük Rutin + because / but",
+      "goal": "Rutinini anlat ve cümleleri because, but ile bağla.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I",
+              "I usually",
+              "I sometimes"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "wake up",
+              "work",
+              "cook",
+              "exercise",
+              "study"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "early",
+              "at home",
+              "in the evening",
+              "after work"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "because it helps me",
+              "but not every day",
+              "because I enjoy it"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Genellikle ...",
+          "target": "I usually …"
+        },
+        {
+          "cue": "Bazen ...",
+          "target": "I sometimes …"
+        },
+        {
+          "cue": "çünkü",
+          "target": "because"
+        },
+        {
+          "cue": "ama",
+          "target": "but"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Routine",
+          "text": "I usually exercise after work because it helps me relax.",
+          "hint": "Rutin + neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Neden ekle",
+          "base": "I study in the evening.",
+          "prompt": "because I have more time ekle.",
+          "answer": "I study in the evening because I have more time."
+        },
+        {
+          "rule": "Sıklığı değiştir",
+          "base": "I usually cook at home.",
+          "prompt": "usually yerine sometimes kullan.",
+          "answer": "I sometimes cook at home."
+        }
+      ],
+      "mission": {
+        "title": "Bir günün",
+        "prompt": "Sabahından akşamına günlük rutinini anlat.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Hafta içi rutinini anlat.",
+          "Hafta sonu rutinini anlat.",
+          "Yoğun bir gününü anlat."
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "phase": 2,
+      "title": "Aile ve Ev",
+      "goal": "Yakın insanlardan ve yaşadığın yerden bağlı cümlelerle bahset.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I live with",
+              "I have",
+              "There are"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "my family",
+              "two brothers",
+              "three rooms",
+              "a small kitchen"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "and",
+              "but",
+              "so"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "we’re very close",
+              "they live far away",
+              "it feels comfortable",
+              "I like it"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... ile yaşıyorum.",
+          "target": "I live with …"
+        },
+        {
+          "cue": "... var.",
+          "target": "I have …"
+        },
+        {
+          "cue": "Evde ... var.",
+          "target": "There is/There are …"
+        },
+        {
+          "cue": "Çok yakınız.",
+          "target": "We’re very close."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Home",
+          "text": "I live with my family, and we’re very close.",
+          "hint": "Kişi + ilişki."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Tekil/çoğul",
+          "base": "There are three rooms.",
+          "prompt": "three rooms yerine a balcony kullan.",
+          "answer": "There is a balcony."
+        },
+        {
+          "rule": "Bağla",
+          "base": "My family lives far away. I call them every day.",
+          "prompt": "so ile bağla.",
+          "answer": "My family lives far away, so I call them every day."
+        }
+      ],
+      "mission": {
+        "title": "Evini ve çevreni anlat",
+        "prompt": "Ailenden veya evinden 1–2 dakika bahset.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Yeni arkadaşına evini anlat.",
+          "Ailenden birini tanıt.",
+          "Yaşadığın yeri neden sevdiğini anlat."
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "phase": 2,
+      "title": "İş ve Öğrenme",
+      "goal": "Ne üzerinde çalıştığını, ne öğrendiğini ve zorlandığın noktayı anlat.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I work on",
+              "I’m learning",
+              "I’m trying to improve"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "web apps",
+              "English",
+              "AI",
+              "my speaking"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "because",
+              "but",
+              "so"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "I need it for work",
+              "it’s difficult",
+              "I practice every day",
+              "I want to get better"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... üzerinde çalışıyorum.",
+          "target": "I work on …"
+        },
+        {
+          "cue": "... öğreniyorum.",
+          "target": "I’m learning …"
+        },
+        {
+          "cue": "... geliştirmeye çalışıyorum.",
+          "target": "I’m trying to improve …"
+        },
+        {
+          "cue": "zor ama",
+          "target": "It’s difficult, but …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Learning",
+          "text": "I’m learning English because I need it for work.",
+          "hint": "Amaç + neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Konu değiştir",
+          "base": "I’m learning English.",
+          "prompt": "English yerine AI kullan.",
+          "answer": "I’m learning AI."
+        },
+        {
+          "rule": "Neden ekle",
+          "base": "I work on web apps.",
+          "prompt": "because I enjoy building products ekle.",
+          "answer": "I work on web apps because I enjoy building products."
+        }
+      ],
+      "mission": {
+        "title": "Ne üzerinde çalışıyorsun?",
+        "prompt": "İşini veya şu anda öğrendiğin bir şeyi anlat.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Yeni ekip arkadaşına işini anlat.",
+          "Neden İngilizce öğrendiğini anlat.",
+          "Bir projede zorlandığın yeri açıkla."
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "phase": 2,
+      "title": "Alışveriş ve Ödeme",
+      "goal": "Fiyat sor, özellik iste ve ödeme problemi çöz.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "How much is",
+              "Do you have",
+              "Can I pay"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "this",
+              "a larger size",
+              "by card",
+              "in cash"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "",
+              "please",
+              "in black",
+              "instead"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Bu ne kadar?",
+          "target": "How much is this?"
+        },
+        {
+          "cue": "Daha büyüğü var mı?",
+          "target": "Do you have a larger size?"
+        },
+        {
+          "cue": "Kartla ödeyebilir miyim?",
+          "target": "Can I pay by card?"
+        },
+        {
+          "cue": "Başka renk var mı?",
+          "target": "Do you have another color?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Payment",
+          "text": "My card isn’t working. Can I pay in cash instead?",
+          "hint": "Problem + alternatif."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Ödeme değiştir",
+          "base": "Can I pay by card?",
+          "prompt": "card yerine cash kullan.",
+          "answer": "Can I pay in cash?"
+        },
+        {
+          "rule": "Özellik ekle",
+          "base": "Do you have a larger size?",
+          "prompt": "in black ekle.",
+          "answer": "Do you have a larger size in black?"
+        }
+      ],
+      "mission": {
+        "title": "Mağazada alışveriş",
+        "prompt": "Bir ürün seç, fiyatını sor, özellik iste ve ödeme yap.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Kartın çalışmıyor.",
+          "İstediğin beden yok.",
+          "Ürünü iade etmek istiyorsun."
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "phase": 2,
+      "title": "Plan Yapmak ve Davet",
+      "goal": "Buluşma öner, zamanı netleştir, kabul et veya nazikçe reddet.",
+      "session": [
+        {
+          "name": "Ear Training",
+          "minutes": 10,
+          "task": "Dinle → yaz → metni gör → tekrar dinle."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Kalıpları 3 saniyenin altında çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 15,
+          "task": "Bugünün motorlarıyla kişisel cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Bir parçayı sabit tut, diğerini değiştir."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 10,
+          "task": "Gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "En önemli hataları kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "Do you want to",
+              "Would you like to",
+              "Can we"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "meet",
+              "get coffee",
+              "have dinner",
+              "talk"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "tonight",
+              "tomorrow",
+              "at six",
+              "this weekend"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... ister misin?",
+          "target": "Would you like to …?"
+        },
+        {
+          "cue": "... yapabilir miyiz?",
+          "target": "Can we …?"
+        },
+        {
+          "cue": "Bana uyar.",
+          "target": "That works for me."
+        },
+        {
+          "cue": "O saatte yapamam.",
+          "target": "I can’t make it then."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Change",
+          "text": "I can’t make it at six. Can we meet at seven instead?",
+          "hint": "Plan değişikliği."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Zaman değiştir",
+          "base": "Can we meet at six?",
+          "prompt": "at six yerine at seven kullan.",
+          "answer": "Can we meet at seven?"
+        },
+        {
+          "rule": "Nazik davet",
+          "base": "Do you want to have dinner?",
+          "prompt": "Would you like to ile başlat.",
+          "answer": "Would you like to have dinner?"
+        }
+      ],
+      "mission": {
+        "title": "Buluşma ayarla",
+        "prompt": "Bir arkadaşınla buluşma planı yap ve bir kez saati değiştir.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Arkadaşın geç kalacak.",
+          "Senin programın değişti.",
+          "Hafta sonu için plan yapıyorsun."
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "phase": 3,
+      "title": "Dün Ne Oldu?",
+      "goal": "Geçmişte yaptığın basit eylemleri zaman sırasıyla anlat.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "Yesterday I",
+              "Last night I",
+              "This morning I"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "worked",
+              "studied",
+              "went out",
+              "cooked",
+              "watched a movie"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "and then",
+              "but then",
+              "so"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "I went home",
+              "I got tired",
+              "I called a friend",
+              "I relaxed"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Dün ... yaptım.",
+          "target": "Yesterday I …"
+        },
+        {
+          "cue": "Sonra ...",
+          "target": "Then I …"
+        },
+        {
+          "cue": "Daha sonra ...",
+          "target": "After that, I …"
+        },
+        {
+          "cue": "Ama sonra ...",
+          "target": "But then I …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Yesterday",
+          "text": "Yesterday I worked until six, and then I went home.",
+          "hint": "Geçmiş + sıra."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Zaman değiştir",
+          "base": "Yesterday I studied.",
+          "prompt": "Yesterday yerine Last night kullan.",
+          "answer": "Last night I studied."
+        },
+        {
+          "rule": "Sıra ekle",
+          "base": "I cooked dinner. I watched a movie.",
+          "prompt": "and then ile bağla.",
+          "answer": "I cooked dinner, and then I watched a movie."
+        }
+      ],
+      "mission": {
+        "title": "Dününü anlat",
+        "prompt": "Dün yaptığın 4–6 şeyi sırayla anlat.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Dünkü iş gününü anlat.",
+          "Dünkü akşamını anlat.",
+          "Planladığın ama yapamadığın bir şeyi anlat."
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "phase": 3,
+      "title": "Deneyimler",
+      "goal": "Hayatında yaptığın/yapmadığın deneyimleri sor ve kısa detay ver.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I’ve",
+              "I’ve never",
+              "Have you ever"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "visited",
+              "tried",
+              "seen",
+              "used",
+              "learned"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "another country",
+              "sushi",
+              "that movie",
+              "this app",
+              "a new language"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              ".",
+              "?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Hiç ... yaptın mı?",
+          "target": "Have you ever …?"
+        },
+        {
+          "cue": "Daha önce ... yaptım.",
+          "target": "I’ve … before."
+        },
+        {
+          "cue": "Hiç ... yapmadım.",
+          "target": "I’ve never …"
+        },
+        {
+          "cue": "Bir kez ...",
+          "target": "Once, I …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Experience",
+          "text": "I’ve been to Italy once, but I’ve never been to Spain.",
+          "hint": "Deneyim + karşılaştırma."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Olumsuz yap",
+          "base": "I’ve tried sushi.",
+          "prompt": "never ekle.",
+          "answer": "I’ve never tried sushi."
+        },
+        {
+          "rule": "Soru yap",
+          "base": "I’ve visited Italy.",
+          "prompt": "Have you ever ile soru yap.",
+          "answer": "Have you ever visited Italy?"
+        }
+      ],
+      "mission": {
+        "title": "Deneyim değiş tokuşu",
+        "prompt": "Kendine 5 deneyim sorusu sor ve cevapla.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Seyahat deneyimlerini anlat.",
+          "Yemek deneyimlerini anlat.",
+          "Öğrenme deneyimlerini anlat."
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "phase": 3,
+      "title": "Yarın ve Gelecek",
+      "goal": "Yakın gelecek planlarını ve tahminlerini ayırarak anlat.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I’m going to",
+              "I’ll probably",
+              "I think I’ll"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "work",
+              "study",
+              "travel",
+              "stay home",
+              "meet a friend"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "tomorrow",
+              "next week",
+              "this weekend",
+              "later"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "",
+              "because I need to",
+              "if I have time"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... yapacağım (plan)",
+          "target": "I’m going to …"
+        },
+        {
+          "cue": "Muhtemelen ...",
+          "target": "I’ll probably …"
+        },
+        {
+          "cue": "Bence ... yaparım.",
+          "target": "I think I’ll …"
+        },
+        {
+          "cue": "Vaktim olursa",
+          "target": "if I have time"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Plan",
+          "text": "I’m going to study tomorrow because I have an exam.",
+          "hint": "Kesin plan."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Plan → tahmin",
+          "base": "I’m going to stay home tomorrow.",
+          "prompt": "I’ll probably ile değiştir.",
+          "answer": "I’ll probably stay home tomorrow."
+        },
+        {
+          "rule": "Şart ekle",
+          "base": "I’ll meet a friend later.",
+          "prompt": "if I have time ekle.",
+          "answer": "I’ll meet a friend later if I have time."
+        }
+      ],
+      "mission": {
+        "title": "Yarınını planla",
+        "prompt": "Yarın ve bu hafta için planlarını anlat.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Yarın çok yoğun olacaksın.",
+          "Hafta sonu boşsun.",
+          "Bir planın hava durumuna bağlı."
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "phase": 3,
+      "title": "Problem Anlatmak ve Şikâyet",
+      "goal": "Sorunu açıkla, beklenen sonucu söyle ve çözüm iste.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "There’s a problem with",
+              "I have a problem with",
+              "I’m afraid"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "my order",
+              "the room",
+              "the payment",
+              "the internet"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "Could you check it",
+              "Could you help me",
+              "Can we fix this"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "please?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... ile ilgili sorun var.",
+          "target": "There’s a problem with …"
+        },
+        {
+          "cue": "Kontrol eder misiniz?",
+          "target": "Could you check it?"
+        },
+        {
+          "cue": "Bana yardımcı olur musunuz?",
+          "target": "Could you help me?"
+        },
+        {
+          "cue": "Bu benim istediğim değil.",
+          "target": "This isn’t what I asked for."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Complaint",
+          "text": "There’s a problem with my order. This isn’t what I asked for.",
+          "hint": "Sorun + açıklama."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Sorunu değiştir",
+          "base": "There’s a problem with my order.",
+          "prompt": "order yerine room kullan.",
+          "answer": "There’s a problem with my room."
+        },
+        {
+          "rule": "Nazikleştir",
+          "base": "Check the payment.",
+          "prompt": "Could you ile başlat.",
+          "answer": "Could you check the payment, please?"
+        }
+      ],
+      "mission": {
+        "title": "Bir sorunu çöz",
+        "prompt": "Bir hizmette sorun yaşadın. Sorunu anlat ve çözüm iste.",
+        "seconds": 120,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Yanlış yemek geldi.",
+          "Otel odasında internet yok.",
+          "Ödeme iki kez çekildi."
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "phase": 3,
+      "title": "İki Dakikalık Hikâye",
+      "goal": "Geçmiş, neden ve sonuç kullanarak kısa bir hikâyeyi iki tur anlat.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "Last week",
+              "A few days ago",
+              "One time"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "I missed a bus",
+              "I lost my keys",
+              "I met an old friend",
+              "I had a problem at work"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "so",
+              "because",
+              "but"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "I had to wait",
+              "I went back home",
+              "we had coffee",
+              "I asked for help"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Birkaç gün önce",
+          "target": "A few days ago"
+        },
+        {
+          "cue": "Bu yüzden",
+          "target": "so"
+        },
+        {
+          "cue": "... yüzünden",
+          "target": "because"
+        },
+        {
+          "cue": "Sonunda",
+          "target": "In the end, …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Short story",
+          "text": "A few days ago I missed my bus, so I had to wait for the next one.",
+          "hint": "Olay + sonuç."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Neden ekle",
+          "base": "I went back home.",
+          "prompt": "because I forgot my keys ekle.",
+          "answer": "I went back home because I forgot my keys."
+        },
+        {
+          "rule": "Sonuç kur",
+          "base": "I missed the bus.",
+          "prompt": "so I was late ekle.",
+          "answer": "I missed the bus, so I was late."
+        }
+      ],
+      "mission": {
+        "title": "Bir hikâyeyi iki tur anlat",
+        "prompt": "Başına gelen küçük bir olayı önce anlat, düzelt ve yeniden anlat.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Bir şeyi kaçırdığın an.",
+          "Beklenmedik bir sorun.",
+          "Komik veya garip bir gün."
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "phase": 4,
+      "title": "Fikir Belirtmek",
+      "goal": "Bir konuda görüşünü söyle, nedenini ver ve örnekle destekle.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I think",
+              "In my opinion",
+              "For me"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "remote work is useful",
+              "AI is helpful",
+              "cities are too crowded",
+              "learning languages is important"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "because",
+              "since"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "it saves time",
+              "it creates opportunities",
+              "it can be stressful",
+              "it connects people"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Bence ...",
+          "target": "I think …"
+        },
+        {
+          "cue": "Bana göre ...",
+          "target": "In my opinion, …"
+        },
+        {
+          "cue": "Benim için ...",
+          "target": "For me, …"
+        },
+        {
+          "cue": "Çünkü ...",
+          "target": "because …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Opinion",
+          "text": "In my opinion, remote work is useful because it saves time.",
+          "hint": "Görüş + neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Girişi değiştir",
+          "base": "I think remote work is useful.",
+          "prompt": "In my opinion ile başlat.",
+          "answer": "In my opinion, remote work is useful."
+        },
+        {
+          "rule": "Denge ekle",
+          "base": "AI is helpful.",
+          "prompt": "but ile bir risk ekle.",
+          "answer": "AI is helpful, but it can also create problems."
+        }
+      ],
+      "mission": {
+        "title": "Bir fikrini savun",
+        "prompt": "Basit bir konuda görüşünü 2 dakika anlat.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Uzaktan çalışma iyi mi?",
+          "AI günlük hayatta faydalı mı?",
+          "Şehirde mi küçük yerde mi yaşamak daha iyi?"
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "phase": 4,
+      "title": "Karşılaştırma",
+      "goal": "İki seçeneği daha iyi, kolay, ucuz veya esnek gibi ifadelerle karşılaştır.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "Working from home",
+              "This phone",
+              "Learning online",
+              "The train"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "is easier than",
+              "is cheaper than",
+              "is faster than",
+              "is more flexible than"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "working in an office",
+              "that one",
+              "a classroom course",
+              "the bus"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... daha kolay.",
+          "target": "… is easier."
+        },
+        {
+          "cue": "... den daha iyi.",
+          "target": "… is better than …"
+        },
+        {
+          "cue": "... kadar pahalı değil.",
+          "target": "… isn’t as expensive as …"
+        },
+        {
+          "cue": "tercih ederim",
+          "target": "I prefer …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Compare",
+          "text": "The train is faster than the bus, but it’s more expensive.",
+          "hint": "İki boyutlu karşılaştırma."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Sıfat değiştir",
+          "base": "The train is faster than the bus.",
+          "prompt": "faster yerine cheaper kullan.",
+          "answer": "The train is cheaper than the bus."
+        },
+        {
+          "rule": "Tercih ekle",
+          "base": "Working from home is more flexible.",
+          "prompt": "I prefer ile yeniden kur.",
+          "answer": "I prefer working from home because it’s more flexible."
+        }
+      ],
+      "mission": {
+        "title": "İki şeyi karşılaştır",
+        "prompt": "İki şehir, ürün veya çalışma biçimini karşılaştır.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Telefon vs laptop.",
+          "Evden çalışma vs ofis.",
+          "Tren vs otobüs."
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "phase": 4,
+      "title": "Katılmak ve İtiraz Etmek",
+      "goal": "Bir fikre tamamen/kısmen katıl veya nazikçe karşı çık.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I agree",
+              "I completely agree",
+              "I’m not sure I agree",
+              "I see your point"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "because",
+              "but",
+              "however"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "that makes sense",
+              "there’s another side",
+              "it depends on the situation",
+              "I had a different experience"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Katılıyorum.",
+          "target": "I agree."
+        },
+        {
+          "cue": "Tamamen katılıyorum.",
+          "target": "I completely agree."
+        },
+        {
+          "cue": "Pek katılmıyorum.",
+          "target": "I’m not sure I agree."
+        },
+        {
+          "cue": "Ne demek istediğini anlıyorum ama...",
+          "target": "I see your point, but …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Disagree politely",
+          "text": "I see your point, but I had a different experience.",
+          "hint": "Nazik itiraz."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Yumuşat",
+          "base": "I disagree.",
+          "prompt": "I’m not sure I agree ile değiştir.",
+          "answer": "I’m not sure I agree."
+        },
+        {
+          "rule": "Karşı nokta ekle",
+          "base": "I see your point.",
+          "prompt": "but ile farklı deneyim ekle.",
+          "answer": "I see your point, but I had a different experience."
+        }
+      ],
+      "mission": {
+        "title": "Mini tartışma",
+        "prompt": "Bir fikre katıl, sonra başka bir noktaya kısmen itiraz et.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Online eğitim daha iyi.",
+          "Telefonlar hayatı kolaylaştırıyor.",
+          "Her gün spor yapmak gerekir."
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "phase": 4,
+      "title": "Bilmediğin Kelimeyi Tarif Et",
+      "goal": "Kelimeyi bilmiyorsan konuşmayı durdurmadan nesne, kişi veya yeri tarif et.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "It’s something that",
+              "It’s a place where",
+              "It’s a person who"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "you use to",
+              "people go to",
+              "helps you",
+              "works with"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "attach papers",
+              "buy medicine",
+              "fix computers",
+              "learn things"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... kullandığın bir şey.",
+          "target": "It’s something you use to …"
+        },
+        {
+          "cue": "... yapılan bir yer.",
+          "target": "It’s a place where …"
+        },
+        {
+          "cue": "... yapan bir kişi.",
+          "target": "It’s a person who …"
+        },
+        {
+          "cue": "Kelimeyi bilmiyorum ama...",
+          "target": "I don’t know the word, but …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Describe",
+          "text": "I don’t know the word, but it’s something you use to attach papers together.",
+          "hint": "Tarif ederek sürdür."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Nesne → yer",
+          "base": "It’s something you use to buy medicine.",
+          "prompt": "place where ile düzelt.",
+          "answer": "It’s a place where you can buy medicine."
+        },
+        {
+          "rule": "Giriş ekle",
+          "base": "It’s something you use to attach papers.",
+          "prompt": "I don’t know the word, but ile başlat.",
+          "answer": "I don’t know the word, but it’s something you use to attach papers."
+        }
+      ],
+      "mission": {
+        "title": "Kelime yasak oyunu",
+        "prompt": "3 nesneyi adını söylemeden tarif et.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Zımba tarif et.",
+          "Eczane tarif et.",
+          "Bir yazılımcıyı tarif et."
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "phase": 4,
+      "title": "Otel ve Rezervasyon",
+      "goal": "Rezervasyon kontrol et, sorun bildir ve alternatif çözüm konuş.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I have a reservation",
+              "I’d like to check in",
+              "I can’t find"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "under the name Ali",
+              "my booking",
+              "my room number",
+              "the confirmation email"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "Could you check",
+              "Can you help me",
+              "Is there another room"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "please?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Rezervasyonum var.",
+          "target": "I have a reservation."
+        },
+        {
+          "cue": "Giriş yapmak istiyorum.",
+          "target": "I’d like to check in."
+        },
+        {
+          "cue": "Rezervasyonum görünmüyor.",
+          "target": "My reservation isn’t showing up."
+        },
+        {
+          "cue": "Başka oda var mı?",
+          "target": "Is there another room?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Missing booking",
+          "text": "My reservation isn’t showing up. Could you check again, please?",
+          "hint": "Sorun + çözüm isteği."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Sorun ekle",
+          "base": "I have a reservation.",
+          "prompt": "isn’t showing up ile probleme çevir.",
+          "answer": "My reservation isn’t showing up."
+        },
+        {
+          "rule": "Alternatif iste",
+          "base": "There’s a problem with the room.",
+          "prompt": "Is there another room? ekle.",
+          "answer": "There’s a problem with the room. Is there another room?"
+        }
+      ],
+      "mission": {
+        "title": "Otel check-in",
+        "prompt": "Resepsiyonda rezervasyonunu buldur ve bir problemi çöz.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Rezervasyon bulunamıyor.",
+          "Oda hazır değil.",
+          "Oda çok gürültülü."
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "phase": 5,
+      "title": "Telefon ve Mesaj",
+      "goal": "Birini arama, geri dönüş isteme ve kısa mesaj bırakma.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "Can I speak to",
+              "Could you tell",
+              "Please ask"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "Alex",
+              "your manager",
+              "Sara",
+              "him"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "to call me back",
+              "I called",
+              "to text me",
+              "I’ll call later"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... ile görüşebilir miyim?",
+          "target": "Can I speak to …?"
+        },
+        {
+          "cue": "Beni geri aramasını söyler misiniz?",
+          "target": "Could you ask them to call me back?"
+        },
+        {
+          "cue": "Daha sonra arayacağım.",
+          "target": "I’ll call later."
+        },
+        {
+          "cue": "Mesaj bırakabilir miyim?",
+          "target": "Can I leave a message?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Message",
+          "text": "Could you ask her to call me back when she’s free?",
+          "hint": "Mesaj bırakma."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Kişiyi değiştir",
+          "base": "Can I speak to Sara?",
+          "prompt": "Sara yerine Alex kullan.",
+          "answer": "Can I speak to Alex?"
+        },
+        {
+          "rule": "Mesaj ekle",
+          "base": "He’s not available.",
+          "prompt": "call me back isteği ekle.",
+          "answer": "Could you ask him to call me back?"
+        }
+      ],
+      "mission": {
+        "title": "Telefon konuşması",
+        "prompt": "Birini arıyorsun ama kişi müsait değil. Mesaj bırak.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "İş görüşmesi için arıyorsun.",
+          "Arkadaşınla plan değiştireceksin.",
+          "Bir servisten geri dönüş bekliyorsun."
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "phase": 5,
+      "title": "Nasıl Hissediyorsun?",
+      "goal": "Günlük rahatsızlıkları ve nasıl hissettiğini basitçe anlat.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I feel",
+              "I have",
+              "I’m feeling"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "tired",
+              "a headache",
+              "a little sick",
+              "better"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "today",
+              "since this morning",
+              "after work",
+              "now"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "",
+              "so I’m resting",
+              "but I’m okay"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Yorgun hissediyorum.",
+          "target": "I feel tired."
+        },
+        {
+          "cue": "Başım ağrıyor.",
+          "target": "I have a headache."
+        },
+        {
+          "cue": "Biraz hastayım.",
+          "target": "I feel a little sick."
+        },
+        {
+          "cue": "Şimdi daha iyiyim.",
+          "target": "I feel better now."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Feeling",
+          "text": "I have a headache, so I’m going to rest.",
+          "hint": "Durum + tepki."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Durumu değiştir",
+          "base": "I feel tired today.",
+          "prompt": "tired yerine a little sick kullan.",
+          "answer": "I feel a little sick today."
+        },
+        {
+          "rule": "Sonuç ekle",
+          "base": "I have a headache.",
+          "prompt": "so I’m resting ekle.",
+          "answer": "I have a headache, so I’m resting."
+        }
+      ],
+      "mission": {
+        "title": "Durumunu anlat",
+        "prompt": "Bugün nasıl hissettiğini ve ne yapacağını anlat.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Yorgunsun ve planını değiştireceksin.",
+          "Sabah kötüydün ama şimdi iyisin.",
+          "Bir arkadaşına neden dinlendiğini anlat."
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "phase": 5,
+      "title": "Ulaşım ve Seyahat",
+      "goal": "Bilet, saat, peron ve gecikme gibi temel seyahat ihtiyaçlarını yönet.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "What time does",
+              "Which platform does",
+              "I’d like"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "the train leave",
+              "the bus arrive",
+              "a ticket to Ankara",
+              "a return ticket"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "today",
+              "tomorrow",
+              "from here",
+              "please"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Tren saat kaçta kalkıyor?",
+          "target": "What time does the train leave?"
+        },
+        {
+          "cue": "Hangi peron?",
+          "target": "Which platform?"
+        },
+        {
+          "cue": "... için bilet istiyorum.",
+          "target": "I’d like a ticket to …"
+        },
+        {
+          "cue": "Gecikme var mı?",
+          "target": "Is there a delay?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Delay",
+          "text": "There’s a twenty-minute delay, so the train will leave at 6:40.",
+          "hint": "Problem + yeni saat."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Saat sor",
+          "base": "The train leaves at six.",
+          "prompt": "Soruya çevir.",
+          "answer": "What time does the train leave?"
+        },
+        {
+          "rule": "Bilet türü",
+          "base": "I’d like a ticket to Ankara.",
+          "prompt": "return ekle.",
+          "answer": "I’d like a return ticket to Ankara."
+        }
+      ],
+      "mission": {
+        "title": "İstasyonda",
+        "prompt": "Bilet al, saati/peronu sor ve gecikmeye tepki ver.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Tren gecikmiş.",
+          "Yanlış perondasın.",
+          "Dönüş bileti de almak istiyorsun."
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "phase": 5,
+      "title": "Servis Problemi",
+      "goal": "İnternet, teslimat veya uygulama sorununu açıkla ve takip et.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "My",
+              "The",
+              "I can’t"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "internet",
+              "order",
+              "account",
+              "log in"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "isn’t working",
+              "hasn’t arrived",
+              "is locked",
+              "since yesterday"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "Can you help me?",
+              "Could you check it?",
+              "What should I do?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Çalışmıyor.",
+          "target": "It isn’t working."
+        },
+        {
+          "cue": "Henüz gelmedi.",
+          "target": "It hasn’t arrived yet."
+        },
+        {
+          "cue": "Giriş yapamıyorum.",
+          "target": "I can’t log in."
+        },
+        {
+          "cue": "Ne yapmalıyım?",
+          "target": "What should I do?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Support",
+          "text": "My internet hasn’t been working since yesterday. Could you check it?",
+          "hint": "Sorun + süre + istek."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Süre ekle",
+          "base": "My internet isn’t working.",
+          "prompt": "since yesterday ekle.",
+          "answer": "My internet hasn’t been working since yesterday."
+        },
+        {
+          "rule": "Sorun değiştir",
+          "base": "My order hasn’t arrived yet.",
+          "prompt": "order yerine package kullan.",
+          "answer": "My package hasn’t arrived yet."
+        }
+      ],
+      "mission": {
+        "title": "Müşteri desteği",
+        "prompt": "Bir servis problemine destek iste.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "İnternet çalışmıyor.",
+          "Sipariş gecikti.",
+          "Hesabına giriş yapamıyorsun."
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "phase": 5,
+      "title": "Seçim Yap ve İkna Et",
+      "goal": "İki seçenek arasından tercih yap, nedenlerini sırala ve ikna etmeye çalış.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Seviyeye uygun örneği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Önceki ve bugünkü kalıpları aktif çağır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 10,
+          "task": "Bugünün yapılarıyla cümle üret."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Yapıyı farklı bağlamlara taşı."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 15,
+          "task": "Konuşma görevini iki tur yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Top 3 hatayı güncelle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I’d choose",
+              "I’d rather",
+              "I think we should"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "the cheaper option",
+              "go by train",
+              "stay home",
+              "start today"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "because",
+              "mainly because",
+              "especially because"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "it saves money",
+              "it’s faster",
+              "we have more time",
+              "it’s easier"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ben ... seçerdim.",
+          "target": "I’d choose …"
+        },
+        {
+          "cue": "... tercih ederim.",
+          "target": "I’d rather …"
+        },
+        {
+          "cue": "Bence ... yapmalıyız.",
+          "target": "I think we should …"
+        },
+        {
+          "cue": "Ana sebep ...",
+          "target": "The main reason is …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Persuade",
+          "text": "I think we should go by train because it’s faster and more comfortable.",
+          "hint": "Öneri + iki gerekçe."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Girişi değiştir",
+          "base": "I’d choose the train.",
+          "prompt": "I think we should ile yeniden kur.",
+          "answer": "I think we should go by train."
+        },
+        {
+          "rule": "İkinci neden ekle",
+          "base": "It’s faster.",
+          "prompt": "and more comfortable ekle.",
+          "answer": "It’s faster and more comfortable."
+        }
+      ],
+      "mission": {
+        "title": "Beni ikna et",
+        "prompt": "İki seçenekten birini seç ve neden daha iyi olduğunu anlat.",
+        "seconds": 180,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Tren mi uçak mı?",
+          "Evde mi dışarıda mı yemek?",
+          "Şimdi mi başlamak, sonra mı?"
+        ]
+      }
+    },
+    {
+      "day": 26,
+      "phase": 6,
+      "title": "Hazırlıksız Beş Soru",
+      "goal": "Hazırlık süresini azalt ve beklenmedik sorulara konuşmayı kesmeden cevap ver.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Kısa gerçek içeriği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Yavaş kalıpları hızlandır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 5,
+          "task": "Gerekli motorları ısıt."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Hazırlıksız yeniden ifade et."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 20,
+          "task": "Uzun ve kesintisiz konuşma yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Final tekrar eden hataları temizle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I’d say",
+              "The first thing that comes to mind is",
+              "It depends, but"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "I prefer mornings",
+              "I enjoy learning",
+              "I need more time",
+              "I’d choose travel"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "because",
+              "so",
+              "but"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "I’m more focused",
+              "it keeps me curious",
+              "I want to think",
+              "it gives me new experiences"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "İlk aklıma gelen ...",
+          "target": "The first thing that comes to mind is …"
+        },
+        {
+          "cue": "Duruma göre değişir ama...",
+          "target": "It depends, but …"
+        },
+        {
+          "cue": "Şöyle derdim...",
+          "target": "I’d say …"
+        },
+        {
+          "cue": "Bir saniye düşüneyim.",
+          "target": "Let me think for a second."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Spontaneous",
+          "text": "It depends, but I’d say mornings are better for me because I’m more focused.",
+          "hint": "Hazırlıksız cevap."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Düşünme payı",
+          "base": "I prefer mornings.",
+          "prompt": "Let me think for a second ile başlat.",
+          "answer": "Let me think for a second. I prefer mornings."
+        },
+        {
+          "rule": "Belirsizlik",
+          "base": "Mornings are better.",
+          "prompt": "It depends, but ile yumuşat.",
+          "answer": "It depends, but mornings are better for me."
+        }
+      ],
+      "mission": {
+        "title": "5 beklenmedik soru",
+        "prompt": "Rastgele 5 soruya 30–60 saniye cevap ver.",
+        "seconds": 240,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "En sevdiğin şehir ve neden?",
+          "Bir yıl izin alsan ne yapardın?",
+          "Teknoloji hayatını nasıl değiştirdi?"
+        ]
+      }
+    },
+    {
+      "day": 27,
+      "phase": 6,
+      "title": "İzlediğini / Okuduğunu Özetle",
+      "goal": "Kısa bir içerikte ana fikri, iki detayı ve kendi yorumunu anlat.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Kısa gerçek içeriği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Yavaş kalıpları hızlandır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 5,
+          "task": "Gerekli motorları ısıt."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Hazırlıksız yeniden ifade et."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 20,
+          "task": "Uzun ve kesintisiz konuşma yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Final tekrar eden hataları temizle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "The main idea is",
+              "The video is about",
+              "The article says"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "learning habits",
+              "technology",
+              "travel",
+              "work"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "and",
+              "but",
+              "so"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "I agree with it",
+              "I learned something new",
+              "I’m not fully convinced",
+              "it made me think"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ana fikir ...",
+          "target": "The main idea is …"
+        },
+        {
+          "cue": "... hakkında.",
+          "target": "It’s about …"
+        },
+        {
+          "cue": "Metin diyor ki...",
+          "target": "The article says …"
+        },
+        {
+          "cue": "Bence en önemli nokta ...",
+          "target": "I think the most important point is …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Summary",
+          "text": "The video is about learning habits, and the main idea is to practice consistently.",
+          "hint": "Konu + ana fikir."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Ana fikir ekle",
+          "base": "The video is about technology.",
+          "prompt": "The main idea is ile ikinci cümle kur.",
+          "answer": "The video is about technology. The main idea is that small tools can change daily habits."
+        },
+        {
+          "rule": "Yorum ekle",
+          "base": "The article says remote work is growing.",
+          "prompt": "I think ile görüş ekle.",
+          "answer": "The article says remote work is growing, and I think that makes sense."
+        }
+      ],
+      "mission": {
+        "title": "60 saniyelik özet",
+        "prompt": "Kısa bir video veya yazıyı ana fikir + iki detay + yorum biçiminde özetle.",
+        "seconds": 240,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Bugün izlediğin bir videoyu özetle.",
+          "Okuduğun kısa bir haberi özetle.",
+          "Bir ürün incelemesini özetle."
+        ]
+      }
+    },
+    {
+      "day": 28,
+      "phase": 6,
+      "title": "Bir Görüşü Savun",
+      "goal": "Görüşünü gerekçelendir, örnek ver ve karşı argümana cevap ver.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Kısa gerçek içeriği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Yavaş kalıpları hızlandır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 5,
+          "task": "Gerekli motorları ısıt."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Hazırlıksız yeniden ifade et."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 20,
+          "task": "Uzun ve kesintisiz konuşma yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Final tekrar eden hataları temizle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "I believe",
+              "My view is that",
+              "I’d argue that"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "practice matters more than theory",
+              "AI can improve learning",
+              "remote work should stay",
+              "cities need better transport"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "because",
+              "for example",
+              "one reason is that"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "people learn by doing",
+              "feedback becomes faster",
+              "it gives people flexibility",
+              "it reduces traffic"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Benim görüşüm ...",
+          "target": "My view is that …"
+        },
+        {
+          "cue": "Şunu savunurdum...",
+          "target": "I’d argue that …"
+        },
+        {
+          "cue": "Örneğin...",
+          "target": "For example, …"
+        },
+        {
+          "cue": "Karşı taraf diyebilir ki...",
+          "target": "Someone might say that …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Argument",
+          "text": "My view is that practice matters more than theory because people learn by doing.",
+          "hint": "İddia + gerekçe."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Örnek ekle",
+          "base": "AI can improve learning.",
+          "prompt": "For example ile destekle.",
+          "answer": "AI can improve learning. For example, feedback can become much faster."
+        },
+        {
+          "rule": "Karşı argüman",
+          "base": "Remote work should stay.",
+          "prompt": "Someone might say ile karşı görüş ekle.",
+          "answer": "Someone might say offices are better, but remote work gives people flexibility."
+        }
+      ],
+      "mission": {
+        "title": "3 dakikalık savunma",
+        "prompt": "Bir görüş seç ve kısa bir argüman kur.",
+        "seconds": 240,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Pratik teori kadar önemli mi?",
+          "AI eğitimde kullanılmalı mı?",
+          "Uzaktan çalışma kalıcı olmalı mı?"
+        ]
+      }
+    },
+    {
+      "day": 29,
+      "phase": 6,
+      "title": "Karışık Gerçek Hayat Simülasyonu",
+      "goal": "Hazır konu olmadan farklı günlük durumlar arasında hızlı geçiş yap.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Kısa gerçek içeriği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Yavaş kalıpları hızlandır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 5,
+          "task": "Gerekli motorları ısıt."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Hazırlıksız yeniden ifade et."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 20,
+          "task": "Uzun ve kesintisiz konuşma yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Final tekrar eden hataları temizle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "Excuse me,",
+              "Hi,",
+              "Sorry,"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "I need some help",
+              "I have a question",
+              "there’s a problem",
+              "I’d like to change my plan"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "with my booking",
+              "about the price",
+              "with the payment",
+              "for tomorrow"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "Could you help me?",
+              "What can I do?",
+              "Can we change it?"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Yardıma ihtiyacım var.",
+          "target": "I need some help."
+        },
+        {
+          "cue": "Bir sorum var.",
+          "target": "I have a question."
+        },
+        {
+          "cue": "Planımı değiştirmek istiyorum.",
+          "target": "I’d like to change my plan."
+        },
+        {
+          "cue": "Ne yapabilirim?",
+          "target": "What can I do?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Mixed task",
+          "text": "Hi, there’s a problem with my booking. Could you help me?",
+          "hint": "Sorun çözme açılışı."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Durumu değiştir",
+          "base": "There’s a problem with my booking.",
+          "prompt": "booking yerine payment kullan.",
+          "answer": "There’s a problem with my payment."
+        },
+        {
+          "rule": "Çözüm iste",
+          "base": "I’d like to change my plan.",
+          "prompt": "Can we change it? ekle.",
+          "answer": "I’d like to change my plan. Can we change it?"
+        }
+      ],
+      "mission": {
+        "title": "3 senaryo, tek oturum",
+        "prompt": "Üç farklı gerçek hayat senaryosunu arka arkaya çöz.",
+        "seconds": 240,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Kafe + ödeme sorunu + yol sorma.",
+          "Otel + rezervasyon + plan değişikliği.",
+          "Alışveriş + iade + telefon mesajı."
+        ]
+      }
+    },
+    {
+      "day": 30,
+      "phase": 6,
+      "title": "Final Benchmark",
+      "goal": "Kendini, dünü, yarını, bir görüşü ve bir problemi tek oturumda anlat.",
+      "session": [
+        {
+          "name": "Input",
+          "minutes": 10,
+          "task": "Kısa gerçek içeriği dinle/oku."
+        },
+        {
+          "name": "Recall Lab",
+          "minutes": 10,
+          "task": "Yavaş kalıpları hızlandır."
+        },
+        {
+          "name": "Sentence Engine",
+          "minutes": 5,
+          "task": "Gerekli motorları ısıt."
+        },
+        {
+          "name": "Mutation Drill",
+          "minutes": 10,
+          "task": "Hazırlıksız yeniden ifade et."
+        },
+        {
+          "name": "Speaking Mission",
+          "minutes": 20,
+          "task": "Uzun ve kesintisiz konuşma yap."
+        },
+        {
+          "name": "Error Loop",
+          "minutes": 5,
+          "task": "Final tekrar eden hataları temizle."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Başlangıç",
+            "options": [
+              "Today I want to talk about",
+              "First, I’ll explain",
+              "The main thing is"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Motor",
+            "options": [
+              "myself",
+              "yesterday",
+              "tomorrow",
+              "my opinion",
+              "a problem I solved"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Detay",
+            "options": [
+              "and then",
+              "because",
+              "but",
+              "so"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bağ / Bitiş",
+            "options": [
+              "I’ll give an example",
+              "I’ll explain why",
+              "I’ll compare two options",
+              "I’ll tell you what happened"
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Önce ... anlatacağım.",
+          "target": "First, I’ll explain …"
+        },
+        {
+          "cue": "Ana nokta şu...",
+          "target": "The main thing is …"
+        },
+        {
+          "cue": "Bir örnek vereyim.",
+          "target": "Let me give you an example."
+        },
+        {
+          "cue": "Başka şekilde anlatayım.",
+          "target": "Let me say it another way."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Final model",
+          "text": "First, I’ll explain what happened yesterday, and then I’ll tell you what I’m going to do tomorrow.",
+          "hint": "Zamanlar arası geçiş."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Zaman geçişi",
+          "base": "Yesterday I worked. Tomorrow I’ll rest.",
+          "prompt": "and then ile bağla.",
+          "answer": "Yesterday I worked a lot, and tomorrow I’ll rest."
+        },
+        {
+          "rule": "Onarım",
+          "base": "I don’t know the word.",
+          "prompt": "let me say it another way ekle.",
+          "answer": "I don’t know the exact word, so let me say it another way."
+        }
+      ],
+      "mission": {
+        "title": "Gün 30 kayıt testi",
+        "prompt": "Tek kayıtta 5 bölüm: kendin, dün, yarın, bir fikir, bir problem çözümü.",
+        "seconds": 240,
+        "constraints": [
+          "Gerçek hayatından konuş",
+          "Takılınca konuşmayı bırakma",
+          "Aynı görevi ikinci tur yap"
+        ],
+        "variants": [
+          "Standart final benchmark.",
+          "Daha hızlı ikinci tur.",
+          "Bir arkadaşla 10 dakikalık serbest konuşma."
+        ]
+      }
+    }
+  ]
+}
