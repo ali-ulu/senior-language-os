@@ -21,7 +21,7 @@
 - [x] Speech-to-text integration
 - [x] Pronunciation / fluency feedback adapter
 - [x] Adaptive spaced repetition
-- [ ] Day 1 vs Day 30 performance comparison
+- [x] Day 1 vs Day 30 performance comparison
 - [ ] Account sync / cloud persistence
 
 ## Architecture rule
