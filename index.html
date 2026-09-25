@@ -138,6 +138,22 @@
       <section class="view" id="view-progress">
         <div class="section-head"><div><p class="eyebrow">30 DAY MAP</p><h2>Kelime sayısı değil, kullanım gücü</h2></div></div><div class="phases" id="phases"></div><div class="day-grid" id="dayGrid"></div>
         <div class="checkpoint"><p class="eyebrow">HAFTALIK CHECKPOINT</p><div class="checkpoint-grid"><span>Cümleye daha hızlı başlıyor muyum?</span><span>Çeviri ihtiyacım azalıyor mu?</span><span>Daha uzun konuşabiliyor muyum?</span><span>Kelimeyi tarif ederek devam edebiliyor muyum?</span></div></div>
+
+        <div class="benchmark-section">
+          <div class="section-head"><div><p class="eyebrow">DAY 1 ↔ DAY 30</p><h2>Aynı testi iki kez yap</h2></div></div>
+          <p class="benchmark-copy">Speaking Mission’da şu 5 parçayı tek kayıtta yap: kendini anlat, dünü anlat, yarını anlat, bir fikri savun, bir problemi çöz. Day 1 ve Day 30 snapshot’ları aynı metrikleri kullanır; sistem CEFR seviyesi tahmin etmez.</p>
+          <div class="benchmark-grid">
+            <article class="benchmark-card">
+              <div class="benchmark-card-head"><div><span>BASELINE</span><strong>Day 1</strong></div><button class="ghost" id="captureBaseline">Snapshot al</button></div>
+              <div id="baselineMetrics" class="benchmark-metrics"></div><audio id="baselineAudio" controls class="hidden audio-player"></audio>
+            </article>
+            <article class="benchmark-card">
+              <div class="benchmark-card-head"><div><span>FINAL</span><strong>Day 30</strong></div><button class="ghost" id="captureFinal">Snapshot al</button></div>
+              <div id="finalMetrics" class="benchmark-metrics"></div><audio id="finalAudio" controls class="hidden audio-player"></audio>
+            </article>
+          </div>
+          <div class="benchmark-delta" id="benchmarkDelta"></div>
+        </div>
       </section>
 
       <section class="view" id="view-packs">
