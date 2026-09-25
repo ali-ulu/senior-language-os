@@ -49,3 +49,21 @@ The engine is language-agnostic. A new language should be added as a language pa
 ## Varsayılan kurs
 
 Uygulama artık `packs/english-30-day.json` paketini varsayılan olarak açar. Paket 30 gün / 6 faz / günlük 60 dakika yapısındadır.
+
+
+## Deploy
+
+Repo Vercel uyumlu statik frontend + serverless API yapısındadır. `vercel.json` hazırdır.
+
+Gerçek AI role-play için server tarafında:
+
+- `AI_API_URL`
+- `AI_API_KEY`
+- `AI_MODEL`
+
+Gerçek pronunciation / fluency analizi için:
+
+- `SPEECH_API_URL`
+- `SPEECH_API_KEY`
+
+ortam değişkenlerini yapılandırın. Hiçbiri frontend'e veya repoya yazılmamalıdır. Bu değişkenler yoksa uygulama local simulator ile çalışır ve sahte AI/speech skorları üretmez.
