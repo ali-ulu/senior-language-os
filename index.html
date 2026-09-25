@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>Senior Language OS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Ana menü">
+      <div class="brand"><div class="brand-mark">S</div><div><strong>SENIOR</strong><span>Language OS</span></div></div>
+      <nav class="nav" id="nav">
+        <button data-view="home" class="active"><span>01</span> Bugün</button>
+        <button data-view="engine"><span>02</span> Sentence Engine</button>
+        <button data-view="recall"><span>03</span> Recall Lab</button>
+        <button data-view="listening"><span>04</span> Listening Lab</button>
+        <button data-view="drill"><span>05</span> Mutation Drill</button>
+        <button data-view="mission"><span>06</span> Speaking Mission</button>
+        <button data-view="errors"><span>07</span> Error Loop</button>
+        <button data-view="progress"><span>08</span> 30 Gün</button>
+        <button data-view="packs"><span>09</span> Dil Paketleri</button>
+      </nav>
+      <div class="side-foot">
+        <div class="mini-stat"><span>Aktif gün</span><strong id="sideDay">1 / 30</strong></div>
+        <div class="mini-stat"><span>Recall hedefi</span><strong class="ok">&lt; 3 sn</strong></div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div><p class="eyebrow" id="phaseLabel">PHASE 01 · SURVIVAL ENGINE</p><h1 id="viewTitle">Bugünün oturumu</h1></div>
+        <div class="top-actions"><button class="ghost" id="resetSession">Oturumu sıfırla</button><button class="primary" id="nextDay">Sonraki gün →</button></div>
+      </header>
+
+      <section class="view active" id="view-home">
+        <div class="hero-grid">
+          <article class="hero-panel">
+            <div class="hero-kicker">DAY <span id="heroDay">01</span></div>
+            <h2 id="lessonTitle">Language OS çekirdek testi</h2>
+            <p id="lessonGoal"></p>
+            <div class="session-flow" id="sessionFlow"></div>
+          </article>
+          <article class="signal-panel">
+            <div class="ring" id="progressRing"><span id="progressPercent">0%</span></div>
+            <div><p class="eyebrow">DÖNGÜ</p><h3>Tanı → çağır → dönüştür → kullan → tekrar et.</h3><p class="muted">Dili bilgi koleksiyonu değil, erişim hızı artan bir davranış sistemi olarak çalıştır.</p></div>
+          </article>
+        </div>
+        <div class="metric-strip">
+          <div><span>Recall medyanı</span><strong id="metricRecall">—</strong></div>
+          <div><span>Aktif hata</span><strong id="metricErrors">0</strong></div>
+          <div><span>Kişisel ifade</span><strong id="metricPersonal">0</strong></div>
+          <div><span>Tamamlanan gün</span><strong id="metricDays">0</strong></div>
+        </div>
+        <div class="section-head"><div><p class="eyebrow">60 DAKİKALIK DÖNGÜ</p><h2>Bugün ne yapacağın belli</h2></div></div>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section class="view" id="view-engine">
+        <div class="section-head"><div><p class="eyebrow">COMPOSITION WORKBENCH</p><h2>Parçaları birleştir, sonra değiştir</h2></div><button class="ghost" id="speakSentence">▶ Dinle</button></div>
+        <div class="engine-layout">
+          <article class="composer"><div class="sentence-output" id="sentenceOutput" aria-live="polite"></div><div id="slotGroups"></div><div class="composer-actions"><button class="primary" id="saveSentence">Cümleyi kaydet</button><button class="ghost" id="randomSentence">Rastgele kombinle</button></div></article>
+          <aside class="saved-panel"><p class="eyebrow">BENİM CÜMLELERİM</p><div id="savedSentences" class="saved-list"></div></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-recall">
+        <div class="lab-grid">
+          <article class="focus-card">
+            <p class="eyebrow">ACTIVE RECALL · TARGET &lt; 3 SEC</p>
+            <div class="recall-head"><span id="recallIndex">1 / 1</span><span id="recallClock">hazır</span></div>
+            <p class="cue-label">ANLAM / İŞLEV</p><h2 id="recallCue">Bir şeyi istemek</h2>
+            <div class="answer-box hidden" id="recallAnswer"></div>
+            <div class="focus-actions"><button class="primary" id="startRecall">Hatırlamayı başlat</button><button class="ghost hidden" id="revealRecall">Cevabı göster</button><button class="ghost" id="nextRecall">Sonraki →</button></div>
+            <div class="rating-row hidden" id="recallRatings"><button data-rating="again">Tekrar</button><button data-rating="hard">Zor</button><button data-rating="good">İyi</button><button data-rating="easy">Kolay</button></div>
+          </article>
+          <aside class="coach-card"><p class="eyebrow">PERSONAL LEXICON</p><h3>Kendi hayatından besle.</h3><form id="personalForm" class="inline-form"><input id="personalCue" placeholder="İşlev / anlam" required><input id="personalTarget" placeholder="Hedef dilde ifade" required><button class="primary">Ekle</button></form><div id="personalList" class="saved-list"></div></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-listening">
+        <div class="lab-grid">
+          <article class="focus-card">
+            <p class="eyebrow">LISTEN → WRITE → READ → LISTEN</p>
+            <h2 id="listenTitle">Kısa kesiti çöz</h2><p id="listenHint" class="mission-copy"></p>
+            <div class="focus-actions"><button class="primary" id="playListen">▶ Sadece dinle</button><button class="ghost" id="showTranscript">Metni göster</button><button class="ghost" id="nextListen">Sonraki →</button></div>
+            <label class="dictation-label">Duyduğunu yaz<textarea id="dictationInput" placeholder="Buraya duyduğunu yaz..."></textarea></label>
+            <button class="ghost" id="checkDictation">Karşılaştır</button>
+            <div class="answer-box hidden" id="listenTranscript"></div><div id="dictationScore" class="score-note"></div>
+          </article>
+          <aside class="coach-card"><p class="eyebrow">EAR TRAINING</p><h3>Önce farkı duy.</h3><p>Hedef, tek bir kaydı ezberlemek değil; ses ile yazıyı eşleştirmek. Dil paketi aynı ses/kalıp için farklı örnekler ve konuşmacılar sağlayabilir.</p><div class="mini-rule">1. Dinle<br>2. Yaz<br>3. Metni kontrol et<br>4. Metni kapat<br>5. Yeniden dinle</div></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-drill">
+        <div class="focus-card"><p class="eyebrow">MUTATION DRILL</p><div class="drill-meta"><span id="drillIndex">1 / 1</span><span id="drillRule">Değiştir</span></div><h2 id="drillBase"></h2><p class="drill-prompt" id="drillPrompt"></p><div class="answer-box hidden" id="drillAnswer"></div><div class="focus-actions"><button class="ghost" id="revealDrill">Cevabı göster</button><button class="primary" id="nextDrill">Sonraki dönüşüm →</button></div></div>
+      </section>
+
+      <section class="view" id="view-mission">
+        <div class="mission-grid">
+          <article class="focus-card"><p class="eyebrow">REAL LIFE SIMULATION</p><div class="scenario-line"><span id="scenarioIndex">Senaryo 1</span><button class="ghost tiny-btn" id="nextScenario">Senaryoyu değiştir</button></div><h2 id="missionTitle"></h2><p id="missionPrompt" class="mission-copy"></p><div class="mission-constraints" id="missionConstraints"></div>
+            <div class="round-switch"><button data-minutes="4">4 dk</button><button data-minutes="3">3 dk</button><button data-minutes="2" class="active">2 dk</button></div><div class="timer" id="timer">02:00</div>
+            <div class="focus-actions"><button class="primary" id="toggleTimer">Başlat</button><button class="ghost" id="resetTimer">Sıfırla</button><button class="ghost" id="recordBtn">● Ses kaydı</button></div><audio id="recordingPlayback" controls class="hidden audio-player"></audio>
+          </article>
+          <aside class="coach-card"><p class="eyebrow">SECOND ROUND RULE</p><h3>İlk tur teşhis, ikinci tur eğitim.</h3><p>Aynı görevi tekrar yap. İkinci turda konuya değil dile daha fazla dikkat ayırırsın. Takıldığında kelime aramak yerine tarif et.</p><label class="check"><input type="checkbox" id="missionDone"> İki turu tamamladım</label></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-errors">
+        <div class="section-head"><div><p class="eyebrow">ERROR LOOP</p><h2>Hepsini değil, en çok tekrar eden üç hatayı ez</h2></div></div>
+        <div class="priority-grid" id="priorityErrors"></div>
+        <div class="error-layout"><form class="error-form" id="errorForm"><label>Ne söylemeye çalıştın?<textarea id="errorIntent" required></textarea></label><label>Ne söyledin?<textarea id="errorSaid"></textarea></label><label>Doğal / doğru ifade<textarea id="errorCorrect" required></textarea></label><button class="primary" type="submit">Hata döngüsüne ekle</button></form><div class="error-list" id="errorList"></div></div>
+      </section>
+
+      <section class="view" id="view-progress">
+        <div class="section-head"><div><p class="eyebrow">30 DAY MAP</p><h2>Kelime sayısı değil, kullanım gücü</h2></div></div><div class="phases" id="phases"></div><div class="day-grid" id="dayGrid"></div>
+        <div class="checkpoint"><p class="eyebrow">HAFTALIK CHECKPOINT</p><div class="checkpoint-grid"><span>Cümleye daha hızlı başlıyor muyum?</span><span>Çeviri ihtiyacım azalıyor mu?</span><span>Daha uzun konuşabiliyor muyum?</span><span>Kelimeyi tarif ederek devam edebiliyor muyum?</span></div></div>
+      </section>
+
+      <section class="view" id="view-packs">
+        <div class="packs-grid"><article class="focus-card"><p class="eyebrow">LANGUAGE PACK</p><h2 id="packName"></h2><p id="packMeta" class="mission-copy"></p><div class="pack-actions"><label class="upload primary">JSON paketi yükle<input type="file" id="packInput" accept="application/json,.json" hidden></label><button class="ghost" id="downloadState">Öğrenci verisini dışa aktar</button></div><p class="tiny">Motor; recall, listening, cümle üretimi, görev tekrarı, hata önceliği, zamanlayıcı ve ilerlemeyi yönetir. Dil paketi yalnızca hedef dile ait materyali sağlar.</p></article>
+          <article class="schema-card"><p class="eyebrow">PAKET SÖZLEŞMESİ V2</p><pre><code>{
+  "meta": {...},
+  "phases": [...],
+  "realLifeMap": [...],
+  "days": [{
+    "engine": {...},
+    "recall": [...],
+    "listening": [...],
+    "drills": [...],
+    "mission": {"variants": [...]}
+  }]
+}</code></pre><p>Yeni dil = yeni içerik paketi. Motor çatallanmaz.</p></article></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
