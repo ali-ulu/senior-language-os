@@ -6,12 +6,16 @@ on:
       - "packs/**"
       - "scripts/validate-packs.mjs"
       - "package.json"
+      - "app.js"
+      - "api/**"
       - ".github/workflows/validate-language-packs.yml"
   pull_request:
     paths:
       - "packs/**"
       - "scripts/validate-packs.mjs"
       - "package.json"
+      - "app.js"
+      - "api/**"
       - ".github/workflows/validate-language-packs.yml"
 
 jobs:
@@ -22,4 +26,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: npm run validate:packs
+      - run: npm test
