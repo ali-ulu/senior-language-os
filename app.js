@@ -1,7 +1,7 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const STORAGE_KEY='senior_language_os_v2';
 const defaultState={day:1,sessionDone:[],savedSentences:[],errors:[],completedDays:[],activePack:null,missionDone:false,recallStats:[],personalLexicon:[],recallSchedule:{},conversationHistory:[],lastEvaluation:null};
-let state=loadState(),pack=null,selected={},drillIndex=0,recallIndex=0,listeningIndex=0,scenarioIndex=0,timerInterval=null,timerRemaining=120,recallStartedAt=null,activeRecallKey=null,mediaRecorder=null,recordedChunks=[],recordingUrl=null;
+let state=loadState(),pack=null,selected={},drillIndex=0,recallIndex=0,listeningIndex=0,scenarioIndex=0,timerInterval=null,timerRemaining=120,recallStartedAt=null,activeRecallKey=null,mediaRecorder=null,recordedChunks=[],recordingBlob=null,recordingUrl=null;
 function loadState(){try{return {...defaultState,...(JSON.parse(localStorage.getItem(STORAGE_KEY))||{})}}catch{return {...defaultState}}}
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
 function esc(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
@@ -22,7 +22,7 @@ function bindActions(){
  $('#personalForm').onsubmit=addPersonal;
  $('#playListen').onclick=playListening;$('#showTranscript').onclick=()=>$('#listenTranscript').classList.toggle('hidden');$('#nextListen').onclick=()=>{const a=currentDayData().listening||[];if(a.length){listeningIndex=(listeningIndex+1)%a.length;renderListening()}};$('#checkDictation').onclick=checkDictation;
  $('#toggleTimer').onclick=toggleTimer;$('#resetTimer').onclick=()=>resetTimer(timerRemaining||120);$('.round-switch button').forEach(b=>b.onclick=()=>setRound(Number(b.dataset.minutes),b));$('#nextScenario').onclick=nextScenario;$('#recordBtn').onclick=toggleRecording;
- $('#startConversation').onclick=startConversation;$('#sendConversation').onclick=sendConversation;$('#voiceInput').onclick=startVoiceInput;$('#finishConversation').onclick=finishConversation;$('#conversationInput').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendConversation()}};
+ $('#startConversation').onclick=startConversation;$('#sendConversation').onclick=sendConversation;$('#voiceInput').onclick=startVoiceInput;$('#finishConversation').onclick=finishConversation;$('#conversationInput').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendConversation()}};$('#speechEvalBtn').onclick=analyzeSpeechRecording;
  $('#missionDone').onchange=e=>{state.missionDone=e.target.checked;if(e.target.checked&&!state.sessionDone.includes('Real Life Mission'))state.sessionDone.push('Real Life Mission');persist();renderProgressBits()};
  $('#errorForm').onsubmit=addError;$('#packInput').onchange=loadPackFile;$('#downloadState').onclick=downloadState;
 }
@@ -105,7 +105,19 @@ function setRound(min,b){$$('.round-switch button').forEach(x=>x.classList.remov
 function resetTimer(sec){clearInterval(timerInterval);timerInterval=null;timerRemaining=sec;$('#toggleTimer').textContent='Başlat';drawTimer()}
 function drawTimer(){const m=Math.floor(timerRemaining/60),s=timerRemaining%60;$('#timer').textContent=`${pad(m)}:${pad(s)}`}
 function toggleTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;$('#toggleTimer').textContent='Devam et';return}$('#toggleTimer').textContent='Duraklat';timerInterval=setInterval(()=>{timerRemaining--;drawTimer();if(timerRemaining<=0){clearInterval(timerInterval);timerInterval=null;$('#toggleTimer').textContent='Tur tamamlandı';toast('Tur tamamlandı. Aynı görevi yeniden yap.') }},1000)}
-async function toggleRecording(){const b=$('#recordBtn');if(mediaRecorder?.state==='recording'){mediaRecorder.stop();b.textContent='● Ses kaydı';return}if(!navigator.mediaDevices?.getUserMedia){toast('Mikrofon kaydı desteklenmiyor');return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordedChunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)recordedChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(recordedChunks,{type:mediaRecorder.mimeType||'audio/webm'});if(recordingUrl)URL.revokeObjectURL(recordingUrl);recordingUrl=URL.createObjectURL(blob);const a=$('#recordingPlayback');a.src=recordingUrl;a.classList.remove('hidden');stream.getTracks().forEach(t=>t.stop());toast('Ses kaydı hazır')};mediaRecorder.start();b.textContent='■ Kaydı bitir'}catch{toast('Mikrofon izni alınamadı')}}
+async function toggleRecording(){const b=$('#recordBtn');if(mediaRecorder?.state==='recording'){mediaRecorder.stop();b.textContent='● Ses kaydı';return}if(!navigator.mediaDevices?.getUserMedia){toast('Mikrofon kaydı desteklenmiyor');return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordedChunks=[];recordingBlob=null;$('#speechFeedback').classList.add('hidden');mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)recordedChunks.push(e.data)};mediaRecorder.onstop=()=>{recordingBlob=new Blob(recordedChunks,{type:mediaRecorder.mimeType||'audio/webm'});if(recordingUrl)URL.revokeObjectURL(recordingUrl);recordingUrl=URL.createObjectURL(recordingBlob);const a=$('#recordingPlayback');a.src=recordingUrl;a.classList.remove('hidden');stream.getTracks().forEach(t=>t.stop());toast('Ses kaydı hazır')};mediaRecorder.start();b.textContent='■ Kaydı bitir'}catch{toast('Mikrofon izni alınamadı')}}
+function blobToBase64(blob){return new Promise((resolve,reject)=>{const r=new FileReader();r.onerror=reject;r.onload=()=>resolve(String(r.result).split(',')[1]||'');r.readAsDataURL(blob)})}
+async function analyzeSpeechRecording(){
+ if(!recordingBlob){toast('Önce bir konuşma kaydı al.');return}
+ const box=$('#speechFeedback'),btn=$('#speechEvalBtn');btn.disabled=true;btn.textContent='Analiz ediliyor…';
+ try{
+   const audioBase64=await blobToBase64(recordingBlob);
+   const res=await fetch('/api/speech',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({audioBase64,mimeType:recordingBlob.type||'audio/webm',locale:pack.meta?.locale||'en-US',scenario:conversationScenario()})});
+   if(!res.ok)throw new Error('speech unavailable');const data=await res.json();
+   box.classList.remove('hidden');box.innerHTML=`<p class="eyebrow">SPEECH FEEDBACK</p>${data.transcript?`<p><strong>Transcript:</strong> ${esc(data.transcript)}</p>`:''}<div class="speech-scores"><div><span>Pronunciation</span><strong>${esc(data.pronunciation?.score??'—')}</strong><small>${esc(data.pronunciation?.notes||'')}</small></div><div><span>Fluency</span><strong>${esc(data.fluency?.score??'—')}</strong><small>${esc(data.fluency?.notes||'')}</small></div></div>`;
+ }catch{box.classList.remove('hidden');box.innerHTML='<p>Ses değerlendirme servisi bağlı değil. Kayıt alınabiliyor; gerçek pronunciation/fluency skoru yalnızca yapılandırılmış speech endpoint ile gösterilir.</p>'}
+ finally{btn.disabled=false;btn.textContent='Ses analizi'}
+}
 function conversationScenario(){const m=currentDayData().mission||{};return m.variants?.[scenarioIndex]||m.prompt||m.title||'Everyday conversation'}
 function setAIStatus(text,kind=''){$('#aiStatus').textContent=text;$('#aiStatus').className='ai-status '+kind}
 function renderConversation(){
