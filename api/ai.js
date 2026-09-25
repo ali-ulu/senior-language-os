@@ -29,7 +29,7 @@ function transcript(body){
   return (body.history||[]).map(x=>({role:x.role==='assistant'?'assistant':'user',content:String(x.text||'')})).filter(x=>x.content);
 }
 
-module.exports=async function handler(req,res){
+export default async function handler(req,res){
   if(req.method!=='POST') return json(res,405,{error:'POST required'});
   const url=process.env.AI_API_URL, key=process.env.AI_API_KEY, model=process.env.AI_MODEL;
   if(!url||!key||!model) return json(res,503,{error:'AI backend is not configured',code:'AI_NOT_CONFIGURED'});
