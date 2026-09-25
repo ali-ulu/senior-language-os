@@ -13,6 +13,7 @@ Dil içeriğinden bağımsız çalışan 30 günlük öğrenme motoru.
 - Personal Lexicon: öğrencinin kendi hayatından çıkan ifadeler
 - 30-day phases + local progress
 - JSON language packs
+- Production-ready 30-day English pack
 
 ## Dil ekleme
 `packs/demo.json` dosyasını kopyalayın ve hedef dile göre `engine`, `recall`, `listening`, `drills`, `mission` alanlarını doldurun. Uygulama kodunu çatallamayın.
@@ -33,7 +34,8 @@ Not: TTS tarayıcının speechSynthesis özelliğini, ses kaydı MediaRecorder/g
 ├── styles.css
 ├── language-pack.schema.json
 ├── packs/
-│   └── demo.json
+│   ├── demo.json
+│   └── english-30-day.json
 ├── VIDEO_INTEGRATION.md
 ├── ROADMAP.md
 └── README.md
@@ -42,3 +44,8 @@ Not: TTS tarayıcının speechSynthesis özelliğini, ses kaydı MediaRecorder/g
 ## Product principle
 
 The engine is language-agnostic. A new language should be added as a language pack instead of forking the application.
+
+
+## Varsayılan kurs
+
+Uygulama artık `packs/english-30-day.json` paketini varsayılan olarak açar. Paket 30 gün / 6 faz / günlük 60 dakika yapısındadır.
