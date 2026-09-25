@@ -1,0 +1,10 @@
+{
+  "name": "senior-language-os",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:packs": "node scripts/validate-packs.mjs",
+    "test": "npm run validate:packs"
+  }
+}
