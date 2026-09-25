@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "validate:packs": "node scripts/validate-packs.mjs",
-    "test": "npm run validate:packs"
+    "test": "npm run check:syntax && npm run validate:packs",
+    "check:syntax": "node --check app.js && node --check api/ai.js && node --check api/speech.js"
   }
 }
