@@ -111,6 +111,22 @@
           </article>
           <aside class="coach-card"><p class="eyebrow">SECOND ROUND RULE</p><h3>İlk tur teşhis, ikinci tur eğitim.</h3><p>Aynı görevi tekrar yap. İkinci turda konuya değil dile daha fazla dikkat ayırırsın. Takıldığında kelime aramak yerine tarif et.</p><label class="check"><input type="checkbox" id="missionDone"> İki turu tamamladım</label></aside>
         </div>
+
+        <article class="conversation-card">
+          <div class="conversation-head">
+            <div><p class="eyebrow">AI ROLE PLAY</p><h3>Konuşma Simülatörü</h3></div>
+            <span class="ai-status" id="aiStatus">hazır</span>
+          </div>
+          <div class="conversation-log" id="conversationLog"></div>
+          <div class="conversation-controls">
+            <button class="ghost" id="startConversation">Senaryoyu başlat</button>
+            <button class="ghost" id="voiceInput">🎙 Konuş</button>
+            <input id="conversationInput" placeholder="Hedef dilde cevabını yaz veya mikrofonu kullan" autocomplete="off">
+            <button class="primary" id="sendConversation">Gönder</button>
+            <button class="ghost" id="finishConversation">Bitir & Top 3 hata</button>
+          </div>
+          <div class="evaluation-box hidden" id="evaluationBox"></div>
+        </article>
       </section>
 
       <section class="view" id="view-errors">
