@@ -17,10 +17,10 @@
 - [ ] German 30-day language pack
 - [ ] Turkish / Rhimsa language pack
 - [ ] Pack validation and authoring CLI
-- [ ] AI conversation simulation
-- [ ] Speech-to-text integration
-- [ ] Pronunciation feedback
-- [ ] Adaptive spaced repetition
+- [x] AI conversation simulation
+- [x] Speech-to-text integration
+- [x] Pronunciation / fluency feedback adapter
+- [x] Adaptive spaced repetition
 - [ ] Day 1 vs Day 30 performance comparison
 - [ ] Account sync / cloud persistence
 
