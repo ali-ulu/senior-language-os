@@ -162,6 +162,9 @@ function renderToday(){
     STEPS.forEach(id=>$('#step-'+id).classList.add('hidden'));
     $('#doneCard').classList.remove('hidden');
     $('#doneTitle').textContent='Gün '+state.day+' tamam.';
+    const checkpoint=currentDay().checkpoint||'';
+    $('#checkpointNote').textContent=checkpoint;
+    $('#checkpointNote').classList.toggle('hidden',!checkpoint);
   }else{
     $('#doneCard').classList.add('hidden');
     showStep(state.step);
@@ -214,8 +217,8 @@ function renderBuild(){
   $('#sentenceOutput').textContent=buildSentence();
   $('#slotGroups').innerHTML=
     '<div class="starter-list">'+patterns.map((p,i)=>'<button class="starter '+(p===selectedPattern?'active':'')+'" data-pattern="'+i+'">'+esc(p)+'</button>').join('')+'</div>'+
-    '<label class="fill-line">Boşluğu kendi bilginle doldur<input id="customEnding" value="'+esc(customEnding)+'" placeholder="ör. Ali / Istanbul / software"></label>'+
-    '<p class="microcopy">Amaç doğru cümleyi seçmek değil, kalıbı kendi hayatında kullanmak.</p>';
+    '<label class="fill-line">Boşluğu kendi bilginle doldur<input id="customEnding" value="'+esc(customEnding)+'" placeholder="Kendi cevabını yaz"></label>'+
+    '<p class="microcopy">Kalıbı seç, boşluğu kendi bilgine göre doldur.</p>';
 
   $$('#slotGroups [data-pattern]').forEach(b=>b.onclick=()=>{
     selectedPattern=patterns[Number(b.dataset.pattern)]||patterns[0]||'';
