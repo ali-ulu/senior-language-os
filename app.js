@@ -264,16 +264,17 @@ function fallbackListen(){
 
 function playLessonAudio(){
   const entry=audioEntryForDay(state.day);
-  stopLessonAudio();
+  if(lessonAudio){
+    stopLessonAudio();
+    $('#playListen').textContent=entry?.src?'▶ Kaydı dinle':'▶ Dinle';
+    return;
+  }
   if(!entry?.src){fallbackListen();return}
   lessonAudio=new Audio(entry.src);
   lessonAudio.preload='auto';
   lessonAudio.onplay=()=>{$('#playListen').textContent='■ Durdur'};
   lessonAudio.onended=()=>{$('#playListen').textContent='▶ Kaydı dinle';lessonAudio=null};
   lessonAudio.onerror=()=>{$('#playListen').textContent='▶ Dinle';lessonAudio=null;fallbackListen()};
-  $('#playListen').onclick=()=>{
-    if(lessonAudio){stopLessonAudio();$('#playListen').textContent='▶ Kaydı dinle';$('#playListen').onclick=playLessonAudio}
-  };
   lessonAudio.play().catch(()=>{lessonAudio=null;fallbackListen()});
 }
 
