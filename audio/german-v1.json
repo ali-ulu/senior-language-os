@@ -1,0 +1,232 @@
+{
+  "version": "1.0.0",
+  "locale": "de-DE",
+  "sourcePack": "packs/german-30-day.json",
+  "policy": {
+    "purpose": "lesson-listening",
+    "style": "natural conversational German",
+    "pace": "clear but natural, around 0.92x normal conversational pace",
+    "delivery": "no exaggerated teacher voice, no word-by-word spacing, natural German sentence stress",
+    "normalization": "record exactly the script; do not paraphrase"
+  },
+  "speakers": {
+    "speaker-a": {
+      "direction": "warm adult female voice, neutral Standard German"
+    },
+    "speaker-b": {
+      "direction": "calm adult male voice, neutral Standard German"
+    }
+  },
+  "items": [
+    {
+      "day": 1,
+      "id": "day-01-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Hallo, ich bin Lena. Ich wohne in Berlin und arbeite als Designerin. Freut mich."
+    },
+    {
+      "day": 2,
+      "id": "day-02-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Heute muss ich arbeiten, aber am Abend möchte ich Deutsch lernen."
+    },
+    {
+      "day": 3,
+      "id": "day-03-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Wo wohnst du? Was machst du beruflich?"
+    },
+    {
+      "day": 4,
+      "id": "day-04-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Hallo, ich hätte gern einen Kaffee mit Milch und ein Wasser, bitte."
+    },
+    {
+      "day": 5,
+      "id": "day-05-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Gehen Sie geradeaus und dann links. Der Bahnhof ist auf der rechten Seite."
+    },
+    {
+      "day": 6,
+      "id": "day-06-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Morgens stehe ich früh auf. Nach der Arbeit koche ich und lerne zwanzig Minuten Deutsch."
+    },
+    {
+      "day": 7,
+      "id": "day-07-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Hallo, ich bin Nora. Ich wohne in Köln und arbeite als Lehrerin. Abends lerne ich Deutsch, weil es mir Spaß macht."
+    },
+    {
+      "day": 8,
+      "id": "day-08-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Ich arbeite an Webprojekten und lerne Deutsch, weil ich es für die Arbeit brauche."
+    },
+    {
+      "day": 9,
+      "id": "day-09-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Meine Karte funktioniert nicht. Kann ich bar bezahlen?"
+    },
+    {
+      "day": 10,
+      "id": "day-10-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Um sechs kann ich nicht. Wie wäre es um sieben?"
+    },
+    {
+      "day": 11,
+      "id": "day-11-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Gestern habe ich bis sechs gearbeitet. Dann bin ich nach Hause gegangen und habe gekocht."
+    },
+    {
+      "day": 12,
+      "id": "day-12-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Ich war einmal in Wien, aber ich war noch nie in Zürich."
+    },
+    {
+      "day": 13,
+      "id": "day-13-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Morgen werde ich zu Hause arbeiten. Wenn ich Zeit habe, lerne ich am Abend Deutsch."
+    },
+    {
+      "day": 14,
+      "id": "day-14-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Es gibt ein Problem mit meiner Bestellung. Könnten Sie das bitte prüfen?"
+    },
+    {
+      "day": 15,
+      "id": "day-15-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Vor ein paar Tagen habe ich meinen Bus verpasst. Deshalb bin ich zu spät gekommen."
+    },
+    {
+      "day": 16,
+      "id": "day-16-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Ich finde, dass Homeoffice praktisch ist, weil man Zeit spart."
+    },
+    {
+      "day": 17,
+      "id": "day-17-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Der Zug ist schneller als der Bus, aber er ist teurer. Ich bevorzuge trotzdem den Zug."
+    },
+    {
+      "day": 18,
+      "id": "day-18-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Ich verstehe deinen Punkt, aber meine Erfahrung war anders."
+    },
+    {
+      "day": 19,
+      "id": "day-19-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Ich kenne das Wort nicht, aber das ist etwas, das man benutzt, um Papier zusammenzuheften."
+    },
+    {
+      "day": 20,
+      "id": "day-20-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Meine Reservierung ist nicht im System. Könnten Sie bitte noch einmal nachsehen?"
+    },
+    {
+      "day": 21,
+      "id": "day-21-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Hallo, ich rufe wegen des Termins morgen an. Könnten Sie Alex bitten, mich zurückzurufen?"
+    },
+    {
+      "day": 22,
+      "id": "day-22-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Ich habe Kopfschmerzen, deshalb bleibe ich heute Abend zu Hause."
+    },
+    {
+      "day": 23,
+      "id": "day-23-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Der Zug hat zwanzig Minuten Verspätung und fährt um 18:40 Uhr ab."
+    },
+    {
+      "day": 24,
+      "id": "day-24-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Mein Internet funktioniert seit gestern nicht. Könnten Sie das bitte prüfen?"
+    },
+    {
+      "day": 25,
+      "id": "day-25-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Ich denke, wir sollten mit dem Zug fahren, weil er schneller und bequemer ist."
+    },
+    {
+      "day": 26,
+      "id": "day-26-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Das kommt darauf an, aber ich würde sagen, dass ich morgens konzentrierter bin."
+    },
+    {
+      "day": 27,
+      "id": "day-27-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Das Video geht um Lerngewohnheiten. Die Hauptidee ist, regelmäßig zu üben."
+    },
+    {
+      "day": 28,
+      "id": "day-28-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Meine Meinung ist, dass Praxis wichtiger ist als Theorie, weil man durch Handeln lernt."
+    },
+    {
+      "day": 29,
+      "id": "day-29-de",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Hallo, es gibt ein Problem mit meiner Reservierung. Könnten Sie mir bitte helfen?"
+    },
+    {
+      "day": 30,
+      "id": "day-30-de",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Zuerst stelle ich mich kurz vor. Dann erzähle ich von gestern, meinen Plänen für morgen und einer Meinung, die mir wichtig ist."
+    }
+  ]
+}
