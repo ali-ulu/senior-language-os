@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "locale": "en-US",
+  "policy": {
+    "purpose": "lesson-listening",
+    "style": "natural conversational English",
+    "pace": "clear but natural, around 0.92x normal conversational pace",
+    "delivery": "no exaggerated teacher voice, no word-by-word spacing, normal sentence stress",
+    "silence": "short natural pause between sentences only",
+    "normalization": "record exactly the script; do not paraphrase"
+  },
+  "speakers": {
+    "speaker-a": {
+      "direction": "warm adult female voice, neutral General American English"
+    },
+    "speaker-b": {
+      "direction": "calm adult male voice, neutral General American English"
+    }
+  },
+  "items": [
+    {
+      "day": 1,
+      "id": "day-01-intro",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Hi, I’m Maya. I live in Manchester and I work as a designer. Nice to meet you."
+    },
+    {
+      "day": 2,
+      "id": "day-02-plan",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "I have to work today, but I want to practice English tonight."
+    },
+    {
+      "day": 3,
+      "id": "day-03-follow-up",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Hi, I’m Sam. I live in Leeds. What about you? Where do you live?"
+    },
+    {
+      "day": 4,
+      "id": "day-04-cafe",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "Hi, can I have a small coffee with milk, please? That’s all, thanks."
+    },
+    {
+      "day": 5,
+      "id": "day-05-directions",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Go straight for two blocks, then turn left. The station is on your right."
+    },
+    {
+      "day": 6,
+      "id": "day-06-routine",
+      "speaker": "speaker-b",
+      "status": "script-ready",
+      "script": "I usually start work at nine. After work, I cook dinner and study English for twenty minutes."
+    },
+    {
+      "day": 7,
+      "id": "day-07-week-review",
+      "speaker": "speaker-a",
+      "status": "script-ready",
+      "script": "Hi, I’m Noor. I live in London and I work as a nurse. I usually start work early, so I study English in the evening. This weekend, I want to meet a friend and try a new cafe."
+    }
+  ]
+}
