@@ -6,7 +6,8 @@
     "sourceLanguage": "Turkish",
     "locale": "en-US",
     "version": "1.2.0",
-    "description": "Her gün tek gerçek hayat hedefiyle ilerleyen, önceki kalıpları yeni görevlerde tekrar kullandıran ve konuşma süresini kademeli artıran 30 günlük konuşma programı."
+    "description": "Her gün tek gerçek hayat hedefiyle ilerleyen, önceki kalıpları yeni görevlerde tekrar kullandıran ve konuşma süresini kademeli artıran 30 günlük konuşma programı.",
+    "targetLanguageTr": "İngilizce"
   },
   "method": {
     "principle": "Dili küçült, yüksek getirili chunks kullan, ilk günden konuş, hataları müfredat yap.",
