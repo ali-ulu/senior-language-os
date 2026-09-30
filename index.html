@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0d0d0c">
-  <title>Senior English</title>
+  <title>Senior Language</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <header class="header">
       <button class="brand" data-go="today" aria-label="Bugüne dön">
         <span class="brand-word">SENIOR</span>
-        <span class="brand-product">ENGLISH</span>
+        <span class="brand-product" id="brandProduct">ENGLISH</span>
       </button>
 
       <div class="day-status">
@@ -181,11 +181,19 @@
           <h1>Ayarlar ve veriler.</h1>
           <p>Kurs bilgisi ve ilerleme dosyan burada.</p>
         </div>
+        <div class="course-picker" id="coursePicker" aria-label="Kurs seç">
+          <button class="course-option" data-pack="english-30-day-v1">
+            <small>EN</small><span><strong>English</strong><em>30 gün</em></span>
+          </button>
+          <button class="course-option" data-pack="german-30-day-v1">
+            <small>DE</small><span><strong>Deutsch</strong><em>30 gün</em></span>
+          </button>
+        </div>
         <div class="settings-list">
           <div><span>Aktif kurs</span><strong id="packName">Senior English</strong></div>
           <div><span>Kurs sürümü</span><strong id="packVersion">1.0.0</strong></div>
           <button class="secondary" id="exportState">İlerlemeyi dışa aktar</button>
-          <button class="danger-link" id="resetAll">İlerlemeyi sıfırla</button>
+          <button class="danger-link" id="resetAll">Bu kursun ilerlemesini sıfırla</button>
         </div>
       </section>
     </main>
