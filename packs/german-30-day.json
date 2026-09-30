@@ -1,0 +1,4059 @@
+{
+  "meta": {
+    "id": "german-30-day-v1",
+    "name": "Senior Deutsch · 30 Gün",
+    "targetLanguage": "German",
+    "targetLanguageTr": "Almanca",
+    "sourceLanguage": "Turkish",
+    "locale": "de-DE",
+    "version": "1.0.0",
+    "description": "Günlük hayatta Almanca konuşmayı başlatan, önceki kalıpları sürekli geri çağıran ve konuşma süresini kademeli artıran 30 günlük program."
+  },
+  "phases": [
+    {
+      "id": 1,
+      "days": "1–5",
+      "name": "Temel konuşma",
+      "outcome": "Kendini tanıt, ihtiyacını söyle, soru sor, sipariş ver ve yol sor."
+    },
+    {
+      "id": 2,
+      "days": "6–10",
+      "name": "Cümleleri büyüt",
+      "outcome": "Rutinini, işini ve planlarını daha uzun cümlelerle anlat."
+    },
+    {
+      "id": 3,
+      "days": "11–15",
+      "name": "Zamanı anlat",
+      "outcome": "Dünü, deneyimlerini ve yakın geleceği anlat."
+    },
+    {
+      "id": 4,
+      "days": "16–20",
+      "name": "Sohbeti sürdür",
+      "outcome": "Fikir belirt, karşılaştır, itiraz et ve problemi çöz."
+    },
+    {
+      "id": 5,
+      "days": "21–25",
+      "name": "Gerçek hayat",
+      "outcome": "Telefon, sağlık, seyahat, destek ve karar verme görevlerini yönet."
+    },
+    {
+      "id": 6,
+      "days": "26–30",
+      "name": "Daha rahat konuş",
+      "outcome": "Daha az hazırlıkla daha uzun ve doğal konuş."
+    }
+  ],
+  "realLifeMap": [
+    "Kendini tanıt",
+    "İhtiyaç belirt",
+    "Soru sormak",
+    "Kafede sipariş",
+    "Yol sormak",
+    "Rutin anlatmak",
+    "İş/öğrenme",
+    "Alışveriş",
+    "Plan yapmak",
+    "Dünü anlatmak",
+    "Deneyim anlatmak",
+    "Gelecek planı",
+    "Şikâyet",
+    "Hikâye",
+    "Fikir belirtmek",
+    "Karşılaştırma",
+    "Katılmak/itiraz",
+    "Kelime tarif etmek",
+    "Otel",
+    "Telefon",
+    "Nasıl hissettiğini anlatmak",
+    "Ulaşım",
+    "Destek",
+    "İkna",
+    "Hazırlıksız cevap",
+    "Özetleme",
+    "Görüş savunma",
+    "Karışık simülasyon",
+    "Final kayıt",
+    "Serbest konuşma"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "phase": 1,
+      "title": "Kendini tanıt",
+      "goal": "Adını, yaşadığın yeri ve ne yaptığını 4 kısa cümleyle Almanca anlat.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich bin",
+              "Ich wohne in",
+              "Ich arbeite als",
+              "Ich komme aus"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "Lena",
+              "Berlin",
+              "Entwickler",
+              "der Türkei"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ben ...’ım.",
+          "target": "Ich bin …"
+        },
+        {
+          "cue": "...’da yaşıyorum.",
+          "target": "Ich wohne in …"
+        },
+        {
+          "cue": "... olarak çalışıyorum.",
+          "target": "Ich arbeite als …"
+        },
+        {
+          "cue": "Tanıştığımıza memnun oldum.",
+          "target": "Freut mich."
+        }
+      ],
+      "listening": [
+        {
+          "title": "İlk tanışma",
+          "text": "Hallo, ich bin Lena. Ich wohne in Berlin und arbeite als Designerin. Freut mich.",
+          "hint": "Ad + yaşadığın yer + yaptığın iş."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Yeri değiştir",
+          "base": "Ich wohne in Berlin.",
+          "prompt": "Berlin yerine Hamburg söyle.",
+          "answer": "Ich wohne in Hamburg."
+        },
+        {
+          "rule": "İşi değiştir",
+          "base": "Ich arbeite als Designerin.",
+          "prompt": "Designerin yerine Entwickler söyle.",
+          "answer": "Ich arbeite als Entwickler."
+        }
+      ],
+      "mission": {
+        "title": "30 saniyelik tanışma",
+        "prompt": "Adını, yaşadığın yeri, yaptığın işi ve sonunda “Freut mich.” ifadesini kullanarak kendini tanıt.",
+        "seconds": 60,
+        "constraints": [
+          "Not okuma",
+          "4 kısa cümle yeter",
+          "İkinci turu biraz daha akıcı yap"
+        ],
+        "variants": [
+          "Yeni bir iş arkadaşınla tanışıyorsun.",
+          "Bir etkinlikte kendini tanıtıyorsun.",
+          "Online toplulukta kendini tanıtıyorsun."
+        ]
+      },
+      "checkpoint": "İlk konuşmanı kaydet. Gün 7’de aynı yapıyı daha uzun yeniden yapacaksın."
+    },
+    {
+      "day": 2,
+      "phase": 1,
+      "title": "Bugünkü planın",
+      "goal": "Ne istediğini, neye ihtiyacın olduğunu ve ne yapmak zorunda olduğunu söyle.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich möchte …",
+              "Ich muss …",
+              "Ich kann …",
+              "Heute …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... istiyorum.",
+          "target": "Ich möchte …"
+        },
+        {
+          "cue": "... yapmam gerekiyor.",
+          "target": "Ich muss …"
+        },
+        {
+          "cue": "... yapabilirim.",
+          "target": "Ich kann …"
+        },
+        {
+          "cue": "Bugün ...",
+          "target": "Heute …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Bugünkü plan",
+          "text": "Heute muss ich arbeiten, aber am Abend möchte ich Deutsch lernen.",
+          "hint": "Zorunluluk + istek."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "İstek → zorunluluk",
+          "base": "Ich möchte heute lernen.",
+          "prompt": "möchte yerine muss kullan.",
+          "answer": "Ich muss heute lernen."
+        },
+        {
+          "rule": "Zamanı öne al",
+          "base": "Ich lerne heute Deutsch.",
+          "prompt": "Heute ile başlat.",
+          "answer": "Heute lerne ich Deutsch."
+        }
+      ],
+      "mission": {
+        "title": "Bugünkü niyetlerin",
+        "prompt": "Önce kendini iki cümleyle tanıt. Sonra bugün yapmak istediğin ve yapmak zorunda olduğun şeyleri söyle.",
+        "seconds": 75,
+        "constraints": [
+          "Gün 1’den iki cümle kullan",
+          "möchte ve muss kullan",
+          "İkinci turda daha az durakla"
+        ],
+        "variants": [
+          "Yoğun bir iş günün var.",
+          "Akşam için plan yapıyorsun.",
+          "Yarın erken kalkacaksın."
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "phase": 1,
+      "title": "Soru sor ve konuşmayı kurtar",
+      "goal": "Birini tanımak için basit sorular sor; anlamazsan tekrar istemeyi bil.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Was machst du?",
+              "Wo wohnst du?",
+              "Können Sie das bitte wiederholen?",
+              "Was bedeutet das?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ne yapıyorsun?",
+          "target": "Was machst du?"
+        },
+        {
+          "cue": "Nerede yaşıyorsun?",
+          "target": "Wo wohnst du?"
+        },
+        {
+          "cue": "Tekrar eder misiniz?",
+          "target": "Können Sie das bitte wiederholen?"
+        },
+        {
+          "cue": "Bu ne demek?",
+          "target": "Was bedeutet das?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Takip soruları",
+          "text": "Wo wohnst du? Was machst du beruflich?",
+          "hint": "Yer + iş hakkında iki temel soru."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Yer sorusu",
+          "base": "Du wohnst in Berlin.",
+          "prompt": "Soruya çevir.",
+          "answer": "Wohnst du in Berlin?"
+        },
+        {
+          "rule": "Kibar tekrar",
+          "base": "Noch einmal.",
+          "prompt": "Kibar tam cümle yap.",
+          "answer": "Können Sie das bitte wiederholen?"
+        }
+      ],
+      "mission": {
+        "title": "Mini tanışma",
+        "prompt": "Kendini tanıt, iki soru sor ve anlamamış gibi bir kez tekrar iste.",
+        "seconds": 90,
+        "constraints": [
+          "Gün 1’den kendini tanıt",
+          "İki soru sor",
+          "Bir kez tekrar iste"
+        ],
+        "variants": [
+          "Yeni komşunla konuşuyorsun.",
+          "Yeni iş arkadaşınla konuşuyorsun.",
+          "Dil partneriyle ilk görüşme."
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "phase": 1,
+      "title": "Kafede sipariş ver",
+      "goal": "Sipariş ver, bir ayrıntı ekle ve yanlış gelirse düzelt.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich hätte gern …",
+              "Kann ich … haben?",
+              "Zum Mitnehmen, bitte.",
+              "Das ist alles, danke."
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... istiyorum.",
+          "target": "Ich hätte gern …"
+        },
+        {
+          "cue": "... alabilir miyim?",
+          "target": "Kann ich … haben?"
+        },
+        {
+          "cue": "Paket olsun.",
+          "target": "Zum Mitnehmen, bitte."
+        },
+        {
+          "cue": "Bu kadar, teşekkürler.",
+          "target": "Das ist alles, danke."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Sipariş",
+          "text": "Hallo, ich hätte gern einen Kaffee mit Milch und ein Wasser, bitte.",
+          "hint": "Selam + sipariş + detay."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Ürünü değiştir",
+          "base": "Ich hätte gern einen Kaffee.",
+          "prompt": "Kaffee yerine Tee söyle.",
+          "answer": "Ich hätte gern einen Tee."
+        },
+        {
+          "rule": "Yanlışı düzelt",
+          "base": "Das ist Tee.",
+          "prompt": "Kahve istediğini söyle.",
+          "answer": "Entschuldigung, ich hatte einen Kaffee bestellt."
+        }
+      ],
+      "mission": {
+        "title": "Kafe provası",
+        "prompt": "Selam ver, bir içecek sipariş et, bir ayrıntı ekle ve konuşmayı kapat. İkinci turda sipariş yanlış gelsin.",
+        "seconds": 90,
+        "constraints": [
+          "bitte kullan",
+          "Das ist alles, danke ile kapat",
+          "İkinci turda yanlışı düzelt"
+        ],
+        "variants": [
+          "İçecek kalmamış.",
+          "Sipariş yanlış gelmiş.",
+          "Paket istiyorsun."
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "phase": 1,
+      "title": "Yol sor",
+      "goal": "Bir yerin nerede olduğunu sor, basit yönü anla ve yönü tekrar ederek kontrol et.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Entschuldigung, wo ist …?",
+              "Wie komme ich zu …?",
+              "Gehen Sie geradeaus.",
+              "Also geradeaus und dann links?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Affedersiniz, ... nerede?",
+          "target": "Entschuldigung, wo ist …?"
+        },
+        {
+          "cue": "... nasıl giderim?",
+          "target": "Wie komme ich zu …?"
+        },
+        {
+          "cue": "Düz gidin.",
+          "target": "Gehen Sie geradeaus."
+        },
+        {
+          "cue": "Yani düz, sonra sola mı?",
+          "target": "Also geradeaus und dann links?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Basit yön",
+          "text": "Gehen Sie geradeaus und dann links. Der Bahnhof ist auf der rechten Seite.",
+          "hint": "Düz → sol → sağ taraf."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Hedefi değiştir",
+          "base": "Wie komme ich zum Bahnhof?",
+          "prompt": "Bahnhof yerine Museum söyle.",
+          "answer": "Wie komme ich zum Museum?"
+        },
+        {
+          "rule": "Yönü kontrol et",
+          "base": "Geradeaus, dann links.",
+          "prompt": "Soru olarak tekrar et.",
+          "answer": "Also geradeaus und dann links?"
+        }
+      ],
+      "mission": {
+        "title": "Telefonun yok, yol sor",
+        "prompt": "Bir yabancıya hedefini sor, bir kez tekrar iste ve yönü kendi cümlenle kontrol et.",
+        "seconds": 90,
+        "constraints": [
+          "Entschuldigung ile başla",
+          "Bir kez tekrar iste",
+          "Yönü tekrar ederek bitir"
+        ],
+        "variants": [
+          "Tren istasyonu.",
+          "Otel.",
+          "Müze."
+        ]
+      },
+      "checkpoint": "İlk 5 gün sonunda tanışma, ihtiyaç, soru, sipariş ve yol sorma görevlerini notsuz yapabilmelisin."
+    },
+    {
+      "day": 6,
+      "phase": 2,
+      "title": "Gününü anlat",
+      "goal": "Sabahından akşamına rutinini 5–6 kısa cümleyle anlat.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Normalerweise …",
+              "Morgens …",
+              "Nach der Arbeit …",
+              "Abends …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Genellikle ...",
+          "target": "Normalerweise …"
+        },
+        {
+          "cue": "Sabahları ...",
+          "target": "Morgens …"
+        },
+        {
+          "cue": "İşten sonra ...",
+          "target": "Nach der Arbeit …"
+        },
+        {
+          "cue": "Akşamları ...",
+          "target": "Abends …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Bir iş günü",
+          "text": "Morgens stehe ich früh auf. Nach der Arbeit koche ich und lerne zwanzig Minuten Deutsch.",
+          "hint": "Sabah + iş sonrası + akşam."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Zamanı öne al",
+          "base": "Ich lerne abends Deutsch.",
+          "prompt": "Abends ile başlat.",
+          "answer": "Abends lerne ich Deutsch."
+        },
+        {
+          "rule": "Sıklık ekle",
+          "base": "Ich koche zu Hause.",
+          "prompt": "normalerweise ekle.",
+          "answer": "Normalerweise koche ich zu Hause."
+        }
+      ],
+      "mission": {
+        "title": "Bir gününü anlat",
+        "prompt": "Sabah ne yaptığını söyle, gün içinden iki şey ekle ve akşamını anlat.",
+        "seconds": 120,
+        "constraints": [
+          "En az 5 cümle",
+          "Gün 2’den muss veya möchte kullan",
+          "Bir kez aber kullan"
+        ],
+        "variants": [
+          "Normal iş günü.",
+          "Hafta sonu.",
+          "Yoğun bir gün."
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "phase": 2,
+      "title": "İlk hafta kaydı",
+      "goal": "Yeni konu öğrenmeden ilk 6 gündeki Almancanı tek konuşmada birleştir.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich bin …",
+              "Ich möchte …",
+              "Können Sie das bitte wiederholen?",
+              "Normalerweise …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ben ...’ım.",
+          "target": "Ich bin …"
+        },
+        {
+          "cue": "... yapmak istiyorum.",
+          "target": "Ich möchte …"
+        },
+        {
+          "cue": "Tekrar eder misiniz?",
+          "target": "Können Sie das bitte wiederholen?"
+        },
+        {
+          "cue": "Genellikle ...",
+          "target": "Normalerweise …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Bir haftanın dili",
+          "text": "Hallo, ich bin Nora. Ich wohne in Köln und arbeite als Lehrerin. Abends lerne ich Deutsch, weil es mir Spaß macht.",
+          "hint": "Kendin + rutin + neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Cümleyi büyüt",
+          "base": "Ich wohne in Köln.",
+          "prompt": "İşini ekle.",
+          "answer": "Ich wohne in Köln und arbeite als Lehrerin."
+        },
+        {
+          "rule": "Neden ekle",
+          "base": "Abends lerne ich Deutsch.",
+          "prompt": "weil es mir Spaß macht ekle.",
+          "answer": "Abends lerne ich Deutsch, weil es mir Spaß macht."
+        }
+      ],
+      "mission": {
+        "title": "Gün 7 konuşma kaydı",
+        "prompt": "90 saniye konuş: kendini tanıt, bugün ne yapacağını, rutininin bir kısmını ve dışarıda kullanabileceğin bir cümleyi ekle.",
+        "seconds": 120,
+        "constraints": [
+          "Not kullanma",
+          "Takılırsan basitleştir",
+          "İkinci turu kaydet"
+        ],
+        "variants": [
+          "Standart hafta kaydı.",
+          "Daha kısa ikinci tur.",
+          "Sesli mesaj gibi anlat."
+        ]
+      },
+      "checkpoint": "Gün 1 kaydınla karşılaştır: cümleye başlama hızı, duraklama ve cümle sayısı."
+    },
+    {
+      "day": 8,
+      "phase": 2,
+      "title": "Ne üzerinde çalışıyorsun?",
+      "goal": "İşini, öğrendiğin şeyi ve neden önemli olduğunu anlat.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich arbeite an …",
+              "Ich lerne …",
+              "Ich möchte … verbessern.",
+              "Weil ich es für die Arbeit brauche."
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... üzerinde çalışıyorum.",
+          "target": "Ich arbeite an …"
+        },
+        {
+          "cue": "... öğreniyorum.",
+          "target": "Ich lerne …"
+        },
+        {
+          "cue": "... geliştirmek istiyorum.",
+          "target": "Ich möchte … verbessern."
+        },
+        {
+          "cue": "Çünkü işim için lazım.",
+          "target": "Weil ich es für die Arbeit brauche."
+        }
+      ],
+      "listening": [
+        {
+          "title": "İş ve öğrenme",
+          "text": "Ich arbeite an Webprojekten und lerne Deutsch, weil ich es für die Arbeit brauche.",
+          "hint": "İş + öğrenme + neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Konuyu değiştir",
+          "base": "Ich lerne Deutsch.",
+          "prompt": "Deutsch yerine Programmieren söyle.",
+          "answer": "Ich lerne Programmieren."
+        },
+        {
+          "rule": "weil ekle",
+          "base": "Ich lerne Deutsch.",
+          "prompt": "İşim için lazım olduğunu ekle.",
+          "answer": "Ich lerne Deutsch, weil ich es für die Arbeit brauche."
+        }
+      ],
+      "mission": {
+        "title": "Şu an ne yapıyorsun?",
+        "prompt": "Kendini tanıt, ne üzerinde çalıştığını ve ne öğrendiğini anlat.",
+        "seconds": 120,
+        "constraints": [
+          "Gün 1’den tanıtma",
+          "weil kullan",
+          "En az 5 cümle"
+        ],
+        "variants": [
+          "Yeni ekip arkadaşı.",
+          "Dil partneri.",
+          "Proje tanıtımı."
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "phase": 2,
+      "title": "Mağazada işini hallet",
+      "goal": "Fiyat sor, özellik iste ve ödeme sorununu çöz.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Wie viel kostet das?",
+              "Haben Sie das eine Nummer größer?",
+              "Kann ich mit Karte zahlen?",
+              "Meine Karte funktioniert nicht."
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Bu ne kadar?",
+          "target": "Wie viel kostet das?"
+        },
+        {
+          "cue": "Daha büyük bedeni var mı?",
+          "target": "Haben Sie das eine Nummer größer?"
+        },
+        {
+          "cue": "Kartla ödeyebilir miyim?",
+          "target": "Kann ich mit Karte zahlen?"
+        },
+        {
+          "cue": "Kartım çalışmıyor.",
+          "target": "Meine Karte funktioniert nicht."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Ödeme",
+          "text": "Meine Karte funktioniert nicht. Kann ich bar bezahlen?",
+          "hint": "Sorun + alternatif ödeme."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Ödeme değiştir",
+          "base": "Kann ich mit Karte zahlen?",
+          "prompt": "Nakit ödemeyi sor.",
+          "answer": "Kann ich bar bezahlen?"
+        },
+        {
+          "rule": "Özellik iste",
+          "base": "Haben Sie das eine Nummer größer?",
+          "prompt": "Siyah rengini sor.",
+          "answer": "Haben Sie das auch in Schwarz?"
+        }
+      ],
+      "mission": {
+        "title": "Mağaza provası",
+        "prompt": "Bir ürün seç, fiyatını sor, özellik iste ve ödeme yap. İkinci turda kartın çalışmasın.",
+        "seconds": 120,
+        "constraints": [
+          "Bir fiyat sorusu",
+          "Bir özellik isteği",
+          "Sorun + çözüm"
+        ],
+        "variants": [
+          "Beden yok.",
+          "Renk yok.",
+          "Kart çalışmıyor."
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "phase": 2,
+      "title": "Plan yap, sonra değiştir",
+      "goal": "Buluşma öner, saati netleştir ve plan değişince yeni saat bul.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Möchtest du einen Kaffee trinken?",
+              "Können wir uns um sechs treffen?",
+              "Da kann ich nicht.",
+              "Wie wäre es um sieben?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Kahve içmek ister misin?",
+          "target": "Möchtest du einen Kaffee trinken?"
+        },
+        {
+          "cue": "Altıda buluşabilir miyiz?",
+          "target": "Können wir uns um sechs treffen?"
+        },
+        {
+          "cue": "O saatte yapamam.",
+          "target": "Da kann ich nicht."
+        },
+        {
+          "cue": "Yedi nasıl?",
+          "target": "Wie wäre es um sieben?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Plan değişikliği",
+          "text": "Um sechs kann ich nicht. Wie wäre es um sieben?",
+          "hint": "Sorun + yeni öneri."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Saati değiştir",
+          "base": "Können wir uns um sechs treffen?",
+          "prompt": "sechs yerine sieben söyle.",
+          "answer": "Können wir uns um sieben treffen?"
+        },
+        {
+          "rule": "Davet yap",
+          "base": "Wir trinken Kaffee.",
+          "prompt": "Möchtest du ile davet yap.",
+          "answer": "Möchtest du einen Kaffee trinken?"
+        }
+      ],
+      "mission": {
+        "title": "İlk 10 gün checkpoint",
+        "prompt": "Kısa tanışma yap, plan öner, saat belirle ve sonra programın değişmiş gibi yeni saat teklif et.",
+        "seconds": 150,
+        "constraints": [
+          "Kısa tanıtma",
+          "Bir soru",
+          "Planı değiştir",
+          "İkinci tur daha akıcı"
+        ],
+        "variants": [
+          "Kahve planı.",
+          "Hafta sonu planı.",
+          "Geç kalma durumu."
+        ]
+      },
+      "checkpoint": "Artık tanışma + soru + plan değişikliği tek konuşmada daha az duraklamayla gelmeli."
+    },
+    {
+      "day": 11,
+      "phase": 3,
+      "title": "Dününü anlat",
+      "goal": "Dün yaptığın şeyleri Perfekt ile sırayla anlat.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Gestern habe ich gearbeitet.",
+              "Dann bin ich nach Hause gegangen.",
+              "Danach habe ich gekocht.",
+              "Am Ende …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Dün çalıştım.",
+          "target": "Gestern habe ich gearbeitet."
+        },
+        {
+          "cue": "Sonra eve gittim.",
+          "target": "Dann bin ich nach Hause gegangen."
+        },
+        {
+          "cue": "Daha sonra yemek yaptım.",
+          "target": "Danach habe ich gekocht."
+        },
+        {
+          "cue": "Sonunda ...",
+          "target": "Am Ende …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Dün",
+          "text": "Gestern habe ich bis sechs gearbeitet. Dann bin ich nach Hause gegangen und habe gekocht.",
+          "hint": "haben/sein + Partizip II."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Fiili değiştir",
+          "base": "Gestern habe ich gearbeitet.",
+          "prompt": "arbeiten yerine lernen kullan.",
+          "answer": "Gestern habe ich gelernt."
+        },
+        {
+          "rule": "Hareket fiili",
+          "base": "Ich bin nach Hause gegangen.",
+          "prompt": "Bahnhof ekle.",
+          "answer": "Ich bin zum Bahnhof gegangen."
+        }
+      ],
+      "mission": {
+        "title": "Dün ne yaptın?",
+        "prompt": "Dününü sabah, gün içi ve akşam olarak sırayla anlat.",
+        "seconds": 150,
+        "constraints": [
+          "En az 5 cümle",
+          "haben ve sein ile Perfekt örneği",
+          "Dann veya Danach kullan"
+        ],
+        "variants": [
+          "İş günü.",
+          "Akşam.",
+          "Planladığın ama yapamadığın şey."
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "phase": 3,
+      "title": "Bir deneyimini anlat",
+      "goal": "Daha önce yaptığın bir şeyi söyle, ne zaman olduğunu ve nasıl olduğunu ekle.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Hast du schon einmal …?",
+              "Ich habe schon einmal …",
+              "Ich habe noch nie …",
+              "Einmal habe ich …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Hiç ... yaptın mı?",
+          "target": "Hast du schon einmal …?"
+        },
+        {
+          "cue": "Daha önce ... yaptım.",
+          "target": "Ich habe schon einmal …"
+        },
+        {
+          "cue": "Hiç ... yapmadım.",
+          "target": "Ich habe noch nie …"
+        },
+        {
+          "cue": "Bir kez ...",
+          "target": "Einmal habe ich …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Deneyim",
+          "text": "Ich war einmal in Wien, aber ich war noch nie in Zürich.",
+          "hint": "Yaptım + yapmadım."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Olumsuz yap",
+          "base": "Ich habe Sushi probiert.",
+          "prompt": "noch nie ekle.",
+          "answer": "Ich habe noch nie Sushi probiert."
+        },
+        {
+          "rule": "Soru yap",
+          "base": "Du warst in Wien.",
+          "prompt": "schon einmal ile soru yap.",
+          "answer": "Warst du schon einmal in Wien?"
+        }
+      ],
+      "mission": {
+        "title": "Üç deneyim",
+        "prompt": "Üç gerçek deneyim seç. Yaptın mı, ne zaman ve nasıldı anlat.",
+        "seconds": 150,
+        "constraints": [
+          "Bir schon einmal sorusu",
+          "Bir noch nie cümlesi",
+          "Gün 11’den geçmiş detay"
+        ],
+        "variants": [
+          "Seyahat.",
+          "Yemek.",
+          "İş/öğrenme."
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "phase": 3,
+      "title": "Yarını anlat",
+      "goal": "Kesin planını ve muhtemel planını ayırarak anlat.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Morgen werde ich …",
+              "Ich habe vor, …",
+              "Wahrscheinlich …",
+              "Wenn ich Zeit habe, …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Yarın ... yapacağım.",
+          "target": "Morgen werde ich …"
+        },
+        {
+          "cue": "Planım ...",
+          "target": "Ich habe vor, …"
+        },
+        {
+          "cue": "Muhtemelen ...",
+          "target": "Wahrscheinlich …"
+        },
+        {
+          "cue": "Vaktim olursa ...",
+          "target": "Wenn ich Zeit habe, …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Yarın",
+          "text": "Morgen werde ich zu Hause arbeiten. Wenn ich Zeit habe, lerne ich am Abend Deutsch.",
+          "hint": "Plan + şart."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Şart ekle",
+          "base": "Ich treffe einen Freund.",
+          "prompt": "Wenn ich Zeit habe ile başlat.",
+          "answer": "Wenn ich Zeit habe, treffe ich einen Freund."
+        },
+        {
+          "rule": "Olasılık ekle",
+          "base": "Ich bleibe zu Hause.",
+          "prompt": "Wahrscheinlich ile başlat.",
+          "answer": "Wahrscheinlich bleibe ich zu Hause."
+        }
+      ],
+      "mission": {
+        "title": "Dün, bugün, yarın",
+        "prompt": "Dünden bir cümle, bugünden bir cümle ve yarından iki plan anlat.",
+        "seconds": 150,
+        "constraints": [
+          "Bir Perfekt cümlesi",
+          "Morgen veya werde",
+          "wenn ile şart"
+        ],
+        "variants": [
+          "Yoğun yarın.",
+          "Boş hafta sonu.",
+          "Planı zamana bağlı gün."
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "phase": 3,
+      "title": "Sorunu net anlat",
+      "goal": "Sorunu, beklediğin şeyi ve çözüm isteğini üç adımda söyle.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Es gibt ein Problem mit …",
+              "Das ist nicht das, was ich bestellt habe.",
+              "Könnten Sie das bitte prüfen?",
+              "Gibt es eine andere Möglichkeit?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... ile ilgili sorun var.",
+          "target": "Es gibt ein Problem mit …"
+        },
+        {
+          "cue": "Bu istediğim şey değil.",
+          "target": "Das ist nicht das, was ich bestellt habe."
+        },
+        {
+          "cue": "Kontrol eder misiniz?",
+          "target": "Könnten Sie das bitte prüfen?"
+        },
+        {
+          "cue": "Başka seçenek var mı?",
+          "target": "Gibt es eine andere Möglichkeit?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Sorun çözme",
+          "text": "Es gibt ein Problem mit meiner Bestellung. Könnten Sie das bitte prüfen?",
+          "hint": "Sorun + nazik çözüm isteği."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Sorunu değiştir",
+          "base": "Es gibt ein Problem mit meiner Bestellung.",
+          "prompt": "Bestellung yerine Zahlung kullan.",
+          "answer": "Es gibt ein Problem mit der Zahlung."
+        },
+        {
+          "rule": "Nazikleştir",
+          "base": "Prüfen Sie das.",
+          "prompt": "Könnten Sie ile söyle.",
+          "answer": "Könnten Sie das bitte prüfen?"
+        }
+      ],
+      "mission": {
+        "title": "Bir problemi çöz",
+        "prompt": "Sorun, beklediğin şey ve istediğin çözümü üç adımda anlat.",
+        "seconds": 150,
+        "constraints": [
+          "Es gibt ein Problem…",
+          "Nazik istek",
+          "Alternatif sor"
+        ],
+        "variants": [
+          "Yanlış sipariş.",
+          "Otel sorunu.",
+          "Ödeme sorunu."
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "phase": 3,
+      "title": "İki dakikalık hikâye",
+      "goal": "Bir olayı başlangıç, sorun ve sonuç olarak anlat; ikinci turda daha akıcı söyle.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Vor ein paar Tagen …",
+              "Deshalb …",
+              "Weil …",
+              "Am Ende …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Birkaç gün önce ...",
+          "target": "Vor ein paar Tagen …"
+        },
+        {
+          "cue": "Bu yüzden ...",
+          "target": "Deshalb …"
+        },
+        {
+          "cue": "Çünkü ...",
+          "target": "Weil …"
+        },
+        {
+          "cue": "Sonunda ...",
+          "target": "Am Ende …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Kısa hikâye",
+          "text": "Vor ein paar Tagen habe ich meinen Bus verpasst. Deshalb bin ich zu spät gekommen.",
+          "hint": "Olay + sonuç."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Neden ekle",
+          "base": "Ich bin zurückgegangen.",
+          "prompt": "weil ich meinen Schlüssel vergessen hatte ekle.",
+          "answer": "Ich bin zurückgegangen, weil ich meinen Schlüssel vergessen hatte."
+        },
+        {
+          "rule": "Sonuç ekle",
+          "base": "Ich habe den Bus verpasst.",
+          "prompt": "Deshalb ile sonuç ekle.",
+          "answer": "Ich habe den Bus verpasst. Deshalb war ich zu spät."
+        }
+      ],
+      "mission": {
+        "title": "Gün 15 checkpoint",
+        "prompt": "Başına gelen küçük bir olayı iki dakika anlat. İkinci turda daha kısa ve akıcı anlat.",
+        "seconds": 180,
+        "constraints": [
+          "Başlangıç + sorun + sonuç",
+          "weil veya deshalb",
+          "Am Ende ile kapat"
+        ],
+        "variants": [
+          "Bir şeyi kaçırdın.",
+          "Beklenmedik sorun.",
+          "Plan değişti."
+        ]
+      },
+      "checkpoint": "Dünü, deneyimi ve yarını birbirine karıştırmadan anlatabilmeli; kısa hikâyeyi notsuz sürdürebilmelisin."
+    },
+    {
+      "day": 16,
+      "phase": 4,
+      "title": "Fikrini söyle",
+      "goal": "Bir görüş belirt, nedenini söyle ve gerçek bir örnek ver.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich finde, dass …",
+              "Meiner Meinung nach …",
+              "Für mich …",
+              "Zum Beispiel …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Bence ...",
+          "target": "Ich finde, dass …"
+        },
+        {
+          "cue": "Bana göre ...",
+          "target": "Meiner Meinung nach …"
+        },
+        {
+          "cue": "Benim için ...",
+          "target": "Für mich …"
+        },
+        {
+          "cue": "Örneğin ...",
+          "target": "Zum Beispiel …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Görüş",
+          "text": "Ich finde, dass Homeoffice praktisch ist, weil man Zeit spart.",
+          "hint": "Görüş + neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "dass kullan",
+          "base": "Homeoffice ist praktisch.",
+          "prompt": "Ich finde, dass ile başlat.",
+          "answer": "Ich finde, dass Homeoffice praktisch ist."
+        },
+        {
+          "rule": "Örnek ekle",
+          "base": "Deutsch ist wichtig.",
+          "prompt": "Zum Beispiel ile örnek ekle.",
+          "answer": "Deutsch ist wichtig. Zum Beispiel brauche ich es bei der Arbeit."
+        }
+      ],
+      "mission": {
+        "title": "Bir görüşünü anlat",
+        "prompt": "Günlük bir konuda görüşünü, nedenini ve bir örneği anlat.",
+        "seconds": 180,
+        "constraints": [
+          "Ich finde, dass…",
+          "weil",
+          "Zum Beispiel"
+        ],
+        "variants": [
+          "Homeoffice.",
+          "AI ile öğrenme.",
+          "Sabah mı akşam mı?"
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "phase": 4,
+      "title": "İki seçeneği karşılaştır",
+      "goal": "İki seçeneği en az iki ölçüte göre karşılaştır ve tercihini söyle.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "… ist schneller.",
+              "… ist besser als …",
+              "… ist günstiger, aber …",
+              "Ich bevorzuge …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... daha hızlı.",
+          "target": "… ist schneller."
+        },
+        {
+          "cue": "... daha iyi.",
+          "target": "… ist besser als …"
+        },
+        {
+          "cue": "... daha ucuz ama ...",
+          "target": "… ist günstiger, aber …"
+        },
+        {
+          "cue": "Ben ... tercih ederim.",
+          "target": "Ich bevorzuge …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Karşılaştırma",
+          "text": "Der Zug ist schneller als der Bus, aber er ist teurer. Ich bevorzuge trotzdem den Zug.",
+          "hint": "İki ölçüt + tercih."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Ölçüt değiştir",
+          "base": "Der Zug ist schneller als der Bus.",
+          "prompt": "schneller yerine günstiger kullan.",
+          "answer": "Der Zug ist günstiger als der Bus."
+        },
+        {
+          "rule": "Tercih ekle",
+          "base": "Homeoffice ist flexibler.",
+          "prompt": "Ich bevorzuge ile bağla.",
+          "answer": "Homeoffice ist flexibler, deshalb bevorzuge ich es."
+        }
+      ],
+      "mission": {
+        "title": "Hangisini seçersin?",
+        "prompt": "İki seçenek seç, iki fark söyle ve tercihini açıkla.",
+        "seconds": 180,
+        "constraints": [
+          "als kullan",
+          "aber kullan",
+          "Ich bevorzuge ile bitir"
+        ],
+        "variants": [
+          "Tren vs otobüs.",
+          "Ev vs ofis.",
+          "Telefon vs laptop."
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "phase": 4,
+      "title": "Katıl, sonra farklı noktayı söyle",
+      "goal": "Karşı tarafı anladığını göster ve gerektiğinde nazikçe itiraz et.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Da stimme ich zu.",
+              "Ich verstehe deinen Punkt.",
+              "Da bin ich mir nicht sicher.",
+              "Meine Erfahrung war anders."
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Katılıyorum.",
+          "target": "Da stimme ich zu."
+        },
+        {
+          "cue": "Ne demek istediğini anlıyorum.",
+          "target": "Ich verstehe deinen Punkt."
+        },
+        {
+          "cue": "Tam emin değilim.",
+          "target": "Da bin ich mir nicht sicher."
+        },
+        {
+          "cue": "Benim deneyimim farklıydı.",
+          "target": "Meine Erfahrung war anders."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Nazik itiraz",
+          "text": "Ich verstehe deinen Punkt, aber meine Erfahrung war anders.",
+          "hint": "Önce kabul et, sonra farkı söyle."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Yumuşat",
+          "base": "Ich bin anderer Meinung.",
+          "prompt": "Daha yumuşak söyle.",
+          "answer": "Da bin ich mir nicht sicher."
+        },
+        {
+          "rule": "Karşı deneyim ekle",
+          "base": "Ich verstehe deinen Punkt.",
+          "prompt": "aber ile farklı deneyim ekle.",
+          "answer": "Ich verstehe deinen Punkt, aber meine Erfahrung war anders."
+        }
+      ],
+      "mission": {
+        "title": "Kısa fikir alışverişi",
+        "prompt": "Bir görüşe kısmen katıl, sonra kendi farklı deneyimini söyle.",
+        "seconds": 180,
+        "constraints": [
+          "Ich verstehe deinen Punkt",
+          "aber",
+          "Kendi örneğin"
+        ],
+        "variants": [
+          "Online eğitim.",
+          "Telefonlar.",
+          "Her gün spor."
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "phase": 4,
+      "title": "Kelimeyi bilmiyorsan tarif et",
+      "goal": "Bilmediğin kelime yüzünden konuşmayı durdurmadan nesne, yer veya kişiyi tarif et.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich kenne das Wort nicht, aber …",
+              "Das ist etwas, das man benutzt, um …",
+              "Das ist ein Ort, wo …",
+              "Das ist jemand, der …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Kelimeyi bilmiyorum ama ...",
+          "target": "Ich kenne das Wort nicht, aber …"
+        },
+        {
+          "cue": "... için kullandığın bir şey.",
+          "target": "Das ist etwas, das man benutzt, um …"
+        },
+        {
+          "cue": "... yapılan bir yer.",
+          "target": "Das ist ein Ort, wo …"
+        },
+        {
+          "cue": "... yapan bir kişi.",
+          "target": "Das ist jemand, der …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Tarif ederek devam",
+          "text": "Ich kenne das Wort nicht, aber das ist etwas, das man benutzt, um Papier zusammenzuheften.",
+          "hint": "Kelime yoksa işlevini anlat."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Nesne tarif et",
+          "base": "Ich kenne das Wort nicht.",
+          "prompt": "Zımbanın işlevini ekle.",
+          "answer": "Ich kenne das Wort nicht, aber das ist etwas, das man benutzt, um Papier zusammenzuheften."
+        },
+        {
+          "rule": "Yer tarif et",
+          "base": "Dort kauft man Medikamente.",
+          "prompt": "Ort wo ile söyle.",
+          "answer": "Das ist ein Ort, wo man Medikamente kauft."
+        }
+      ],
+      "mission": {
+        "title": "Üç kelimeyi tarif et",
+        "prompt": "Kelimeyi söylemeden nesne, yer ve kişi tarif et.",
+        "seconds": 180,
+        "constraints": [
+          "Kelimeyi söyleme",
+          "Üç tarif kalıbı",
+          "Basitleştirerek devam et"
+        ],
+        "variants": [
+          "Zımba + eczane + yazılımcı.",
+          "Şarj aleti + havaalanı + öğretmen.",
+          "Kulaklık + kafe + doktor."
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "phase": 4,
+      "title": "Rezervasyonu çöz",
+      "goal": "Rezervasyonu kontrol ettir, sorun çıkarsa açıkla ve alternatif iste.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich habe eine Reservierung.",
+              "Ich möchte einchecken.",
+              "Meine Reservierung ist nicht im System.",
+              "Gibt es ein anderes Zimmer?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Rezervasyonum var.",
+          "target": "Ich habe eine Reservierung."
+        },
+        {
+          "cue": "Giriş yapmak istiyorum.",
+          "target": "Ich möchte einchecken."
+        },
+        {
+          "cue": "Rezervasyonum görünmüyor.",
+          "target": "Meine Reservierung ist nicht im System."
+        },
+        {
+          "cue": "Başka oda var mı?",
+          "target": "Gibt es ein anderes Zimmer?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Kayıp rezervasyon",
+          "text": "Meine Reservierung ist nicht im System. Könnten Sie bitte noch einmal nachsehen?",
+          "hint": "Sorun + tekrar kontrol isteği."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Probleme çevir",
+          "base": "Ich habe eine Reservierung.",
+          "prompt": "Sistemde görünmediğini söyle.",
+          "answer": "Meine Reservierung ist nicht im System."
+        },
+        {
+          "rule": "Alternatif iste",
+          "base": "Es gibt ein Problem mit dem Zimmer.",
+          "prompt": "Başka oda sor.",
+          "answer": "Es gibt ein Problem mit dem Zimmer. Gibt es ein anderes Zimmer?"
+        }
+      ],
+      "mission": {
+        "title": "Gün 20 checkpoint",
+        "prompt": "Otele giriş yap. Rezervasyon bulunamasın. Sorunu açıkla, tekrar kontrol iste ve alternatif çözüm sor.",
+        "seconds": 210,
+        "constraints": [
+          "Kısa tanışma",
+          "Sorunu net söyle",
+          "Nazik tekrar iste",
+          "Alternatif çözüm"
+        ],
+        "variants": [
+          "Rezervasyon yok.",
+          "Oda hazır değil.",
+          "Oda gürültülü."
+        ]
+      },
+      "checkpoint": "Soru sorma, sorun açıklama, nazik itiraz ve alternatif isteme artık tek konuşmada birlikte çalışmalı."
+    },
+    {
+      "day": 21,
+      "phase": 5,
+      "title": "Telefonla mesaj bırak",
+      "goal": "Aradığın kişi yoksa kendini tanıt, neden aradığını söyle ve geri dönüş iste.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Kann ich bitte mit … sprechen?",
+              "Ich rufe wegen … an.",
+              "Kann ich eine Nachricht hinterlassen?",
+              "Könnten Sie sagen, dass er/sie mich zurückrufen soll?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... ile görüşebilir miyim?",
+          "target": "Kann ich bitte mit … sprechen?"
+        },
+        {
+          "cue": "... hakkında arıyorum.",
+          "target": "Ich rufe wegen … an."
+        },
+        {
+          "cue": "Mesaj bırakabilir miyim?",
+          "target": "Kann ich eine Nachricht hinterlassen?"
+        },
+        {
+          "cue": "Beni geri aramasını söyler misiniz?",
+          "target": "Könnten Sie sagen, dass er/sie mich zurückrufen soll?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Mesaj bırakma",
+          "text": "Hallo, ich rufe wegen des Termins morgen an. Könnten Sie Alex bitten, mich zurückzurufen?",
+          "hint": "Kendini tanıt + neden + istek."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Konuyu değiştir",
+          "base": "Ich rufe wegen des Termins an.",
+          "prompt": "Termin yerine Reservierung söyle.",
+          "answer": "Ich rufe wegen der Reservierung an."
+        },
+        {
+          "rule": "Geri dönüş iste",
+          "base": "Alex ist nicht da.",
+          "prompt": "Geri arama iste.",
+          "answer": "Könnten Sie Alex bitten, mich zurückzurufen?"
+        }
+      ],
+      "mission": {
+        "title": "Telefon provası",
+        "prompt": "Birini ara. Kişi yok. Kendini tanıt, neden aradığını söyle ve mesaj bırak.",
+        "seconds": 180,
+        "constraints": [
+          "Kendini tanıt",
+          "Arama nedeni",
+          "Geri dönüş iste"
+        ],
+        "variants": [
+          "İş görüşmesi.",
+          "Plan değişikliği.",
+          "Rezervasyon."
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "phase": 5,
+      "title": "Nasıl hissettiğini anlat",
+      "goal": "Kendini nasıl hissettiğini ve bunun planını nasıl etkilediğini söyle.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich bin müde.",
+              "Ich habe Kopfschmerzen.",
+              "Mir ist ein bisschen schlecht.",
+              "Jetzt geht es mir besser."
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Yorgunum.",
+          "target": "Ich bin müde."
+        },
+        {
+          "cue": "Başım ağrıyor.",
+          "target": "Ich habe Kopfschmerzen."
+        },
+        {
+          "cue": "Biraz hastayım.",
+          "target": "Mir ist ein bisschen schlecht."
+        },
+        {
+          "cue": "Şimdi daha iyiyim.",
+          "target": "Jetzt geht es mir besser."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Planı değiştir",
+          "text": "Ich habe Kopfschmerzen, deshalb bleibe ich heute Abend zu Hause.",
+          "hint": "Durum + plan değişikliği."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Durumu değiştir",
+          "base": "Ich bin heute müde.",
+          "prompt": "müde yerine krank söyle.",
+          "answer": "Ich bin heute krank."
+        },
+        {
+          "rule": "Sonuç ekle",
+          "base": "Ich habe Kopfschmerzen.",
+          "prompt": "deshalb ile dinlenme planı ekle.",
+          "answer": "Ich habe Kopfschmerzen, deshalb ruhe ich mich aus."
+        }
+      ],
+      "mission": {
+        "title": "Plan neden değişti?",
+        "prompt": "Nasıl hissettiğini anlat ve bu yüzden planında neyi değiştireceğini söyle.",
+        "seconds": 180,
+        "constraints": [
+          "Durumunu söyle",
+          "deshalb kullan",
+          "Yeni plan"
+        ],
+        "variants": [
+          "Yorgunsun.",
+          "Sabah kötüydün.",
+          "Arkadaşına neden dinlendiğini anlat."
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "phase": 5,
+      "title": "İstasyonda işini hallet",
+      "goal": "Bilet al, saati ve peronu sor, gecikme varsa yeni plan yap.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich hätte gern eine Fahrkarte nach …",
+              "Wann fährt der Zug ab?",
+              "Von welchem Gleis?",
+              "Hat der Zug Verspätung?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... için bilet istiyorum.",
+          "target": "Ich hätte gern eine Fahrkarte nach …"
+        },
+        {
+          "cue": "Tren saat kaçta kalkıyor?",
+          "target": "Wann fährt der Zug ab?"
+        },
+        {
+          "cue": "Hangi peron?",
+          "target": "Von welchem Gleis?"
+        },
+        {
+          "cue": "Gecikme var mı?",
+          "target": "Hat der Zug Verspätung?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Gecikme",
+          "text": "Der Zug hat zwanzig Minuten Verspätung und fährt um 18:40 Uhr ab.",
+          "hint": "Gecikme + yeni saat."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Saat sor",
+          "base": "Der Zug fährt um sechs ab.",
+          "prompt": "Soruya çevir.",
+          "answer": "Wann fährt der Zug ab?"
+        },
+        {
+          "rule": "Bilet türü",
+          "base": "Ich hätte gern eine Fahrkarte nach Berlin.",
+          "prompt": "Gidiş dönüş söyle.",
+          "answer": "Ich hätte gern eine Hin- und Rückfahrkarte nach Berlin."
+        }
+      ],
+      "mission": {
+        "title": "Tren yolculuğu",
+        "prompt": "Bilet al, kalkış saatini ve peronu sor. Tren geciksin; yeni saate göre planını değiştir.",
+        "seconds": 180,
+        "constraints": [
+          "Üç soru",
+          "Gecikmeye tepki",
+          "Yeni plan"
+        ],
+        "variants": [
+          "Gecikme.",
+          "Yanlış peron.",
+          "Dönüş bileti."
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "phase": 5,
+      "title": "Destekten çözüm iste",
+      "goal": "Bir servis sorununu ne zamandır olduğunu söyleyerek açıkla ve sonraki adımı sor.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Es funktioniert nicht.",
+              "Es ist noch nicht angekommen.",
+              "Ich kann mich nicht anmelden.",
+              "Was soll ich tun?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Çalışmıyor.",
+          "target": "Es funktioniert nicht."
+        },
+        {
+          "cue": "Henüz gelmedi.",
+          "target": "Es ist noch nicht angekommen."
+        },
+        {
+          "cue": "Giriş yapamıyorum.",
+          "target": "Ich kann mich nicht anmelden."
+        },
+        {
+          "cue": "Ne yapmalıyım?",
+          "target": "Was soll ich tun?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Destek",
+          "text": "Mein Internet funktioniert seit gestern nicht. Könnten Sie das bitte prüfen?",
+          "hint": "Sorun + süre + istek."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Süre ekle",
+          "base": "Mein Internet funktioniert nicht.",
+          "prompt": "seit gestern ekle.",
+          "answer": "Mein Internet funktioniert seit gestern nicht."
+        },
+        {
+          "rule": "Sorunu değiştir",
+          "base": "Meine Bestellung ist noch nicht angekommen.",
+          "prompt": "Bestellung yerine Paket söyle.",
+          "answer": "Mein Paket ist noch nicht angekommen."
+        }
+      ],
+      "mission": {
+        "title": "Müşteri desteği provası",
+        "prompt": "Bir servis problemi seç; sorunu, süresini ve istediğin çözümü söyle.",
+        "seconds": 180,
+        "constraints": [
+          "Süre belirt",
+          "Nazik istek",
+          "Was soll ich tun?"
+        ],
+        "variants": [
+          "İnternet.",
+          "Sipariş.",
+          "Hesap girişi."
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "phase": 5,
+      "title": "Bir seçim yap ve ikna et",
+      "goal": "İki seçenekten birini seç, iki neden ver ve karşı tarafın çekincesine cevap ver.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 15,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 10,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 10,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich würde … wählen.",
+              "Ich denke, wir sollten …",
+              "Der Hauptgrund ist …",
+              "Ich verstehe deinen Punkt, aber …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Ben ... seçerdim.",
+          "target": "Ich würde … wählen."
+        },
+        {
+          "cue": "Bence ... yapmalıyız.",
+          "target": "Ich denke, wir sollten …"
+        },
+        {
+          "cue": "Ana sebep ...",
+          "target": "Der Hauptgrund ist …"
+        },
+        {
+          "cue": "Ne demek istediğini anlıyorum ama ...",
+          "target": "Ich verstehe deinen Punkt, aber …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "İkna et",
+          "text": "Ich denke, wir sollten mit dem Zug fahren, weil er schneller und bequemer ist.",
+          "hint": "Seçim + iki neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Öneriye çevir",
+          "base": "Ich würde den Zug wählen.",
+          "prompt": "wir sollten ile yeniden kur.",
+          "answer": "Ich denke, wir sollten mit dem Zug fahren."
+        },
+        {
+          "rule": "İkinci neden",
+          "base": "Der Zug ist schneller.",
+          "prompt": "bequemer ekle.",
+          "answer": "Der Zug ist schneller und bequemer."
+        }
+      ],
+      "mission": {
+        "title": "Gün 25 checkpoint",
+        "prompt": "İki seçenekten birini seç, iki neden ver ve karşı taraf farklı düşünüyor gibi cevapla.",
+        "seconds": 210,
+        "constraints": [
+          "wir sollten",
+          "İki neden",
+          "Ich verstehe deinen Punkt, aber…",
+          "İkinci tur daha kısa"
+        ],
+        "variants": [
+          "Tren mi uçak mı?",
+          "Evde mi dışarıda mı?",
+          "Şimdi mi sonra mı?"
+        ]
+      },
+      "checkpoint": "Artık gerekçe verme ve karşı görüşe cevap verme de gerçek hayat görevlerine eklenmiş olmalı."
+    },
+    {
+      "day": 26,
+      "phase": 6,
+      "title": "Hazırlıksız beş soru",
+      "goal": "Beklemediğin sorulara kısa düşünme payı alıp konuşmayı kesmeden cevap ver.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 10,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 5,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 20,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Lass mich kurz überlegen.",
+              "Das kommt darauf an, aber …",
+              "Ich würde sagen, …",
+              "Das Erste, was mir einfällt, ist …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Bir saniye düşüneyim.",
+          "target": "Lass mich kurz überlegen."
+        },
+        {
+          "cue": "Duruma göre değişir ama ...",
+          "target": "Das kommt darauf an, aber …"
+        },
+        {
+          "cue": "Şöyle derdim ...",
+          "target": "Ich würde sagen, …"
+        },
+        {
+          "cue": "İlk aklıma gelen ...",
+          "target": "Das Erste, was mir einfällt, ist …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Hazırlıksız cevap",
+          "text": "Das kommt darauf an, aber ich würde sagen, dass ich morgens konzentrierter bin.",
+          "hint": "Düşünme payı + cevap + neden."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Düşünme payı",
+          "base": "Morgens bin ich konzentrierter.",
+          "prompt": "Lass mich kurz überlegen ile başlat.",
+          "answer": "Lass mich kurz überlegen. Morgens bin ich konzentrierter."
+        },
+        {
+          "rule": "Yumuşat",
+          "base": "Morgens ist es besser.",
+          "prompt": "Das kommt darauf an ile başlat.",
+          "answer": "Das kommt darauf an, aber morgens ist es für mich besser."
+        }
+      ],
+      "mission": {
+        "title": "Beş beklenmedik soru",
+        "prompt": "Beş soruya 30–45 saniye cevap ver; bilmiyorsan susmak yerine düşünme kalıbı kullan.",
+        "seconds": 240,
+        "constraints": [
+          "Her cevap en az iki cümle",
+          "Açılışları çeşitlendir",
+          "Takılırsan tarif et"
+        ],
+        "variants": [
+          "En sevdiğin şehir?",
+          "Bir yıl izin?",
+          "Teknoloji hayatını nasıl değiştirdi?"
+        ]
+      }
+    },
+    {
+      "day": 27,
+      "phase": 6,
+      "title": "Kısa bir şeyi özetle",
+      "goal": "Bir video veya yazının konusunu, ana fikrini ve iki detayını kendi cümlelerinle anlat.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 10,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 5,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 20,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Es geht um …",
+              "Die Hauptidee ist …",
+              "Ein wichtiger Punkt ist …",
+              "Ich finde den wichtigsten Punkt …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "... hakkında.",
+          "target": "Es geht um …"
+        },
+        {
+          "cue": "Ana fikir ...",
+          "target": "Die Hauptidee ist …"
+        },
+        {
+          "cue": "Önemli noktalardan biri ...",
+          "target": "Ein wichtiger Punkt ist …"
+        },
+        {
+          "cue": "Bence en önemli kısmı ...",
+          "target": "Ich finde den wichtigsten Punkt …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Özet",
+          "text": "Das Video geht um Lerngewohnheiten. Die Hauptidee ist, regelmäßig zu üben.",
+          "hint": "Konu + ana fikir."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Ana fikir ekle",
+          "base": "Das Video geht um Technologie.",
+          "prompt": "Die Hauptidee ist ile ikinci cümle ekle.",
+          "answer": "Das Video geht um Technologie. Die Hauptidee ist, dass kleine Werkzeuge den Alltag verändern können."
+        },
+        {
+          "rule": "Yorum ekle",
+          "base": "Der Artikel sagt, dass Homeoffice wächst.",
+          "prompt": "Kendi yorumunu ekle.",
+          "answer": "Der Artikel sagt, dass Homeoffice wächst, und ich finde das nachvollziehbar."
+        }
+      ],
+      "mission": {
+        "title": "90 saniyelik özet",
+        "prompt": "Bugün izlediğin veya okuduğun kısa bir şeyi konu + ana fikir + iki detay + yorum şeklinde özetle.",
+        "seconds": 240,
+        "constraints": [
+          "Metne bakma",
+          "Dört bölüm",
+          "Kendi yorumun"
+        ],
+        "variants": [
+          "Video.",
+          "Haber.",
+          "Ürün incelemesi."
+        ]
+      }
+    },
+    {
+      "day": 28,
+      "phase": 6,
+      "title": "Bir görüşü savun",
+      "goal": "Görüşünü söyle, gerekçe ve örnek ver, olası karşı görüşe cevap ver.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 10,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 5,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 20,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Meine Meinung ist, dass …",
+              "Ich würde argumentieren, dass …",
+              "Zum Beispiel …",
+              "Man könnte sagen, dass …"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Benim görüşüm ...",
+          "target": "Meine Meinung ist, dass …"
+        },
+        {
+          "cue": "Şunu savunurdum ...",
+          "target": "Ich würde argumentieren, dass …"
+        },
+        {
+          "cue": "Örneğin ...",
+          "target": "Zum Beispiel …"
+        },
+        {
+          "cue": "Birisi şöyle diyebilir ...",
+          "target": "Man könnte sagen, dass …"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Argüman",
+          "text": "Meine Meinung ist, dass Praxis wichtiger ist als Theorie, weil man durch Handeln lernt.",
+          "hint": "Görüş + gerekçe."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Örnek ekle",
+          "base": "KI kann beim Lernen helfen.",
+          "prompt": "Zum Beispiel ile destekle.",
+          "answer": "KI kann beim Lernen helfen. Zum Beispiel kann man schneller Feedback bekommen."
+        },
+        {
+          "rule": "Karşı görüş",
+          "base": "Homeoffice sollte bleiben.",
+          "prompt": "Man könnte sagen ile karşı görüş ekle.",
+          "answer": "Man könnte sagen, dass das Büro besser ist, aber Homeoffice bietet mehr Flexibilität."
+        }
+      ],
+      "mission": {
+        "title": "Üç dakikalık savunma",
+        "prompt": "Bir görüş seç, nedenini söyle, örnek ver, karşı görüşü tahmin et ve cevap ver.",
+        "seconds": 240,
+        "constraints": [
+          "Açık görüş",
+          "Gerçek örnek",
+          "Karşı görüşe cevap"
+        ],
+        "variants": [
+          "Pratik vs teori.",
+          "AI eğitimde.",
+          "Homeoffice."
+        ]
+      }
+    },
+    {
+      "day": 29,
+      "phase": 6,
+      "title": "Üç gerçek hayat senaryosu",
+      "goal": "Hazır konu olmadan üç farklı günlük durumda hızlıca konuşmaya geç.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 10,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 5,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 20,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Ich brauche Hilfe.",
+              "Ich habe eine Frage.",
+              "Es gibt ein Problem mit …",
+              "Was kann ich tun?"
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Yardıma ihtiyacım var.",
+          "target": "Ich brauche Hilfe."
+        },
+        {
+          "cue": "Bir sorum var.",
+          "target": "Ich habe eine Frage."
+        },
+        {
+          "cue": "... ile ilgili sorun var.",
+          "target": "Es gibt ein Problem mit …"
+        },
+        {
+          "cue": "Ne yapabilirim?",
+          "target": "Was kann ich tun?"
+        }
+      ],
+      "listening": [
+        {
+          "title": "Karışık görev",
+          "text": "Hallo, es gibt ein Problem mit meiner Reservierung. Könnten Sie mir bitte helfen?",
+          "hint": "Açılış + sorun + yardım isteği."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Durumu değiştir",
+          "base": "Es gibt ein Problem mit meiner Reservierung.",
+          "prompt": "Reservierung yerine Zahlung söyle.",
+          "answer": "Es gibt ein Problem mit meiner Zahlung."
+        },
+        {
+          "rule": "Plan değiştir",
+          "base": "Ich möchte meinen Plan ändern.",
+          "prompt": "Yeni seçenek sor.",
+          "answer": "Ich möchte meinen Plan ändern. Gibt es eine andere Möglichkeit?"
+        }
+      ],
+      "mission": {
+        "title": "Gün 29 simülasyonu",
+        "prompt": "Üç senaryoyu arka arkaya çöz; biri bittiğinde hemen diğerine geç.",
+        "seconds": 300,
+        "constraints": [
+          "Farklı açılışlar",
+          "Bir sorunu çöz",
+          "Bir kez tarif ederek devam et",
+          "Hazırlıksız geçiş"
+        ],
+        "variants": [
+          "Kafe + ödeme + yol.",
+          "Otel + rezervasyon + plan.",
+          "Alışveriş + iade + telefon."
+        ]
+      }
+    },
+    {
+      "day": 30,
+      "phase": 6,
+      "title": "Final konuşma kaydı",
+      "goal": "Kendin, dün, yarın, bir görüş ve bir problem hakkında tek oturumda notsuz konuş.",
+      "session": [
+        {
+          "name": "Dinleme",
+          "minutes": 10,
+          "task": "Kısa örneği dinle ve yüksek sesle tekrar et."
+        },
+        {
+          "name": "Hatırlama",
+          "minutes": 10,
+          "task": "Bugünün ve önceki günlerin kalıplarını notsuz söyle."
+        },
+        {
+          "name": "Cümle kurma",
+          "minutes": 10,
+          "task": "Bugünün kalıplarını kendi hayatına göre tamamla."
+        },
+        {
+          "name": "Dönüştürme",
+          "minutes": 5,
+          "task": "Aynı cümlede tek parçayı değiştir."
+        },
+        {
+          "name": "Konuşma",
+          "minutes": 20,
+          "task": "Bugünün gerçek hayat görevini iki tur yap."
+        },
+        {
+          "name": "Hata notu",
+          "minutes": 5,
+          "task": "Tekrar eden bir hatayı kaydet."
+        }
+      ],
+      "engine": {
+        "slots": [
+          {
+            "id": "start",
+            "label": "Kalıp",
+            "options": [
+              "Zuerst stelle ich mich kurz vor.",
+              "Gestern habe ich …",
+              "Morgen werde ich …",
+              "Ich sage es anders."
+            ]
+          },
+          {
+            "id": "core",
+            "label": "Kendi bilgin",
+            "options": [
+              "heute",
+              "in Berlin",
+              "Deutsch",
+              "mit Freunden"
+            ]
+          },
+          {
+            "id": "detail",
+            "label": "Ek",
+            "options": [
+              "",
+              "gern",
+              "später"
+            ]
+          },
+          {
+            "id": "tail",
+            "label": "Bitiş",
+            "options": [
+              "."
+            ]
+          }
+        ]
+      },
+      "recall": [
+        {
+          "cue": "Önce kendimi tanıtayım.",
+          "target": "Zuerst stelle ich mich kurz vor."
+        },
+        {
+          "cue": "Dün ...",
+          "target": "Gestern habe ich …"
+        },
+        {
+          "cue": "Yarın ...",
+          "target": "Morgen werde ich …"
+        },
+        {
+          "cue": "Başka şekilde söyleyeyim.",
+          "target": "Ich sage es anders."
+        }
+      ],
+      "listening": [
+        {
+          "title": "Final model",
+          "text": "Zuerst stelle ich mich kurz vor. Dann erzähle ich von gestern, meinen Plänen für morgen und einer Meinung, die mir wichtig ist.",
+          "hint": "Bölümler arasında sakin geçiş."
+        }
+      ],
+      "drills": [
+        {
+          "rule": "Zaman geçişi",
+          "base": "Gestern habe ich gearbeitet. Morgen ruhe ich mich aus.",
+          "prompt": "İki bölümü doğal bağla.",
+          "answer": "Gestern habe ich viel gearbeitet. Morgen werde ich mich ausruhen."
+        },
+        {
+          "rule": "Onarım",
+          "base": "Ich kenne das genaue Wort nicht.",
+          "prompt": "Konuşmayı sürdürmek için yeniden ifade et.",
+          "answer": "Ich kenne das genaue Wort nicht. Ich sage es anders."
+        }
+      ],
+      "mission": {
+        "title": "Gün 30 benchmark",
+        "prompt": "Tek kayıtta beş bölüm: kendini tanıt, dününü, yarınını, bir görüşünü ve bir problemi nasıl çözeceğini anlat.",
+        "seconds": 300,
+        "constraints": [
+          "Not kullanma",
+          "Takılırsan basitleştir",
+          "Bir örnek ver",
+          "Bir kez yeniden ifade et",
+          "Tek kayıtta bitir"
+        ],
+        "variants": [
+          "Standart final.",
+          "Daha kısa ikinci tur.",
+          "Serbest tur."
+        ]
+      },
+      "checkpoint": "Gün 1 kaydıyla karşılaştır: konuşma süresi, cümleye başlama hızı, uzun duraklamalar, kendini toparlama ve farklı kalıp sayısı."
+    }
+  ]
+}
