@@ -1,8 +1,26 @@
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 
-const KEY='senior_language_os_v3';
+const ROOT_KEY='senior_language_os_v4';
+const OLD_KEY='senior_language_os_v3';
 const LEGACY_KEY='senior_language_os_v2';
+const DEFAULT_PACK='english-30-day-v1';
+
+const PACKS={
+  'english-30-day-v1':{
+    path:'packs/english-30-day.json',
+    audio:'audio/english-v1.json',
+    brand:'ENGLISH',
+    fallbackName:'Senior English'
+  },
+  'german-30-day-v1':{
+    path:'packs/german-30-day.json',
+    audio:'audio/german-v1.json',
+    brand:'DEUTSCH',
+    fallbackName:'Senior Deutsch'
+  }
+};
+
 const STEPS=['listen','build','recall','change','speak'];
 const STEP_LABELS=['Dinle','Cümle kur','Hatırla','Değiştir','Konuş'];
 
@@ -17,7 +35,42 @@ const defaults={
   savedSentences:[]
 };
 
-let state=loadState();
+function freshState(){return JSON.parse(JSON.stringify(defaults))}
+
+function migrateLegacy(){
+  let old=null;
+  try{old=JSON.parse(localStorage.getItem(OLD_KEY))}catch{}
+  if(!old){try{old=JSON.parse(localStorage.getItem(LEGACY_KEY))}catch{}}
+  if(!old)return null;
+  const migrated=freshState();
+  for(const key of Object.keys(defaults)){
+    if(old[key]!==undefined)migrated[key]=old[key];
+  }
+  return migrated;
+}
+
+function loadRoot(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(ROOT_KEY));
+    if(saved?.progress)return {
+      activePackId:PACKS[saved.activePackId]?saved.activePackId:DEFAULT_PACK,
+      progress:saved.progress||{}
+    };
+  }catch{}
+  const legacy=migrateLegacy();
+  return {
+    activePackId:DEFAULT_PACK,
+    progress:legacy?{[DEFAULT_PACK]:legacy}:{}
+  };
+}
+
+function loadCourseState(id){
+  return {...freshState(),...(root.progress[id]||{})};
+}
+
+let root=loadRoot();
+let activePackId=root.activePackId;
+let state=loadCourseState(activePackId);
 let pack=null;
 let audioManifest={};
 let lessonAudio=null;
@@ -30,28 +83,12 @@ let recorder=null;
 let chunks=[];
 let recordingUrl=null;
 
-function loadState(){
-  try{
-    const saved=JSON.parse(localStorage.getItem(KEY));
-    if(saved)return {...defaults,...saved};
-  }catch{}
-  try{
-    const old=JSON.parse(localStorage.getItem(LEGACY_KEY));
-    if(old){
-      return {...defaults,
-        day:old.day||1,
-        completedDays:old.completedDays||[],
-        errors:old.errors||[],
-        recallStats:old.recallStats||[],
-        recallSchedule:old.recallSchedule||{},
-        savedSentences:old.savedSentences||[]
-      };
-    }
-  }catch{}
-  return {...defaults};
+function save(){
+  root.activePackId=activePackId;
+  root.progress[activePackId]=state;
+  localStorage.setItem(ROOT_KEY,JSON.stringify(root));
 }
 
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 function esc(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function norm(v=''){return String(v).toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s']/gu,'').replace(/\s+/g,' ').trim()}
 function pad(n){return String(n).padStart(2,'0')}
@@ -59,32 +96,64 @@ function toast(text){const el=$('#toast');el.textContent=text;el.classList.add('
 function currentDay(){return pack.days.find(x=>x.day===state.day)||pack.days[0]}
 function phase(){return pack.phases?.find(x=>x.id===Math.ceil(state.day/5))}
 function isDone(){return state.completedDays.includes(state.day)}
+function targetName(){return pack?.meta?.targetLanguageTr||pack?.meta?.targetLanguage||'hedef dili'}
+function targetPossessive(){
+  const name=targetName();
+  if(name==='Almanca')return 'Almancasını';
+  if(name==='İngilizce')return 'İngilizcesini';
+  return name+' karşılığını';
+}
+
+async function fetchJson(path){
+  const r=await fetch(path);
+  if(!r.ok)throw new Error('fetch failed');
+  return r.json();
+}
+
+async function loadActivePack(){
+  const cfg=PACKS[activePackId]||PACKS[DEFAULT_PACK];
+  try{pack=await fetchJson(cfg.path)}
+  catch{pack=fallbackPack(cfg)}
+  try{audioManifest=cfg.audio?await fetchJson(cfg.audio):{}}
+  catch{audioManifest={}}
+  document.title=(pack.meta?.name||cfg.fallbackName)+' · Senior';
+}
 
 async function init(){
-  try{pack=await fetch('packs/english-30-day.json').then(r=>{if(!r.ok)throw new Error();return r.json()})}
-  catch{pack=fallbackPack()}
-  try{audioManifest=await fetch('audio/english-v1.json').then(r=>r.ok?r.json():{})}catch{audioManifest={}}
+  await loadActivePack();
   bind();
   resetDayPractice();
   render();
 }
 
-function fallbackPack(){
+function fallbackPack(cfg){
+  const isGerman=activePackId==='german-30-day-v1';
   return {
-    meta:{name:'Senior English',version:'offline',locale:'en-US'},
+    meta:{
+      id:activePackId,
+      name:cfg.fallbackName,
+      targetLanguage:isGerman?'German':'English',
+      targetLanguageTr:isGerman?'Almanca':'İngilizce',
+      locale:isGerman?'de-DE':'en-US',
+      version:'offline'
+    },
     phases:[{id:1,name:'Başlangıç'}],
     days:[{
-      day:1,title:'Kendini Tanıt',goal:'Adını, yaşadığın yeri ve ne yaptığını kısa cümlelerle anlat.',
-      recall:[{cue:'Ben ...’ım.','target':'I’m …'},{cue:'Ben ...’da yaşıyorum.',target:'I live in …'}],
-      listening:[{title:'Tanışma',text:"Hi, I’m Alex. I live in Berlin.",hint:'İsim + yaşadığın yer.'}],
-      drills:[{rule:'Bilgiyi değiştir',base:'I live in Berlin.',prompt:'Berlin yerine London söyle.',answer:'I live in London.'}],
-      mission:{title:'Kendini tanıt',prompt:'Adını, yaşadığın yeri ve ne yaptığını 30–60 saniye anlat.'}
+      day:1,title:'Kendini tanıt',goal:'Adını ve yaşadığın yeri kısa cümlelerle anlat.',
+      recall:isGerman
+        ?[{cue:'Ben ...’ım.',target:'Ich bin …'},{cue:'...’da yaşıyorum.',target:'Ich wohne in …'}]
+        :[{cue:'Ben ...’ım.',target:'I’m …'},{cue:'...’da yaşıyorum.',target:'I live in …'}],
+      listening:[{title:'Tanışma',text:isGerman?'Hallo, ich bin Alex. Ich wohne in Berlin.':"Hi, I’m Alex. I live in Berlin.",hint:'İsim + yaşadığın yer.'}],
+      drills:[{rule:'Yeri değiştir',base:isGerman?'Ich wohne in Berlin.':'I live in Berlin.',prompt:'Şehri değiştir.',answer:isGerman?'Ich wohne in Hamburg.':'I live in London.'}],
+      mission:{title:'Kendini tanıt',prompt:'Adını ve yaşadığın yeri kısa biçimde anlat.',seconds:60,variants:['Yeni biriyle tanış.']}
     }]
-  }
+  };
 }
 
 function bind(){
   $$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+  $$('#coursePicker [data-pack]').forEach(b=>b.addEventListener('click',()=>switchPack(b.dataset.pack)));
+
   $('#startDay').onclick=()=>{
     if(!state.startedDays.includes(state.day))state.startedDays.push(state.day);
     state.step=0;save();renderToday();
@@ -106,13 +175,28 @@ function bind(){
   };
   $('#errorForm').onsubmit=addError;
   $('#exportState').onclick=exportState;
-  $('#resetAll').onclick=resetAll;
+  $('#resetAll').onclick=resetCurrentCourse;
+}
+
+async function switchPack(id){
+  if(!PACKS[id]||id===activePackId)return;
+  stopLessonAudio();
+  if(recorder?.state==='recording')recorder.stop();
+  save();
+  activePackId=id;
+  state=loadCourseState(id);
+  await loadActivePack();
+  resetDayPractice();
+  save();
+  render();
+  go('today');
+  toast((pack.meta?.name||PACKS[id].fallbackName)+' açıldı.');
 }
 
 function go(name){
   stopLessonAudio();
   $('#playListen').onclick=playLessonAudio;
-  $('.screen').forEach(x=>x.classList.remove('active'));
+  $$('.screen').forEach(x=>x.classList.remove('active'));
   $('#screen-'+name)?.classList.add('active');
   $$('.main-nav [data-go]').forEach(x=>x.classList.toggle('active',x.dataset.go===name));
   if(name==='today')renderToday();
@@ -133,6 +217,7 @@ function render(){
 function renderHeader(){
   $('#topDay').textContent='Gün '+state.day+' / 30';
   $('#topProgress').style.width=Math.round(state.completedDays.length/30*100)+'%';
+  $('#brandProduct').textContent=PACKS[activePackId]?.brand||targetName().toUpperCase();
 }
 
 function resetDayPractice(){
@@ -315,10 +400,10 @@ function startRecall(){
   recallStartedAt=performance.now();
   $('#startRecall').classList.add('hidden');
   $('#revealRecall').classList.remove('hidden');
-  $('#recallNote').textContent='İngilizcesini söyle. Sonra cevabı aç.';
+  $('#recallNote').textContent=targetPossessive()+' söyle. Sonra cevabı aç.';
 }
 
-function recallKey(index){return (pack.meta?.id||'pack')+':'+state.day+':'+index}
+function recallKey(index){return (pack.meta?.id||activePackId)+':'+state.day+':'+index}
 
 function revealRecall(){
   if(!recallStartedAt)return;
@@ -478,22 +563,29 @@ function renderErrors(){
 }
 
 function renderSettings(){
-  $('#packName').textContent=pack.meta?.name||'Senior English';
+  $('#packName').textContent=pack.meta?.name||PACKS[activePackId]?.fallbackName||'Senior';
   $('#packVersion').textContent=pack.meta?.version||'';
+  $$('#coursePicker [data-pack]').forEach(b=>b.classList.toggle('active',b.dataset.pack===activePackId));
 }
 
 function exportState(){
-  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const blob=new Blob([JSON.stringify({
+    packId:activePackId,
+    packName:pack.meta?.name,
+    progress:state
+  },null,2)],{type:'application/json'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='senior-english-progress.json';
+  a.download='senior-'+activePackId+'-progress.json';
   a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),500);
 }
 
-function resetAll(){
-  if(!confirm('Tüm ilerleme ve hata kayıtları silinsin mi?'))return;
-  state={...defaults};
+function resetCurrentCourse(){
+  const name=pack.meta?.name||'bu kurs';
+  if(!confirm(name+' ilerlemesi ve hata kayıtları sıfırlansın mı?'))return;
+  state=freshState();
+  root.progress[activePackId]=state;
   save();
   resetDayPractice();
   render();
