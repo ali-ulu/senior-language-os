@@ -19,6 +19,8 @@ const defaults={
 
 let state=loadState();
 let pack=null;
+let audioManifest={};
+let lessonAudio=null;
 let selectedPattern='';
 let customEnding='';
 let recallIndex=0;
@@ -61,6 +63,7 @@ function isDone(){return state.completedDays.includes(state.day)}
 async function init(){
   try{pack=await fetch('packs/english-30-day.json').then(r=>{if(!r.ok)throw new Error();return r.json()})}
   catch{pack=fallbackPack()}
+  try{audioManifest=await fetch('audio/english-v1.json').then(r=>r.ok?r.json():{})}catch{audioManifest={}}
   bind();
   resetDayPractice();
   render();
@@ -87,7 +90,7 @@ function bind(){
     state.step=0;save();renderToday();
   };
   $$('[data-next]').forEach(b=>b.onclick=nextStep);
-  $('#playListen').onclick=()=>speak(currentDay().listening?.[0]?.text||'');
+  $('#playListen').onclick=playLessonAudio;
   $('#speakSentence').onclick=()=>speak(buildSentence());
   $('#startRecall').onclick=startRecall;
   $('#revealRecall').onclick=revealRecall;
@@ -107,7 +110,9 @@ function bind(){
 }
 
 function go(name){
-  $$('.screen').forEach(x=>x.classList.remove('active'));
+  stopLessonAudio();
+  $('#playListen').onclick=playLessonAudio;
+  $('.screen').forEach(x=>x.classList.remove('active'));
   $('#screen-'+name)?.classList.add('active');
   $$('.main-nav [data-go]').forEach(x=>x.classList.toggle('active',x.dataset.go===name));
   if(name==='today')renderToday();
@@ -189,6 +194,8 @@ function showStep(index){
 }
 
 function nextStep(){
+  stopLessonAudio();
+  $('#playListen').onclick=playLessonAudio;
   if(state.step<STEPS.length-1){
     state.step++;
     save();
@@ -201,6 +208,10 @@ function renderListen(){
   const x=currentDay().listening?.[0]||{};
   $('#listenHint').textContent=x.hint||'';
   $('#listenText').textContent=x.text||'';
+  const entry=audioEntryForDay(state.day);
+  const btn=$('#playListen');
+  btn.textContent=entry?.src?'▶ Kaydı dinle':'▶ Dinle';
+  btn.title=entry?.src?'Doğal ders kaydı':'Ders kaydı henüz eklenmedi; geçici ses kullanılacak';
 }
 
 function buildSentence(){
@@ -229,6 +240,41 @@ function renderBuild(){
     customEnding=e.target.value;
     $('#sentenceOutput').textContent=buildSentence();
   };
+}
+
+function audioEntryForDay(day){
+  const list=Array.isArray(audioManifest?.items)?audioManifest.items:[];
+  return list.find(x=>Number(x.day)===Number(day))||null;
+}
+
+function stopLessonAudio(){
+  if(lessonAudio){
+    lessonAudio.pause();
+    lessonAudio.currentTime=0;
+    lessonAudio=null;
+  }
+}
+
+function fallbackListen(){
+  const text=currentDay().listening?.[0]?.text||'';
+  if(!text)return;
+  toast('Doğal kayıt henüz eklenmedi. Geçici ses kullanılıyor.');
+  speak(text);
+}
+
+function playLessonAudio(){
+  const entry=audioEntryForDay(state.day);
+  stopLessonAudio();
+  if(!entry?.src){fallbackListen();return}
+  lessonAudio=new Audio(entry.src);
+  lessonAudio.preload='auto';
+  lessonAudio.onplay=()=>{$('#playListen').textContent='■ Durdur'};
+  lessonAudio.onended=()=>{$('#playListen').textContent='▶ Kaydı dinle';lessonAudio=null};
+  lessonAudio.onerror=()=>{$('#playListen').textContent='▶ Dinle';lessonAudio=null;fallbackListen()};
+  $('#playListen').onclick=()=>{
+    if(lessonAudio){stopLessonAudio();$('#playListen').textContent='▶ Kaydı dinle';$('#playListen').onclick=playLessonAudio}
+  };
+  lessonAudio.play().catch(()=>{lessonAudio=null;fallbackListen()});
 }
 
 function speak(text){
