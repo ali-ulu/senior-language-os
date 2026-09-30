@@ -82,46 +82,53 @@ for(const file of files){
 }
 
 
-const audioManifestPath=path.resolve('audio/english-v1.json');
-if(fs.existsSync(audioManifestPath)){
+const audioConfigs=[
+  {manifest:'audio/english-v1.json',pack:'english-30-day.json'},
+  {manifest:'audio/german-v1.json',pack:'german-30-day.json'}
+];
+
+for(const cfg of audioConfigs){
+  const audioManifestPath=path.resolve(cfg.manifest);
+  if(!fs.existsSync(audioManifestPath))continue;
+
   let audio;
   try{audio=JSON.parse(fs.readFileSync(audioManifestPath,'utf8'))}
-  catch(error){fail('audio/english-v1.json',`invalid JSON: ${error.message}`)}
+  catch(error){fail(cfg.manifest,`invalid JSON: ${error.message}`);continue}
 
-  if(audio){
-    if(!Array.isArray(audio.items)||audio.items.length===0)fail('audio/english-v1.json','items[] must not be empty');
-    else{
-      const daySeen=new Set();
-      const englishFile=files.find(name=>name==='english-30-day.json');
-      let englishPack=null;
-      if(englishFile){
-        try{englishPack=JSON.parse(fs.readFileSync(path.join(packsDir,englishFile),'utf8'))}catch{}
-      }
+  let sourcePack=null;
+  const packPath=path.join(packsDir,cfg.pack);
+  try{sourcePack=JSON.parse(fs.readFileSync(packPath,'utf8'))}
+  catch(error){fail(cfg.manifest,`source pack could not be read: ${error.message}`)}
 
-      for(const item of audio.items){
-        const label=`day ${item?.day??'?'}`;
-        if(!Number.isInteger(item?.day))fail('audio/english-v1.json',`${label}: integer day is required`);
-        else if(daySeen.has(item.day))fail('audio/english-v1.json',`${label}: duplicate day entry`);
-        else daySeen.add(item.day);
+  if(!Array.isArray(audio.items)||audio.items.length===0){
+    fail(cfg.manifest,'items[] must not be empty');
+    continue;
+  }
 
-        if(!isNonEmpty(item?.id))fail('audio/english-v1.json',`${label}: id is required`);
-        if(!isNonEmpty(item?.speaker))fail('audio/english-v1.json',`${label}: speaker is required`);
-        if(!isNonEmpty(item?.script))fail('audio/english-v1.json',`${label}: script is required`);
-        if(!isNonEmpty(item?.status))fail('audio/english-v1.json',`${label}: status is required`);
+  const daySeen=new Set();
+  for(const item of audio.items){
+    const label=`day ${item?.day??'?'}`;
+    if(!Number.isInteger(item?.day))fail(cfg.manifest,`${label}: integer day is required`);
+    else if(daySeen.has(item.day))fail(cfg.manifest,`${label}: duplicate day entry`);
+    else daySeen.add(item.day);
 
-        const lessonText=englishPack?.days?.find(d=>d.day===item.day)?.listening?.[0]?.text;
-        if(lessonText&&item.script!==lessonText){
-          fail('audio/english-v1.json',`${label}: script must exactly match packs/english-30-day.json listening text`);
-        }
+    if(!isNonEmpty(item?.id))fail(cfg.manifest,`${label}: id is required`);
+    if(!isNonEmpty(item?.speaker))fail(cfg.manifest,`${label}: speaker is required`);
+    if(!isNonEmpty(item?.script))fail(cfg.manifest,`${label}: script is required`);
+    if(!isNonEmpty(item?.status))fail(cfg.manifest,`${label}: status is required`);
 
-        if(item.src){
-          const asset=path.resolve(item.src);
-          if(!fs.existsSync(asset))fail('audio/english-v1.json',`${label}: audio asset not found at ${item.src}`);
-          if(item.status!=='ready')fail('audio/english-v1.json',`${label}: item with src must use status "ready"`);
-        }else if(item.status==='ready'){
-          fail('audio/english-v1.json',`${label}: status "ready" requires src`);
-        }
-      }
+    const lessonText=sourcePack?.days?.find(d=>d.day===item.day)?.listening?.[0]?.text;
+    if(!lessonText)fail(cfg.manifest,`${label}: no matching listening text in ${cfg.pack}`);
+    else if(item.script!==lessonText){
+      fail(cfg.manifest,`${label}: script must exactly match ${cfg.pack} listening text`);
+    }
+
+    if(item.src){
+      const asset=path.resolve(item.src);
+      if(!fs.existsSync(asset))fail(cfg.manifest,`${label}: audio asset not found at ${item.src}`);
+      if(item.status!=='ready')fail(cfg.manifest,`${label}: item with src must use status "ready"`);
+    }else if(item.status==='ready'){
+      fail(cfg.manifest,`${label}: status "ready" requires src`);
     }
   }
 }
