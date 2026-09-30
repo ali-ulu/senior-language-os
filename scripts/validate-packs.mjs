@@ -81,6 +81,51 @@ for(const file of files){
   if(!prod)warn(file,'test/demo pack: production-only 30-day rules skipped');
 }
 
+
+const audioManifestPath=path.resolve('audio/english-v1.json');
+if(fs.existsSync(audioManifestPath)){
+  let audio;
+  try{audio=JSON.parse(fs.readFileSync(audioManifestPath,'utf8'))}
+  catch(error){fail('audio/english-v1.json',`invalid JSON: ${error.message}`)}
+
+  if(audio){
+    if(!Array.isArray(audio.items)||audio.items.length===0)fail('audio/english-v1.json','items[] must not be empty');
+    else{
+      const daySeen=new Set();
+      const englishFile=files.find(name=>name==='english-30-day.json');
+      let englishPack=null;
+      if(englishFile){
+        try{englishPack=JSON.parse(fs.readFileSync(path.join(packsDir,englishFile),'utf8'))}catch{}
+      }
+
+      for(const item of audio.items){
+        const label=`day ${item?.day??'?'}`;
+        if(!Number.isInteger(item?.day))fail('audio/english-v1.json',`${label}: integer day is required`);
+        else if(daySeen.has(item.day))fail('audio/english-v1.json',`${label}: duplicate day entry`);
+        else daySeen.add(item.day);
+
+        if(!isNonEmpty(item?.id))fail('audio/english-v1.json',`${label}: id is required`);
+        if(!isNonEmpty(item?.speaker))fail('audio/english-v1.json',`${label}: speaker is required`);
+        if(!isNonEmpty(item?.script))fail('audio/english-v1.json',`${label}: script is required`);
+        if(!isNonEmpty(item?.status))fail('audio/english-v1.json',`${label}: status is required`);
+
+        const lessonText=englishPack?.days?.find(d=>d.day===item.day)?.listening?.[0]?.text;
+        if(lessonText&&item.script!==lessonText){
+          fail('audio/english-v1.json',`${label}: script must exactly match packs/english-30-day.json listening text`);
+        }
+
+        if(item.src){
+          const asset=path.resolve(item.src);
+          if(!fs.existsSync(asset))fail('audio/english-v1.json',`${label}: audio asset not found at ${item.src}`);
+          if(item.status!=='ready')fail('audio/english-v1.json',`${label}: item with src must use status "ready"`);
+        }else if(item.status==='ready'){
+          fail('audio/english-v1.json',`${label}: status "ready" requires src`);
+        }
+      }
+    }
+  }
+}
+
 for(const line of warnings)console.warn('WARN',line);
 if(failures.length){
   for(const line of failures)console.error('FAIL',line);
